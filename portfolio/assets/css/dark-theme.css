@@ -1,0 +1,76 @@
+/* Body Background and Text */
+body {
+    background-color: #121212;
+    color: #ffffff;
+    font-family: "Source Sans Pro", Helvetica, sans-serif;
+  }
+  
+  /* Header */
+  #header {
+    background-color: #1e1e1e;
+    color: #ffffff;
+    border-bottom: 2px solid #333333;
+  }
+  
+  #header h1 {
+    color: #ffffff;
+  }
+  
+  #header .image.avatar img {
+    border: 3px solid #444444;
+  }
+  
+  /* Links */
+  a {
+    color: #1e90ff;
+  }
+  
+  a:hover {
+    color: #00bfff;
+  }
+  
+  /* Buttons */
+  input[type="submit"],
+  input[type="reset"],
+  input[type="button"],
+  .button {
+    background-color: #444444;
+    color: #ffffff;
+    border: 1px solid #555555;
+  }
+  
+  input[type="submit"]:hover,
+  input[type="reset"]:hover,
+  input[type="button"]:hover,
+  .button:hover {
+    background-color: #555555;
+  }
+  
+  /* Intro Section */
+  .intro-subtitle {
+    font-size: 1.2rem;
+    color: #aaaaaa;
+  }
+  
+  .intro-subtitle b {
+    color: #ffffff;
+  }
+  
+  .intro-subtitle i {
+    color: #cccccc;
+  }
+  
+  /* Footer */
+  #footer {
+    background-color: #1e1e1e;
+    color: #ffffff;
+  }
+  
+  #footer .icons a {
+    color: #777777;
+  }
+  
+  #footer .copyright {
+    color: #777777;
+  }
+  
