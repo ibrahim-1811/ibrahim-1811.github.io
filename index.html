@@ -6,62 +6,16 @@
 -->
 <html>
 	<head>
-		<title>Mohammad_Portfolio</title>
+		<title>Memon: Portfolio</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
-		<!-- <link rel="stylesheet" href="assets/css/dark-theme.css" /> -->
+		<link href="images/bg.jpg" rel="icon">
+		
     <style>
-      /* Lazy Loading Video Styles */
-      .video-container {
-        position: relative;
-        width: 100%;
-        max-width: 560px;
-        margin: auto;
-        cursor: pointer;
-      }
-      .video-container img {
-        width: 100%;
-        display: block;
-      }
-      .play-button {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 64px;
-        height: 64px;
-        opacity: 0.9;
-      }
-      .play-button svg {
-        width: 100%;
-        height: 100%;
-      }
-      /* Modal Popup Styles */
-      .video-modal {
-        display: none;
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        z-index: 1000;
-        width: 560px;
-        max-width: 90%;
-        background: #000;
-        box-shadow: 0 0 10px rgba(0,0,0,0.5);
-      }
-      .video-modal-content {
-        position: relative;
-        padding: 0;
-      }
-      .video-modal-close {
-        position: absolute;
-        top: 5px;
-        right: 10px;
-        color: #fff;
-        font-size: 24px;
-        cursor: pointer;
-        z-index: 1001;
-      }
+			video {
+			  width: 100%;
+		}
     </style>
 	</head>
 	<body class="is-preload">
@@ -69,11 +23,17 @@
 		<!-- Header -->
 		<header id="header">
 			<div class="inner">
+				<nav style="margin-bottom:1rem;">
+				  <a href="index.html">Home</a> ·
+				  <a href="blogs.html">Blogs</a> ·
+				  <a href="bookmarks.html">Bookmarks</a> ·
+				  <a href="Resume.html" >Resume</a> ·
+				</nav>
 				<a href="index.html" class="image avatar"><img src="images/my_photo.jpg" alt=""/></a>
 				<h1><strong>Mohammad Ibrahim Memon</strong>
 				  <div id="home" class="intro route bg-image" style="background-image: url(img/intro-bg.jpg)">
 				<p class="intro-subtitle">
-				Robotics System Engineer<br></br>
+				Robotics System Engineer, Electronics Enthusiast<br></br>
 				<br><b>M.Sc Autonomous System</b></br>
 				<i>Hochschule Bonn-Rhein-Seig</i><br>
 				<b>B.Tech Mechatronics</b><br>
@@ -89,9 +49,26 @@
 				<header class="major">
 					<h2>About me</h2>
 				</header>
-				<p>Highly motivated and skilled engineer specializing in robotics, electronics, and autonomous systems. With a Bachelor's degree in Mechatronics and a Master's degree (ongoing) in Autonomous Systems, engineer passionate about electronics and robotics, focused on solving complex problems through innovation. My interests lie in Autonomous Vehicles and Mobile Robotics, more specifically in the Motion Planning, Controls and Error Recovery Domain. I love working with both hardware and software. I'm pursuing a Master's in Autonomous Systems, where I've gained experience with autonomous mobile robots (AMR) and simulation projects.</p>
+				   <p>I’m <strong>Mohammad Ibrahim Memon</strong>, a passionate engineer with a strong 
+					background in <strong>Robotics, Electronics, and Autonomous Systems</strong>. 
+					After completing my Bachelor’s in Mechatronics, I am now pursuing a 
+					Master’s in <strong>Autonomous Systems</strong> at Hochschule Bonn-Rhein-Sieg.
+					</p>
+					<p>
+					My interests lie in <strong>Autonomous Mobile Robots</strong>, with a focus on 
+					<strong>Motion Planning, Control Systems, Sensor Fusion, and Fault Detection</strong>. 
+					I enjoy bridging hardware and software — from designing robust electronic 
+					circuits to building intelligent robotic behaviors in ROS/ROS2 and simulation.
+					</p>
+					<p>I have worked on diverse projects, including the 
+					<strong>Robothon 2025 competition</strong> (Kinova Gen3 + Robotiq gripper), 
+					<strong>R&D in Inductive Logic Programming for Fault Detection</strong>, and 
+					the <strong>Garrulus Seeding Mechanism</strong> with advanced PCB protection 
+					circuits. Beyond academics, I am also developing an open-source 
+					<strong>Robotics Algorithms Library</strong> in ROS 2.
+					</p>
 				<ul class="actions">
-					<li><a href="Resume.html" target="_blank" class="button"><font color="black">Resume</font></a></li>
+					<li><a href="Resume.html"  class="button"><font color="white">Resume</font></a></li>
 				</ul>
 			</section>
 
@@ -100,115 +77,209 @@
 				<h2>Projects</h2>
 				<div class="row">
 					<!-- YouTube Video: Multi-Robot Task Distribution -->
+					 <!-- Multi-Robot Task Distribution -->
 					<article class="col-6 col-12-xsmall work-item">
-						<div class="video-container" data-embed="https://www.youtube.com/embed/asg0zFYG6K0?autoplay=1">
-							<img src="https://img.youtube.com/vi/asg0zFYG6K0/hqdefault.jpg" alt="Video Thumbnail" />
-							<div class="play-button">
-								<svg viewBox="0 0 68 48">
-									<path d="M66.52 7.73a8 8 0 0 0-11.3-5.66C51.5 5 34 19 34 19s-17.5-14-21.22-17.93A8 8 0 0 0 1.48 7.73 8 8 0 0 0 0 15.34V32.66a8 8 0 0 0 1.48 7.61 8 8 0 0 0 11.3-5.66C16.5 43 34 29 34 29s17.5 14 21.22 17.93a8 8 0 0 0 11.3-5.66A8 8 0 0 0 68 32.66V15.34a8 8 0 0 0-1.48-7.61z" fill="#f00" opacity=".8"></path>
-									<polygon points="45,24 27,14 27,34" fill="#fff"></polygon>
-								</svg>
-							</div>
-						</div>
-						<h3>Multi-Robot Task Distribution</h3>
-						<p>https://github.com/HBRS-SDP/ss24-multi-robot-task-distribution?tab=readme-ov-file.</p>
+					<a href="https://youtu.be/asg0zFYG6K0?autoplay=1" class="image fit thumb">
+					<img src="images/thumbs/multi_robot/multi_robot.jpg" alt="Video Thumbnail" />
+					</a>
+					<h3 style="font-family:verdana;">
+						<font color="white"><u>Multi-Robot Task Distribution</u></font>
+					</h3>
+					<p><font color="white">
+						Implemented a decentralized multi-robot task allocation framework for dynamic environments.<br/>
+						<ul>
+						<li><p>Designed and tested distributed task allocation algorithms with real robots and Gazebo simulation.</p></li>
+						<li><p>Developed fault-tolerant coordination methods for heterogeneous robot teams.</p></li>
+						<li><p>Integrated ROS-based communication and coordination using publish–subscribe messaging.</p></li>
+						<li><p>Analyzed performance metrics including scalability, task completion time, and resource utilization.</p></li>
+						</ul>
+					</font></p>
+
+					<code><font color="Red">Multi-Robot Systems</font></code>
+					<code><font color="Red">Task Allocation</font></code>
+					<code><font color="Red">ROS</font></code>
+					<code><font color="Red">Simulation</font></code>
+					<code><font color="Red">Distributed Systems</font></code>
+					<code><font color="Red">Fault Tolerance</font></code>
 					</article>
 
-					<!-- YouTube Video: Autonomous Mobile Robot Development, AMR -->
 					<article class="col-6 col-12-xsmall work-item">
-						<div class="video-container" data-embed="https://youtu.be/AcolNEWpMdM">
-							<img src="images/thumbs/02.jpg" alt="Video Thumbnail" />
-							<div class="play-button">
-								<svg viewBox="0 0 68 48">
-									<path d="M66.52 7.73a8 8 0 0 0-11.3-5.66C51.5 5 34 19 34 19s-17.5-14-21.22-17.93A8 8 0 0 0 1.48 7.73 8 8 0 0 0 0 15.34V32.66a8 8 0 0 0 1.48 7.61 8 8 0 0 0 11.3-5.66C16.5 43 34 29 34 29s17.5 14 21.22 17.93a8 8 0 0 0 11.3-5.66A8 8 0 0 0 68 32.66V15.34a8 8 0 0 0-1.48-7.61z" fill="#f00" opacity=".8"></path>
-									<polygon points="45,24 27,14 27,34" fill="#fff"></polygon>
-								</svg>
-							</div>
-						</div>
-						<h3>Autonomous Mobile Robot Development, AMR</h3>
-					</article>
-
-					<!-- YouTube Video: Underwater ROV -->
-					<article class="col-6 col-12-xsmall work-item">
-						<div class="video-container" data-embed="https://youtu.be/nCYJSiTMKXI">
-							<img src="images/thumbs/03.jpg" alt="Video Thumbnail" />
-							<div class="play-button">
-								<svg viewBox="0 0 68 48">
-									<path d="M66.52 7.73a8 8 0 0 0-11.3-5.66C51.5 5 34 19 34 19s-17.5-14-21.22-17.93A8 8 0 0 0 1.48 7.73 8 8 0 0 0 0 15.34V32.66a8 8 0 0 0 1.48 7.61 8 8 0 0 0 11.3-5.66C16.5 43 34 29 34 29s17.5 14 21.22 17.93a8 8 0 0 0 11.3-5.66A8 8 0 0 0 68 32.66V15.34a8 8 0 0 0-1.48-7.61z" fill="#f00" opacity=".8"></path>
-									<polygon points="45,24 27,14 27,34" fill="#fff"></polygon>
-								</svg>
-							</div>
-						</div>
-						<h3>Underwater ROV</h3>
-					</article>
-
-					<!-- YouTube Video: Boxit -->
-					<article class="col-6 col-12-xsmall work-item">
-						<div class="video-container" data-embed="https://youtu.be/7DjfuaVgfzQ">
-							<img src="images/thumbs/04.jpg" alt="Video Thumbnail" />
-							<div class="play-button">
-								<svg viewBox="0 0 68 48">
-									<path d="M66.52 7.73a8 8 0 0 0-11.3-5.66C51.5 5 34 19 34 19s-17.5-14-21.22-17.93A8 8 0 0 0 1.48 7.73 8 8 0 0 0 0 15.34V32.66a8 8 0 0 0 1.48 7.61 8 8 0 0 0 11.3-5.66C16.5 43 34 29 34 29s17.5 14 21.22 17.93a8 8 0 0 0 11.3-5.66A8 8 0 0 0 68 32.66V15.34a8 8 0 0 0-1.48-7.61z" fill="#f00" opacity=".8"></path>
-									<polygon points="45,24 27,14 27,34" fill="#fff"></polygon>
-								</svg>
-							</div>
-						</div>
-						<h3>Boxit</h3>
-						<p>Box Inventory Tracking.</p>
-					</article>
-
-					<!-- Regular Link: Circuit design project (non‑video) -->
-					<article class="col-6 col-12-xsmall work-item">
-						<a href="https://drive.google.com/drive/folders/1bdsustcLlCA6DVBn8I1ZdXgttF0DzjqA?usp=sharing" class="image fit thumb">
-						<img src="images/home_automation.jpg" alt="" />
-						</a>
-						<h3>Circuit design project</h3>
-						<p>Controlling 16 appliances, implemented in university lab.</p>
-					</article>
-
-					<!-- YouTube Video: UR5 ARM pick and place -->
-					<article class="col-6 col-12-xsmall work-item">
-						<div class="video-container" data-embed="https://youtu.be/FStlGbfTc_0">
-							<img src="images/thumbs/06.jpg" alt="Video Thumbnail" />
-							<div class="play-button">
-								<svg viewBox="0 0 68 48">
-									<path d="M66.52 7.73a8 8 0 0 0-11.3-5.66C51.5 5 34 19 34 19s-17.5-14-21.22-17.93A8 8 0 0 0 1.48 7.73 8 8 0 0 0 0 15.34V32.66a8 8 0 0 0 1.48 7.61 8 8 0 0 0 11.3-5.66C16.5 43 34 29 34 29s17.5 14 21.22 17.93a8 8 0 0 0 11.3-5.66A8 8 0 0 0 68 32.66V15.34a8 8 0 0 0-1.48-7.61z" fill="#f00" opacity=".8"></path>
-									<polygon points="45,24 27,14 27,34" fill="#fff"></polygon>
-								</svg>
-
-						</div>
-						<h3>UR5 ARM pick and place</h3>
-						<p>Eyantra task.</p>
-					</article>
-
-					<!-- YouTube Video: Kinova ARM -->
-					<article class="col-6 col-12-xsmall work-item">
-					<div class="video-container" data-embed="https://www.youtube.com/embed/FcK0cvRkM-Q?autoplay=1">
-						<img src="https://img.youtube.com/vi/FcK0cvRkM-Q/hqdefault.jpg" alt="Kinova Arm Gen3 TaskBoard Manipulation Thumbnail" />
-						<div class="play-button">
-						<svg viewBox="0 0 68 48">
-							<path d="M66.52 7.73a8 8 0 0 0-11.3-5.66C51.5 5 34 19 34 19s-17.5-14-21.22-17.93A8 8 0 0 0 1.48 7.73 8 8 0 0 0 0 15.34V32.66a8 8 0 0 0 1.48 7.61 8 8 0 0 0 11.3-5.66C16.5 43 34 29 34 29s17.5 14 21.22 17.93a8 8 0 0 0 11.3-5.66A8 8 0 0 0 68 32.66V15.34a8 8 0 0 0-1.48-7.61z" fill="#f00" opacity=".8"></path>
-							<polygon points="45,24 27,14 27,34" fill="#fff"></polygon>
-						</svg>
-						</div>
-					
-					<h3>TaskBoard Manipulation with Kinova Gen3 Arm</h3>
+					<a href="https://youtu.be/AcolNEWpMdM?autoplay=1" class="image fit thumb">
+					<img src="images/thumbs/multi_robot/navigation.png" alt="Video Thumbnail" />
+					</a>
+					<h3 style="font-family:verdana;">
+						<font color="white"><u>Autonomous Mobile Robot Development (AMR)</u></font>
+					</h3>
+					<p><font color="white">
+						Designed and developed an <strong>Autonomous Mobile Robot (AMR)</strong> 
+						capable of navigation, perception, and intelligent decision-making in dynamic environments.<br/>
+						<ul>
+						<li><p>Implemented <strong>SLAM</strong> for real-time mapping and localization.</p></li>
+						<li><p>Developed <strong>Motion Planning algorithms</strong> for obstacle avoidance and safe navigation.</p></li>
+						<li><p>Integrated <strong>Lidar and Camera sensors</strong> for perception and environment understanding.</p></li>
+						<li><p>Tested robust control systems for smooth velocity and trajectory tracking.</p></li>
+						<li><p>Deployed system on simulation platforms and real hardware for validation.</p></li>
+						<li><p>Based on <strong>ROS</strong> with modular nodes for navigation, planning, and fault detection.</p></li>
+						</ul>
+					</font></p>
 					<p>
-						Developed a complete robotic solution using the Kinova Gen3 manipulator for interacting with a dynamic taskboard. 
-						The system integrated <strong>vision-based detection</strong>, <strong>force-adaptive manipulation</strong>, and 
-						<strong>real-time decision-making</strong> using SMACH.
+						<code><font color="Red">AMR</font></code>
+						<code><font color="Red">ROS</font></code>
+						<code><font color="Red">SLAM</font></code>
+						<code><font color="Red">Motion Planning</font></code>
+						<code><font color="Red">Obstacle Avoidance</font></code>
+						<code><font color="Red">Sensor Fusion</font></code>
+						<code><font color="Red">Lidar</font></code>
+						<code><font color="Red">Camera</font></code>
+						<code><font color="Red">Simulation</font></code>
+						<code><font color="Red">Control Systems</font></code>
 					</p>
 					</article>
-				</div>
-					<ul class="actions">
-					<li><a href="portfolio.html" class="button">Full Portfolio</a></li>
+
+					<!-- Underwater ROV -->
+					<article class="col-6 col-12-xsmall work-item">
+					<a href="https://youtu.be/nCYJSiTMKXI?autoplay=1" class="image fit thumb">
+						<img src="images/thumbs/multi_robot/sauvc.png" alt="Video Thumbnail" />
+					</a>
+					<h3 style="font-family:verdana;">
+						<font color="white"><u>Underwater ROV</u></font>
+					</h3>
+					<p><font color="white">
+						Designed and developed a <strong>Remotely Operated Vehicle (ROV)</strong> for underwater exploration and inspection.<br/>
+						<ul>
+						<li><p>Equipped with waterproof motors and thrusters for 6-DOF movement.</p></li>
+						<li><p>Integrated onboard camera for real-time vision feedback.</p></li>
+						<li><p>Implemented tethered communication and power delivery system.</p></li>
+						<li><p>Designed watertight enclosures for electronics and sensors.</p></li>
+						<li><p>Performed pool and tank testing to validate control stability.</p></li>
+						</ul>
+					</font></p>
+					<p>
+						<code><font color="Red">ROV</font></code>
+						<code><font color="Red">Underwater Robotics</font></code>
+						<code><font color="Red">Thrusters</font></code>
+						<code><font color="Red">Waterproofing</font></code>
+						<code><font color="Red">Live Camera Feed</font></code>
+					</p>
+					</article>
+
+					<!-- Boxit -->
+					<article class="col-6 col-12-xsmall work-item">
+					<a href="https://youtu.be/7DjfuaVgfzQ?autoplay=1" class="image fit thumb">
+						<img src="images/thumbs/multi_robot/box_it.png" alt="Video Thumbnail" />
+					</a>
+
+					<h3 style="font-family:verdana;">
+						<font color="white"><u>Boxit – Inventory Tracking Robot</u></font>
+					</h3>
+					<p><font color="white">
+						Developed a robotic system for <strong>automated box inventory tracking</strong> in warehouses.<br/>
+						<ul>
+						<li><p>Designed vision pipeline to detect and count packages.</p></li>
+						<li><p>Implemented database logging of inventory data.</p></li>
+						<li><p>Integrated barcode/QR scanning with real-time updates.</p></li>
+						<li><p>Designed modular structure for scaling to large warehouses.</p></li>
+						</ul>
+					</font></p>
+					<p>
+						<code><font color="Red">Inventory Tracking</font></code>
+						<code><font color="Red">Computer Vision</font></code>
+						<code><font color="Red">QR Codes</font></code>
+						<code><font color="Red">Database</font></code>
+						<code><font color="Red">Warehouse Robotics</font></code>
+					</p>
+					</article>
+
+					<!-- Circuit Design Project -->
+					<article class="col-6 col-12-xsmall work-item">
+					<a href="/images/home_automation.jpg" class="image fit thumb">
+						<img src="images/home_automation.jpg" alt="Circuit Design Project" />
+					</a>
+					<h3 style="font-family:verdana;">
+						<font color="white"><u>Circuit Design Project – Home Automation</u></font>
+					</h3>
+					<p><font color="white">
+						Designed and implemented a <strong>16-appliance control system</strong> in a university lab.<br/>
+						<ul>
+						<li><p>Created robust PCB design for reliable switching.</p></li>
+						<li><p>Implemented microcontroller-based logic control.</p></li>
+						<li><p>Added safety features including surge protection.</p></li>
+						</ul>
+					</font></p>
+					<p>
+						<code><font color="Red">Circuit Design</font></code>
+						<code><font color="Red">Embedded Systems</font></code>
+						<code><font color="Red">Home Automation</font></code>
+						<code><font color="Red">PCB Design</font></code>
+					</p>
+					</article>
+
+					<!-- UR5 ARM Pick and Place -->
+					<article class="col-6 col-12-xsmall work-item">
+					<a href="https://youtu.be/FStlGbfTc_0?autoplay=1" class="image fit thumb">
+						<img src="images/thumbs/multi_robot/ur5_arm.png" alt="Video Thumbnail" />
+					</a>
+					<h3 style="font-family:verdana;">
+						<font color="white"><u>UR5 ARM – Pick and Place</u></font>
+					</h3>
+					<p><font color="white">
+						Implemented an <strong>industrial robotic pick-and-place system</strong> using UR5.<br/>
+						<ul>
+						<li><p>Programmed UR5 manipulator for precise trajectory planning.</p></li>
+						<li><p>Implemented vision-guided pick and place tasks.</p></li>
+						<li><p>Designed gripper control for varied object shapes.</p></li>
+						<li><p>Validated using simulation before hardware deployment.</p></li>
+						</ul>
+					</font></p>
+					<p>
+						<code><font color="Red">UR5</font></code>
+						<code><font color="Red">Pick & Place</font></code>
+						<code><font color="Red">ROS</font></code>
+						<code><font color="Red">Industrial Robotics</font></code>
+						<code><font color="Red">Gripper Control</font></code>
+					</p>
+					</article>
+
+					<!-- Kinova ARM -->
+					<article class="col-6 col-12-xsmall work-item">
+					<a href="https://www.youtube.com/watch?v=FcK0cvRkM-Q&t=5s" class="image fit thumb">
+						<img src="images/thumbs/multi_robot/kinova_arm.png" alt="TaskBoard Manipulation – Kinova Gen3 Arm Thumbnail" />
+					</a>
+
+					<h3 style="font-family:verdana;">
+						<font color="white"><u>TaskBoard Manipulation – Kinova Gen3 Arm</u></font>
+					</h3>
+
+					<!-- Short intro as a paragraph -->
+					<p><font color="white">
+						Developed a robotic solution for <strong>taskboard manipulation</strong> using the Kinova Gen3 arm.
+					</font></p>
+
+					<!-- List OUTSIDE of the paragraph -->
+					<ul>
+						<li><p><font color="white">Integrated YOLO-based vision for real-time detection.</font></p></li>
+						<li><p><font color="white">Implemented <strong>force-adaptive control</strong> for compliant interactions.</font></p></li>
+						<li><p><font color="white">Orchestrated tasks with <strong>SMACH state machines</strong>.</font></p></li>
+						<li><p><font color="white">Validated manipulation tasks in Gazebo and hardware.</font></p></li>
 					</ul>
-			</section>
+
+					<!-- Tags -->
+					<p>
+						<code><font color="Red">Kinova Gen3</font></code>
+						<code><font color="Red">ROS</font></code>
+						<code><font color="Red">SMACH</font></code>
+						<code><font color="Red">Force Control</font></code>
+						<code><font color="Red">Computer Vision</font></code>
+						<code><font color="Red">Task Automation</font></code>
+					</p>
+					</article>
+
+
 
 			<!-- Three -->
 			<section id="three">
 				<header class="major">
-					<font color="black"><h2>Work Experience</h2></font>
+					<font color="white"><h2>Work Experience</h2></font>
 				</header>
 				<div style="text-align: center;"> <!-- Center the image -->
 					<img src="images/Work_exp.png" alt="" style="max-width: 100%; height: auto;"/>
@@ -219,8 +290,8 @@
 				<ul class="labeled-icons">
 					<li>
 						<h3 class="icon solid fa-home"><span class="label">Address</span></h3>
-						<a href="https://www.google.com/maps/search/?api=1&query=Endenicher+Allee+17,+Bonn,53115,Germany" target="_blank">
-							Endenicher Allee 17, Bonn,53115<br />
+						<a href="https://www.google.com/maps/search/?api=1&query=Bonn,53115,Germany" target="_blank">
+							Bonn,53115<br />
 							Germany
 						</a>
 					</li>
@@ -254,7 +325,6 @@
 				</ul>
 				<ul class="copyright">
 					<li>&copy; Mohammad Memon</li>
-					<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
 				</ul>
 			</div>
 		</footer>
@@ -266,60 +336,6 @@
 		<script src="assets/js/breakpoints.min.js"></script>
 		<script src="assets/js/util.js"></script>
 		<script src="assets/js/main.js"></script>
-		<script>
-      // On DOMContentLoaded, process each video container
-      document.addEventListener("DOMContentLoaded", function() {
-        document.querySelectorAll('.video-container[data-embed]').forEach(container => {
-          let embedUrl = container.getAttribute('data-embed');
-          // If it's a YouTube short URL (youtu.be), convert it to embed URL format
-          if(embedUrl.indexOf("youtu.be") !== -1) {
-            let videoId = embedUrl.split("youtu.be/")[1].split("?")[0];
-            embedUrl = "https://www.youtube.com/embed/" + videoId + "?autoplay=1";
-            container.setAttribute('data-embed', embedUrl);
-            // Set thumbnail from YouTube
-            let img = container.querySelector('img');
-            if(img) {
-              img.src = "https://img.youtube.com/vi/" + videoId + "/hqdefault.jpg";
-            }
-          }
-          // Add click event to open the modal popup with the proper embed URL
-          container.addEventListener('click', function() {
-            openModal(embedUrl);
-          });
-        });
-      });
-
-      // Function to open the modal popup and load the video iframe
-      function openModal(embedUrl) {
-        var modal = document.getElementById('videoModal');
-        var modalContent = document.getElementById('videoModalContent');
-        modalContent.innerHTML = ""; // Clear previous content
-        var iframe = document.createElement('iframe');
-        iframe.setAttribute('src', embedUrl);
-        iframe.setAttribute('frameborder', '0');
-        iframe.setAttribute('allowfullscreen', '');
-        iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
-        iframe.style.width = "100%";
-        iframe.style.height = "315px";
-        modalContent.appendChild(iframe);
-        modal.style.display = "block";
-      }
-
-      // Close modal when clicking the close button
-      document.querySelector('.video-modal-close').addEventListener('click', function() {
-        var modal = document.getElementById('videoModal');
-        modal.style.display = "none";
-        document.getElementById('videoModalContent').innerHTML = "";
-      });
-      
-      // Optional: close modal when clicking outside the modal content
-      window.addEventListener('click', function(event) {
-        var modal = document.getElementById('videoModal');
-        if (event.target == modal) {
-          modal.style.display = "none";
-          document.getElementById('videoModalContent').innerHTML = "";
-        }
-      });
 		</script>
 	</body>
 </html>
