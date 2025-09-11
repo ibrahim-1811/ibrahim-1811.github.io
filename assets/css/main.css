@@ -72,6 +72,104 @@ input, select, textarea {
 	appearance: none;
 }
 
+
+/* Project thumbnails unified */
+.project-thumb {
+  position: relative;
+  display: block;
+  background: #000;          /* black background for dark mode */
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.project-thumb img {
+  width: 100%;
+  height: auto;
+  display: block;
+  opacity: 0.95;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.project-thumb:hover img {
+  transform: scale(1.02);
+  opacity: 1;
+}
+
+/* Play badge overlay */
+.play-badge {
+  position: absolute;
+  inset: 0;
+  display: inline-block;
+}
+
+.play-badge::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 64px;
+  height: 64px;
+  margin-left: -32px;
+  margin-top: -32px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.15);
+  box-shadow: 0 0 0 2px rgba(255,255,255,0.08) inset;
+}
+
+.play-badge::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-40%, -50%);
+  width: 0;
+  height: 0;
+  border-left: 22px solid #fff;
+  border-top: 14px solid transparent;
+  border-bottom: 14px solid transparent;
+  opacity: 0.9;
+}
+
+/* Simple responsive modal */
+.video-modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  inset: 0;
+  background: rgba(0,0,0,0.88);
+  padding: 20px;
+}
+
+.video-modal-content {
+  position: relative;
+  max-width: 900px;
+  margin: 40px auto;
+  background: #000;
+  border-radius: 12px;
+  padding: 0;
+  overflow: hidden;
+}
+
+.video-modal-content iframe {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;  /* keeps correct video ratio responsively */
+}
+
+.video-modal-close {
+  position: absolute;
+  right: 12px;
+  top: 6px;
+  font-size: 36px;
+  color: #fff;
+  cursor: pointer;
+  line-height: 1;
+  z-index: 2;
+}
+
+
+
 /* Basic */
 
 	html {
@@ -83,7 +181,7 @@ input, select, textarea {
 	}
 
 	body {
-		background: #fff;
+		background: #111111;
 	}
 
 		body.is-preload *, body.is-preload *:before, body.is-preload *:after {
@@ -98,7 +196,7 @@ input, select, textarea {
 		}
 
 	body, input, select, textarea {
-		color: #a2a2a2;
+		color: #fbf9f9;
 		font-family: "Source Sans Pro", Helvetica, sans-serif;
 		font-size: 16pt;
 		font-weight: 400;
@@ -110,19 +208,19 @@ input, select, textarea {
 		-webkit-transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out;
 		-ms-transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out;
 		transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out;
-		border-bottom: dotted 1px;
-		color: #49bf9d;
+		border-bottom: 1px solid #fefefe;
+		color: #fefefe;
 		text-decoration: none;
 	}
 
 		a:hover {
-			border-bottom-color: transparent;
-			color: #49bf9d !important;
+			border-bottom-color: red;
+			color: #f5f8f7 !important;
 			text-decoration: none;
 		}
 
 	strong, b {
-		color: #787878;
+		color: #f3eeee;
 		font-weight: 400;
 	}
 
@@ -135,7 +233,7 @@ input, select, textarea {
 	}
 
 	h1, h2, h3, h4, h5, h6 {
-		color: #787878;
+		color: #eee7e7;
 		font-weight: 400;
 		line-height: 1em;
 		margin: 0 0 1em 0;
@@ -895,7 +993,7 @@ input, select, textarea {
 					margin-left: 75%;
 				}
 
-				.row > .col-10-large {
+				.row > .col-10-large { 
 					width: 83.33333%;
 				}
 
@@ -1765,7 +1863,7 @@ input, select, textarea {
 	}
 
 	header p {
-		color: #b2b2b2;
+		color: #f4f1f1;
 		position: relative;
 		margin: 0 0 1.5em 0;
 	}
@@ -1801,7 +1899,7 @@ input, select, textarea {
 	}
 
 	label {
-		color: #787878;
+		color: #f5f2f2;
 		display: block;
 		font-size: 0.9em;
 		font-weight: 400;
@@ -1817,7 +1915,7 @@ input, select, textarea {
 		-webkit-appearance: none;
 		-ms-appearance: none;
 		appearance: none;
-		background: #f7f7f7;
+		background: #0b0b0b;
 		border-radius: 0.35em;
 		border: solid 2px transparent;
 		color: inherit;
