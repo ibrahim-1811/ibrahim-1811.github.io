@@ -77,7 +77,7 @@ input, select, textarea {
 .project-thumb {
   position: relative;
   display: block;
-  background: #000;          /* black background for dark mode */
+  background: #225f03;          /* black background for dark mode */
   border-radius: 10px;
   overflow: hidden;
   cursor: pointer;
@@ -113,7 +113,7 @@ input, select, textarea {
   margin-left: -32px;
   margin-top: -32px;
   border-radius: 999px;
-  background: rgba(255,255,255,0.15);
+  background: rgba(255, 255, 255, 0.15);
   box-shadow: 0 0 0 2px rgba(255,255,255,0.08) inset;
 }
 
@@ -3317,3 +3317,202 @@ input, select, textarea {
 			}
 
 	}
+
+	#skills code{
+  display:inline-block;
+  margin:6px 8px 0 0;
+  padding:0.35em 0.6em;
+  border-radius:8px;
+
+  /* Dark theme */
+  background: rgba(255,255,255,0.12) !important;
+  color:#ffffff !important;
+  border:1px solid rgba(255,255,255,0.22);
+  font-weight:400;
+  letter-spacing:.2px;
+}
+
+/* If you ever switch to a light background on the site,
+   uncomment this block to keep contrast good. */
+/*
+body.light #skills code{
+  background:#eef1f5 !important;
+  color:#1b1f23 !important;
+  border:1px solid #d0d7de;
+}
+*/
+
+/* Optional: tidy headings spacing in Skills */
+#skills h3{
+  margin:1.2rem 0 .5rem;
+}
+
+/* ================= Checkbox Accordion (scoped to Bookmarks) ================= */
+#bookmarks .acc {
+  margin: 8px 0 12px;
+  border-left: 3px solid #ffcc00;
+  border-radius: 6px;
+  background: rgba(255,255,255,0.05);
+}
+
+/* hide the checkbox, keep it accessible */
+#bookmarks .acc > input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+#bookmarks .acc .acc-head {
+  display: block;
+  padding: 12px 16px;
+  cursor: pointer;
+  color: #fff;
+  font-weight: 600;
+  user-select: none;
+}
+
+#bookmarks .acc .acc-head:hover {
+  background: rgba(255,255,255,0.06);
+}
+
+#bookmarks .acc .acc-head::after {
+  content: "▸";
+  float: right;
+  transition: transform .2s ease;
+  font-weight: 400;
+}
+
+/* closed by default */
+#bookmarks .acc .acc-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .25s ease, padding .25s ease;
+  padding: 0 16px;
+  background: rgba(255,255,255,0.02);
+}
+
+/* open state */
+#bookmarks .acc > input:checked + .acc-head::after { transform: rotate(90deg); }
+#bookmarks .acc > input:checked ~ .acc-content {
+  max-height: 2000px;        /* large enough for your lists */
+  padding: 0 16px 12px;
+}
+
+/* nested accordions inside Programming */
+#bookmarks .acc.acc-nested {
+  margin: 8px 0;
+  background: transparent;
+  border-left-color: rgba(255,255,255,0.35);
+}
+#bookmarks .acc.acc-nested .acc-head {
+  padding: 10px 12px;
+  font-weight: 500;
+}
+/* --- Bookmarks accordion clean-up --- */
+/* 1) Hide the checkbox completely (and its focus ring) */
+#bookmarks .acc input[type="checkbox"]{
+  position: absolute !important;
+  left: -9999px !important;
+  width: 0 !important;
+  height: 0 !important;
+  opacity: 0 !important;
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  pointer-events: none !important;
+  outline: none !important;
+}
+
+/* 2) Remove the play/caret icon on the right */
+#bookmarks .acc .acc-head::after{
+  content: none !important;
+}
+
+/* (optional) Keep the label looking clickable */
+#bookmarks .acc .acc-head{
+  cursor: pointer;
+}
+
+
+
+
+/* ===== Bookmarks accordion: remove theme checkbox + caret ===== */
+
+/* 1) Completely hide the real checkbox */
+#bookmarks .acc > input[type="checkbox"]{
+  position:absolute !important;
+  left:-9999px !important;
+  opacity:0 !important;
+  pointer-events:none !important;
+}
+
+/* 2) Remove the theme's fake checkbox drawn on the label */
+#bookmarks .acc > input[type="checkbox"] + label.acc-head::before,
+#bookmarks .acc > input[type="checkbox"] + label.acc-head:before,
+#bookmarks .acc > input[type="checkbox"] + label.acc-head::after,
+#bookmarks .acc > input[type="checkbox"] + label.acc-head:after{
+  content:none !important;
+  display:none !important;
+}
+
+/* Also apply to nested sections */
+#bookmarks .acc.acc-nested > input[type="checkbox"] + label.acc-head::before,
+#bookmarks .acc.acc-nested > input[type="checkbox"] + label.acc-head:before,
+#bookmarks .acc.acc-nested > input[type="checkbox"] + label.acc-head::after,
+#bookmarks .acc.acc-nested > input[type="checkbox"] + label.acc-head:after{
+  content:none !important;
+  display:none !important;
+}
+
+/* 3) Reset padding (theme added space for the fake box) */
+#bookmarks .acc .acc-head{
+  padding:12px 16px !important;
+}
+
+/* 4) Ensure no right-side caret either */
+#bookmarks .acc .acc-head::after{ content:none !important; }
+
+
+
+
+
+
+
+
+
+
+
+/* ========== Bookmarks: horizontal highlight on open tabs ========== */
+
+/* 0) Kill the vertical rail + any old fallback borders */
+#bookmarks .acc,
+#bookmarks .acc.acc-nested { border-left: 0 !important; }
+#bookmarks .acc > input:checked ~ .acc-content,
+#bookmarks .acc.acc-nested > input:checked ~ .acc-content{
+  border-left: 0 !important;
+  margin-left: 0 !important;
+  padding-left: 16px !important;
+}
+
+/* 1) Base header look */
+#bookmarks .acc .acc-head{
+  position: relative;
+  background: rgba(255,255,255,.04);
+  border-radius: 10px;
+  padding: 12px 16px;
+  transition: background .2s ease, box-shadow .3s ease, transform .05s ease;
+}
+#bookmarks .acc .acc-head:hover{
+  background: rgba(255,255,255,.07);
+}
+
+/* 2) OPEN state — horizontal glow across the whole header */
+#bookmarks .acc > input:checked + .acc-head,
+#bookmarks .acc.acc-nested > input:checked + .acc-head{
+  background: rgba(255,204,0,.12);
+  box-shadow:
+    0 0 0 2px rgba(255,204,0,.95) inset,   /* thin yellow ring */
+    0 10px 24px rgba(255,204,0,.22);       /* soft outer glow */
+}
+
+/* 3) We already hid checkboxes and carets earlier; keep labels clickable */
+#bookmarks .acc input[type="checkbox"]{ display:none !important; }
