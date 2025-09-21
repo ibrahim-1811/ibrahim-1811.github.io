@@ -304,7 +304,7 @@ input, select, textarea {
 	}
 
 	code {
-		background: #f7f7f7;
+		background: #1d1c1c;
 		border-radius: 0.35em;
 		border: solid 2px #efefef;
 		font-family: "Courier New", monospace;
@@ -3317,8 +3317,7 @@ input, select, textarea {
 			}
 
 	}
-
-	#skills code{
+#skills code{
   display:inline-block;
   margin:6px 8px 0 0;
   padding:0.35em 0.6em;
@@ -3328,10 +3327,12 @@ input, select, textarea {
   background: rgba(255,255,255,0.12) !important;
   color:#ffffff !important;
   border:1px solid rgba(255,255,255,0.22);
-  font-weight:400;
-  letter-spacing:.2px;
-}
+  font-weight:100;
+  letter-spacing:0.1em;
 
+  /* Smaller font */
+  font-size: 0.8rem;   /* try 0.75rem for even smaller */
+}
 /* If you ever switch to a light background on the site,
    uncomment this block to keep contrast good. */
 /*
@@ -3516,3 +3517,619 @@ body.light #skills code{
 
 /* 3) We already hid checkboxes and carets earlier; keep labels clickable */
 #bookmarks .acc input[type="checkbox"]{ display:none !important; }
+
+
+
+
+
+
+
+/* === Mini Viewer (modal preview) === */
+#miniViewer.mv-hidden { display: none; }
+
+#miniViewer {
+  position: fixed; inset: 0; z-index: 9999;
+  display: grid; place-items: center;
+}
+#miniViewer .mv-backdrop {
+  position: absolute; inset: 0; background: rgba(0,0,0,.65);
+  backdrop-filter: blur(3px);
+}
+#miniViewer .mv-dialog {
+  position: relative; width: min(1000px, 92vw); height: min(80vh, 800px);
+  background: #111; color: #f3f3f3; border-radius: 12px; overflow: hidden;
+  box-shadow: 0 20px 70px rgba(0,0,0,.6);
+  transform: translateY(10px); opacity: 0; animation: mvIn .25s ease forwards;
+}
+@keyframes mvIn { to { transform: translateY(0); opacity: 1; } }
+
+#miniViewer .mv-close {
+  position: absolute; top: 10px; right: 12px; border: 0; background: transparent;
+  color: #fff; font-size: 20px; cursor: pointer; opacity: .8;
+}
+#miniViewer .mv-close:hover { opacity: 1; }
+
+#miniViewer .mv-header {
+  display: flex; align-items: center; gap: .75rem;
+  background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+  padding: 14px 48px 14px 16px;
+}
+#miniViewer .mv-title {
+  font-weight: 600; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;
+}
+#miniViewer .mv-open {
+  margin-left: auto; font-size: .92rem; border: 1px solid rgba(255,255,255,.25);
+  padding: .35rem .6rem; border-radius: 8px; text-decoration: none; color: #fff;
+}
+#miniViewer .mv-open:hover { border-color: rgba(255,255,255,.5); }
+
+#miniViewer .mv-body {
+  position: relative; height: calc(100% - 54px); background: #000;
+}
+#miniViewer iframe {
+  position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: none;
+}
+/* Spinner while loading */
+#miniViewer .mv-spinner {
+  position: absolute; top: 50%; left: 50%; width: 44px; height: 44px;
+  margin: -22px 0 0 -22px; border-radius: 50%;
+  border: 4px solid rgba(255,255,255,.2); border-top-color: #fff;
+  animation: mvSpin 1s linear infinite;
+}
+@keyframes mvSpin { to { transform: rotate(360deg); } }
+
+.mv-hidden { display: none !important; }
+
+#miniViewer .mv-blocked {
+  position: absolute; inset: 0; display: grid; place-items: center; padding: 1.2rem;
+  text-align: center; background: linear-gradient(180deg, rgba(20,20,20,.9), rgba(0,0,0,.95));
+  color: #eee;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  #miniViewer .mv-dialog { animation: none; }
+  #miniViewer .mv-spinner { animation: none; }
+}
+
+
+
+
+
+
+
+
+
+
+/* === Visual Upgrade Layer ====================================== */
+:root {
+  --bg:#0f0f10; --panel:#141416; --text:#f2f2f2;
+  --accent:#49bf9d; --accent-2:#8aa2ff; --ring:#ffffff22;
+  --accent: #ff6ec4;   /* pink/magenta */
+  --accent-2: #7873f5; /* purple/blue */
+  --accent-3: #42e695; /* teal/green */
+}
+
+
+
+/* Background with subtle gradients */
+body {
+  background:
+    radial-gradient(1200px 600px at -20% -10%, #1a1b1e 0%, #0f0f10 60%) no-repeat,
+    radial-gradient(900px 500px at 120% 0%, #1a1b1e 0%, transparent 60%) no-repeat,
+    var(--bg);
+  color: var(--text);
+}
+
+/* Header polish */
+#header.hero .inner {
+  background: linear-gradient(145deg, #141416cc, #0e0f12cc);
+  backdrop-filter: blur(6px);
+  border: 1px solid var(--ring);
+  border-radius: 18px;
+  padding: 1.75rem 1.5rem 2rem;
+}
+
+/* Aurora accent behind header */
+#header.hero::before {
+  content:"";
+  position:absolute; inset:-40% -20% auto auto;
+  height:220px; width:520px;
+  background: radial-gradient(closest-side, #49bf9d40 0, transparent 70%),
+              radial-gradient(closest-side, #8aa2ff33 0, transparent 70%);
+  filter: blur(40px);
+  pointer-events:none;
+}
+
+/* Nav links underline animation */
+#header nav a {
+  position: relative; padding-bottom: 2px;
+}
+#header nav a::after {
+  content:""; position:absolute; left:0; bottom:-2px;
+  height:2px; width:0%; background:linear-gradient(90deg,var(--accent),var(--accent-2));
+  transition: width .25s ease;
+}
+#header nav a:hover::after { width:100%; }
+
+/* Avatar ring + hover lift */
+.image.avatar {
+  display:inline-block; border-radius: 999px; padding:6px;
+  background: conic-gradient(from 180deg, var(--accent), var(--accent-2), var(--accent));
+  box-shadow: 0 8px 30px #00000066;
+}
+.image.avatar img {
+  border-radius: 999px; border: 4px solid #0f0f10;
+  transition: transform .25s ease;
+}
+.image.avatar:hover img { transform: translateY(-2px) scale(1.02); }
+
+/* Section headers accent line */
+header.major h2 {
+  position: relative; display:inline-block;
+}
+header.major h2::after {
+  content:""; position:absolute; left:0; right:0; bottom:-8px;
+  height:3px; background:linear-gradient(90deg,var(--accent),transparent 70%);
+  opacity:.8;
+}
+
+/* Project card hover effect */
+.work-item .image.thumb {
+  border-radius: 12px; overflow:hidden; display:block;
+  box-shadow: 0 8px 28px #00000055;
+}
+.work-item .image.thumb img {
+  transition: transform .35s ease, opacity .35s ease; opacity:.96;
+}
+.work-item:hover .image.thumb img {
+  transform: scale(1.03); opacity:1;
+}
+
+/* Buttons refined */
+.button {
+  border-radius:10px; border:1px solid #ffffff2b;
+  background: linear-gradient(180deg,#1b1d20,#141518);
+  box-shadow: 0 10px 30px #00000040;
+  transition: transform .15s ease, box-shadow .15s ease, border-color .2s;
+}
+.button:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+  box-shadow: 0 16px 36px #00000066;
+}
+
+/* Scroll reveal animation (CSS part) */
+.reveal {
+  opacity:0; transform: translateY(16px);
+  transition: opacity .6s ease, transform .6s ease;
+}
+.reveal.is-visible {
+  opacity:1; transform:none;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce){
+  * { animation:none !important; transition:none !important; }
+}
+
+
+
+
+
+
+/* === Skill Cards ==================================================== */
+
+.skill-grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.2rem;
+  margin-top: 1rem;
+}
+
+.skill-card{
+  position: relative;
+  background:#141416;
+  border:1px solid var(--ring, #ffffff22);
+  border-radius:16px;
+  padding: 1.15rem 1.15rem 1rem;
+  box-shadow: 0 12px 30px #00000040;
+  overflow:hidden;
+  transform: translateY(6px);
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+
+/* top accent line */
+.skill-card::before{
+  content:"";
+  position:absolute; left:0; right:0; top:0; height:3px;
+  background: linear-gradient(90deg, var(--accent, #49bf9d), var(--accent-2, #8aa2ff));
+  opacity:.8;
+}
+
+/* subtle corner glow */
+.skill-card::after{
+  content:"";
+  position:absolute; inset:-40% -20% auto auto;
+  width:260px; height:120px;
+  background: radial-gradient(closest-side, #49bf9d2e 0, transparent 70%),
+              radial-gradient(closest-side, #8aa2ff22 0, transparent 70%);
+  filter: blur(28px); pointer-events:none;
+}
+
+.skill-card:hover{
+  transform: translateY(0);
+  border-color: var(--accent, #49bf9d);
+  box-shadow: 0 18px 42px #00000066;
+}
+
+.skill-icon{
+  width:64px; height:64px; border-radius:16px;
+  display:grid; place-items:center;
+  background: linear-gradient(180deg, #1b1d20, #141518);
+  border:1px solid var(--ring, #ffffff22);
+  margin-bottom:.75rem;
+}
+.skill-icon .icon{ font-size:28px; color:#eaf7ff; opacity:.95; }
+
+.skill-card h3{
+  margin: .25rem 0 .35rem 0;
+}
+
+/* Compact list */
+.skill-list{
+  margin:0; padding-left: 1.1rem;
+  font-size: .92rem;
+  line-height: 1.5;
+}
+.skill-list li{ margin:.2rem 0; }
+
+/* Smaller badges at very top if you keep them */
+#skills code{ font-size:.8rem; padding:.25em .5em; }
+
+
+
+
+
+
+
+
+
+
+/* projects */
+
+
+/* ==== Projects Accordion ==== */
+.proj-acc{
+  border:1px solid #1f2128;
+  border-radius:14px;
+  background:#141416;
+  margin:10px 0 14px;
+  overflow:hidden; /* clip rounded corners while animating */
+}
+
+/* Title bar */
+.proj-acc > summary{
+  list-style:none;
+  cursor:pointer;
+  padding:1rem 1.1rem;
+  font-weight:700;
+  color:#f2f2f2;
+  background:linear-gradient(180deg,#181a1e,#141416);
+  position:relative;
+  user-select:none;
+  outline:none;
+}
+.proj-acc > summary::-webkit-details-marker{ display:none; }
+
+/* Chevron */
+.proj-acc > summary::after{
+  content:"▾";
+  position:absolute; right:14px; top:50%; transform:translateY(-50%) rotate(0deg);
+  opacity:.75; transition:transform .25s ease, opacity .2s ease;
+}
+.proj-acc[open] > summary::after{ transform:translateY(-50%) rotate(-180deg); opacity:1; }
+
+/* Body container (animated height) */
+.proj-body{
+  max-height:0;
+  overflow:hidden;
+  opacity:0;
+  transition:max-height .35s ease, opacity .25s ease, padding .25s ease;
+  padding:0 1.1rem;
+  border-top:1px solid #1f2128;
+}
+
+/* When open, we set max-height via JS; keep visual styles here */
+.proj-acc[open] .proj-body{
+  opacity:1;
+  padding: .9rem 1.1rem 1.1rem;
+}
+
+/* Hover/focus polish */
+.proj-acc > summary:hover{ background:#191b20; }
+.proj-acc:focus-within > summary{ box-shadow:0 0 0 2px #ffffff18 inset; }
+
+/* Optional: tighten inner content */
+.proj-body .work-item img{ border-radius:10px; }
+.proj-body p { margin:.6rem 0 .4rem; }
+.proj-body ul { margin:.4rem 0 .6rem 1.1rem; }
+
+
+
+
+
+
+
+
+
+
+
+/* ====== poojan style ==== */
+
+
+/* === Projects accordion === */
+.proj-wrap { --radius:12px; --row-gap:1rem; --pad:1rem; --bg:#161616; --bg2:#0e0e0e; --accent:#66fcf1; }
+.proj-list { display:grid; gap: var(--row-gap); }
+
+details.proj-acc {
+  background: linear-gradient(180deg,var(--bg),var(--bg2));
+  border:1px solid #252525; border-radius: var(--radius);
+  box-shadow: 0 6px 16px rgba(0,0,0,.35);
+  overflow:hidden;
+}
+
+.proj-acc > summary {
+  list-style:none;
+  cursor:pointer; user-select:none;
+  display:flex; align-items:center; gap:.9rem;
+  padding:1rem 1.1rem;
+  font-weight:600; color:#eaeaea;
+}
+.proj-acc > summary::-webkit-details-marker { display:none; }
+
+.proj-dot {
+  flex:0 0 10px; height:10px; border-radius:999px; background: var(--accent);
+  box-shadow:0 0 10px rgba(102,252,241,.8);
+}
+
+.proj-title { flex:1; }
+.proj-chevron { transition: transform .25s ease; }
+.proj-acc[open] .proj-chevron { transform: rotate(180deg); }
+
+.proj-body {
+  max-height:0; overflow:hidden;
+  opacity:0; padding:0 var(--pad);
+  transition:max-height .35s ease, opacity .25s ease, padding .25s ease;
+}
+.proj-acc[open] .proj-body { /* final state after the JS finishes */
+  opacity:1;
+}
+
+/* images/videos fit */
+.proj-body img, .proj-body video { width:100%; height:auto; border-radius:10px; }
+
+/* tag chips */
+.proj-tags code { display:inline-block; margin:.25rem .25rem 0 0; padding:.15rem .5rem; border-radius:999px;
+  background:#1e1e1e; border:1px solid #333; }
+
+
+
+
+  
+
+
+/* Experience grid */
+.exp-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:1rem;
+}
+.exp-card{
+  background:linear-gradient(180deg,#161616,#0f0f0f);
+  border:1px solid #252525;
+  border-radius:14px;
+  padding:16px;
+  display:flex;
+  gap:14px;
+  align-items:flex-start;
+  box-shadow:0 8px 20px rgba(0,0,0,.35);
+}
+.exp-logo{
+  flex:0 0 72px; width:72px; height:72px;
+  display:grid; place-items:center;
+  background:#111; border-radius:12px; overflow:hidden;
+}
+.exp-logo img{width:64px;height:64px;object-fit:contain}
+
+.exp-meta h3{margin:0 0 4px;color:#fff;font-weight:700;font-size:1.05rem}
+.exp-role{margin:0;color:#cfcfcf;font-size:.95rem}
+.exp-dates{margin-top:4px;color:#9aa0a6;font-size:.85rem}
+
+/* Expandable details inside a card */
+.exp-details{margin-top:6px}
+.exp-details summary{
+  cursor:pointer; list-style:none; position:relative;
+  color:#66FCF1; font-size:.9rem; user-select:none;
+}
+.exp-details summary::marker{display:none}
+.exp-details summary::after{
+  content:"▸"; position:absolute; right:-2px; transform:rotate(0deg);
+  transition:transform .2s ease; color:#66FCF1;
+}
+.exp-details[open] summary::after{ transform:rotate(90deg) }
+
+.exp-details .exp-body{
+  margin-top:.5rem; color:#d0d0d0; font-size:.92rem; line-height:1.6;
+}
+.exp-details .exp-body ul{margin:.25rem 0 0 1.1rem}
+
+
+
+
+
+
+
+/* === Bookmarks — match homepage multicolor accents === */
+
+/* Section underline (like homepage headers) */
+#bookmarks header.major h2 {
+  position: relative;
+}
+#bookmarks header.major h2::after {
+  content: "";
+  display: block;
+  height: 3px;
+  width: 110px;
+  margin-top: .65rem;
+  border-radius: 2px;
+  background: linear-gradient(90deg,var(--accent),var(--accent-2),var(--accent-3));
+  background-size: 200% 200%;
+  animation: bookmarksGradient 6s ease infinite;
+}
+
+/* Accordion heads (closed state) */
+#bookmarks .acc-head {
+  position: relative;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 8px;
+  padding: .9rem 1rem;
+  color: #fff;
+  font-weight: 600;
+  transition: border-color .25s ease, box-shadow .25s ease, transform .15s ease;
+}
+
+/* Hover preview glow */
+#bookmarks .acc-head:hover {
+  border-color: rgba(255,255,255,0.28);
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.08) inset,
+              0 6px 18px rgba(0,0,0,0.25);
+}
+
+/* OPENED heads = animated gradient fill (replaces yellow) */
+#bookmarks .acc > input:checked + .acc-head,
+#bookmarks .acc.acc-nested > input:checked + .acc-head {
+  background: linear-gradient(90deg,var(--accent),var(--accent-2),var(--accent-3));
+  background-size: 200% 200%;
+  animation: bookmarksGradient 6s ease infinite;
+  border-color: transparent;
+  box-shadow: 0 10px 28px rgba(0,0,0,0.35);
+  color: #fff;
+}
+
+/* Content panel with subtle gradient border ring */
+#bookmarks .acc > .acc-content,
+#bookmarks .acc.acc-nested > .acc-content {
+  position: relative;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  margin-top: .6rem;
+  overflow: hidden;
+}
+#bookmarks .acc > .acc-content::before,
+#bookmarks .acc.acc-nested > .acc-content::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;                       /* border thickness */
+  background: linear-gradient(90deg,var(--accent),var(--accent-2),var(--accent-3));
+  background-size: 200% 200%;
+  animation: bookmarksGradient 6s ease infinite;
+  -webkit-mask:
+     linear-gradient(#000 0 0) content-box, 
+     linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor; 
+  mask-composite: exclude;             /* show just the ring */
+  pointer-events: none;
+}
+
+/* Link list separators inside panels */
+#bookmarks .acc-content ul.alt > li {
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+#bookmarks .acc-content ul.alt > li:first-child { border-top: 0; }
+
+/* Keyframes reused from homepage accent motion */
+@keyframes bookmarksGradient {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+
+
+
+/* === Multicolor underline for bookmark links === */
+
+/* kill the theme's red underline/border */
+#main .acc-content a,
+#main .list-animated a,
+#main .alt a {
+  text-decoration: none !important;
+  border: 0 !important;
+  box-shadow: none !important; /* some HTML5UP themes fake underline with shadow */
+  position: relative;
+}
+
+/* gradient underline (idle) */
+#main .acc-content a,
+#main .list-animated a,
+#main .alt a {
+  background-image: linear-gradient(
+    90deg,
+    var(--accent),
+    var(--accent-2),
+    var(--accent-3)
+  );
+  background-repeat: no-repeat;
+  background-size: 300% 2px;      /* width x thickness of the underline */
+  background-position: 0 100%;     /* bottom edge */
+  transition: background-position .35s ease, color .2s ease;
+}
+
+/* animate the underline on hover/focus/active */
+#main .acc-content a:hover,
+#main .acc-content a:focus,
+#main .acc-content a:active,
+#main .list-animated a:hover,
+#main .list-animated a:focus,
+#main .list-animated a:active,
+#main .alt a:hover,
+#main .alt a:focus,
+#main .alt a:active {
+  background-position: 100% 100%;
+}
+
+/* optional: make the link text pop slightly on hover */
+#main .acc-content a:hover,
+#main .list-animated a:hover,
+#main .alt a:hover {
+  color: #fff; /* or remove this if you like current color */
+}
+
+
+
+
+
+/* Multicolor border only for big sections & hero cards */
+.section::before, .box::before, .feature::before, .skill-card::before,
+#main .inner > section::before, .galleries::before, .image.fit.thumb::before {
+  content:"";
+  position:absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2), var(--accent-3));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor; mask-composite: exclude;
+  pointer-events: none;
+  opacity: .55;
+}
+
+/* Explicitly kill borders for project accordions & exp cards */
+.acc::before, .proj-body::before, .work-item::before, .exp-card::before {
+  content: none !important;
+}
