@@ -1,0 +1,114 @@
+Mohammad Ibrahim Memon
+immemon1811@gmail.com | +49 15774001726 | Bonn, Germany
+Portfolio | LinkedIn: ibrahimmemon18 | GitHub: ibrahim-1811
+
+PROFESSIONAL SUMMARY
+Robotics engineer specializing in ROS/ROS2-based autonomous systems, with strong experience in fault diagnosis,
+simulation, and embedded robotics. Proven track record in international robotics competitions, applied research, and
+hardware and software co-design.
+
+EXPERIENCE
+Research Assistant | Garrulus (Bonn, Germany)
+
+05/2025 – 12/2025
+
+– Designed and validated PCB protection circuits for 3.3V, 5V, and 24V rails, implementing solenoid drivers and
+eFuse-based power distribution.
+– Developed power sequencing, inrush-current limiting, and reverse-polarity protection for ﬁeld-deployed robots.
+– Collaborated with hardware and ﬁrmware teams to integrate robust electronics into autonomous tree-seeding
+robots.
+Research Assistant | Kelo Robotics (Stuttgart, Germany)
+
+05/2024 – 08/2024
+
+– Set up Isaac Sim and Gazebo environments for robotic simulation tasks.
+– Researched and compared simulation frameworks for multi-agent navigation and control.
+Robotics System Engineer | Unbox Robotics Pvt. Ltd (Pune, India)
+
+06/2022 – 07/2023
+
+– Built and automated testing frameworks for feature validation, bug ﬁxes, and development debugging, generating
+detailed reports.
+– Conducted root cause analysis (RCA), executed DFMEA, and tested control boards using oscilloscopes for reliable
+system integration.
+– Served as Scrum Master, managing integration challenges, robot deployments, and customer demonstrations.
+Embedded System Engineer | DashDot Robotics Pvt. Ltd (Ahmedabad, India)
+
+03/2021 – 02/2022
+
+– Designed and prototyped hardware systems from scratch, ensuring optimal functionality and performance.
+– Conducted circuit troubleshooting and root-cause analysis to resolve technical issues effectively.
+– Developed ﬁrmware at the integration level, incorporating and calibrating various sensors.
+
+PUBLICATION
+Patent Publication: ”An Inventory Management, Tracking and Consumption Predicting System using Intelligent Container
+Box and Central Server”, Patent Publication No: IN 202021029069 A (2020)
+
+SKILLS
+Programming : Python, C++, C, Embedded C, MATLAB
+Robotics Middleware : ROS2, ROS, MoveIt, tf2, RViz, Gazebo, Isaac Sim
+Multimodal Perception : Vision-based state detection, LiDAR–IMU fusion, EKF/UKF, SLAM, sensor calibration
+Machine Learning : PyTorch, TensorFlow, CNNs, contrastive learning, model training and evaluation
+Vision & Language Integration : Vision-to-action pipelines, structured action schemas, embedding-based retrieval,
+OpenCV
+Robot Learning : Simulation-driven evaluation, policy benchmarking, data-driven perception pipelines, robustness
+analysis
+Simulation & RL : Isaac Sim, Gazebo, Gym-style experimentation, domain randomization basics
+Embedded Systems : Bare-metal ﬁrmware, GPIO/ADC/I2C/SPI/UART, sensor interfacing, hardware bring-up
+System Engineering : Root cause analysis, DFMEA, structured debugging, integration testing, Git, CI pipelines
+
+PROJECTS
+Robothon 2025 (Grand Challenge) | ROS, Python, C++, MoveIt, Kinova Gen3
+Munich, Germany
+– Achieved a Top 5 ranking in an international competition by automating complex manipulation tasks under strict
+time limits.
+– Engineered a vision-guided manipulation pipeline with MoveIt and OpenCV to detect task states, press buttons, and
+grasp a stylus for trajectory drawing.
+– Implemented a maze-solving algorithm using a magnetic end-effector and continuous visual feedback.
+Cross-Modal Action Retrieval for Robotic Manipulation | PyTorch, Vision-Text Embeddings, ROS2
+– Built a lightweight cross-modal embedding model that aligns images with text instructions to predict manipulation
+action labels such as push, slide, and rotate.
+– Trained a dual-encoder pipeline in PyTorch using contrastive learning and evaluated retrieval quality using Top-1 and
+Top-5 accuracy.
+– Integrated inference into a ROS2 node that outputs the predicted action label as a decision signal for downstream
+manipulation logic.
+ILP-Based Fault Detection and Diagnosis for Mobile and Multi-Robot Systems | ROS, Python, Prolog, ILP
+– Developed an interpretable fault detection and diagnosis framework for ROS-based mobile robots using Inductive
+Logic Programming.
+– Modeled and diagnosed faults such as wheel slip, sensor noise, delay, and communication inconsistencies using
+symbolic rules.
+– Extended the approach to multi-robot systems to study fault propagation, coordination robustness, and scalability.
+– Evaluated detection accuracy, interpretability, and system behavior in simulation and real robot experiments.
+Explainable Robot Task Allocation using Inductive Logic Programming | ROS2, Python, Prolog, Multi-Robot Systems
+– Designed a symbolic task allocation framework for multi-robot systems using Inductive Logic Programming.
+– Learned interpretable allocation rules based on robot states, capabilities, and task constraints.
+– Analyzed decision logic to explain why tasks were assigned to speciﬁc robots under different conditions.
+– Validated allocation behavior in ROS2 simulation with multiple robots and dynamic task scenarios.
+Multi-Robot Task Distribution | ROS2, Python, Gazebo, GitHub Actions, SLAM, Linux
+– Developed scalable task allocation for multiple robots in Gazebo simulation.
+– Enabled coordinated parcel collection and delivery to a central depot.
+– Implemented CI pipelines using GitHub Actions and static analysis with Codacy.
+Autonomous Mobile Robot (AMR) | ROS, Python, SLAM, LiDAR, A*
+– Built an AMR that navigates unknown spaces using assigned coordinate goals.
+– Led the end-to-end design including circuit layout, power system, and full software stack integration.
+
+EDUCATION
+Hochschule Bonn-Rhein-Sieg
+
+Master of Science in Autonomous Systems — Bonn, Germany
+
+On going
+
+Expected Graduation: 2026
+
+U V Patel College of Engineering
+
+LANGUAGES
+English − C1
+German − A1 (active learner)
+
+Bachelor of Technology in Mechatronics — India
+
+June 2018 – May 2022
+
+
