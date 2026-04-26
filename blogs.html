@@ -1,102 +1,210 @@
-<!DOCTYPE HTML>
-<html>
-  <head>
-    <title>Collections — Curated Blogs & Articles: Mohammad Memon</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link rel="stylesheet" href="assets/css/main.css" />
-    <link href="images/bg.jpg" rel="icon">
-  </head>
-  <body class="is-preload">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Collections — Ibrahim Memon</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Fira+Code:wght@300;400;500&family=Rajdhani:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="assets/css/cyber-theme.css" />
+</head>
+<body>
 
-    <!-- Header -->
-    <header id="header" class="hero">
-      <div class="inner actions">
-        <nav style="margin-bottom:1rem;">
-          <a href="index.html">Home</a> ·
-          <a href="blogs.html">Collections</a> ·
-          <a href="bookmarks.html">Important Links</a> ·
-          <a href="Resume.html">Resume</a> ·
-        </nav>
-        <a href="index.html" class="image avatar">
-          <img src="images/my_photo.jpg" alt=""/>
-        </a>
-        <h1><strong>Curated Articles</strong></h1>
-        <h2 style="font-size: large; color: rgb(242, 241, 241);">
-          A collection of important articles and resources I've found valuable in robotics — not my own blogs, but ones I recommend.
-        </h2>
+<!-- ================================================================
+     NAVIGATION
+     ================================================================ -->
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">IB<span>RAHIM</span>.exe</a>
+
+  <ul class="nav-links">
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#projects">Projects</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+    <li class="nav-more" id="nav-more">
+      <button class="nav-more-toggle" id="nav-more-toggle" aria-label="More pages">
+        Pages <i class="fas fa-chevron-down"></i>
+      </button>
+      <div class="nav-dropdown">
+        <a href="Resume.html"><i class="fas fa-file-alt"></i> Resume</a>
+        <a href="blogs.html" class="active"><i class="fas fa-book-open"></i> Collections</a>
+        <a href="bookmarks.html"><i class="fas fa-bookmark"></i> Resources</a>
       </div>
-    </header>
+    </li>
+    <li><a href="mailto:immemon1811@gmail.com" class="nav-cta">Hire Me</a></li>
+  </ul>
 
-    <!-- Main Content -->
-    <div id="main">
-      <section id="one" class="reveal">
-        <header class="major">
-          <h2>Robotics Learning & Career</h2>
-        </header>
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
 
-        <p style="color: yellow; font-weight: bold; animation: blink 1s steps(2,start) infinite;">
-          Page under construction... will be adding much more soon...
-        </p>
-        <style>
-          @keyframes blink { to { visibility: hidden; } }
-        </style>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="index.html">← Back to Portfolio</a>
+  <div class="mobile-divider"></div>
+  <a href="Resume.html"><i class="fas fa-file-alt" style="color:var(--clr-cyan);margin-right:.5rem"></i>Resume</a>
+  <a href="blogs.html"><i class="fas fa-book-open" style="color:var(--clr-cyan);margin-right:.5rem"></i>Collections</a>
+  <a href="bookmarks.html"><i class="fas fa-bookmark" style="color:var(--clr-cyan);margin-right:.5rem"></i>Resources</a>
+</div>
 
-        <ul class="alt">
-          <li><a href="https://medium.com/@ardalantj/how-to-become-a-robotics-engineer-d7a9678fc1f8" target="_blank">How To Become a Robotics Engineer? (Part 1/2) — Ardalan Tajbakhsh (Medium)</a></li>
-          <li><a href="https://medium.com/@ardalantj/how-to-become-a-robotics-engineer-part-2-2-9bdc3f15f60e" target="_blank">How To Become a Robotics Engineer? (Part 2/2) — Ardalan Tajbakhsh (Medium)</a></li>
-          <li><a href="https://www.robotixwithsina.com/resources/" target="_blank">Robotix with Sina — Resources</a></li>
-          <li><a href="https://medium.com/@rtellez/how-to-become-a-robotics-developer-3e6a60b21a9a" target="_blank">How to Become a Robotics Developer — Rodrigo Tellez (Medium)</a></li>
-          <li><a href="https://medium.com/@saliimranz12/a-brief-roadmap-to-become-robotics-software-engineer-1e2fbbd66efa" target="_blank">A Brief Roadmap to Become Robotics Software Engineer — Salim Ranz (Medium)</a></li>
-          <li><a href="https://medium.com/exploring-ros-robotics/the-big-picture-understanding-what-ros-is-for-70e32e32f36a" target="_blank">The Big Picture: Understanding What ROS is For — Exploring ROS Robotics (Medium)</a></li>
-          <li><a href="https://www.robotixwithsina.com/how-to-become-a-robotics-engineer/" target="_blank">How to Become a Robotics Engineer? — Robotix with Sina</a></li>
-        </ul>
+<!-- ================================================================
+     PAGE CONTENT
+     ================================================================ -->
+<div class="page-wrap">
 
-        <p><em>My reading list for robotics and programming and interesting articles from various authors. These are blogs I liked while reading and found worth sharing — some might be members-only reading.</em></p>
-      </section>
+  <!-- Hero banner -->
+  <div class="page-hero reveal">
+    <p class="section-label">// curated reading</p>
+    <h1>System.Collections</h1>
+    <p>
+      Articles, tutorials, and resources I've found genuinely valuable in robotics &amp;
+      engineering. Not my own writing — just good reads worth bookmarking.
+    </p>
+  </div>
+
+  <div class="content-wrap">
+
+    <!-- Status terminal -->
+    <div class="terminal reveal" style="margin-bottom:3rem;max-width:520px">
+      <div class="terminal-topbar">
+        <div class="tb-dot r"></div><div class="tb-dot y"></div><div class="tb-dot g"></div>
+        <span>reading_list.sh</span>
+      </div>
+      <div class="terminal-body">
+        <div><span class="t-prompt">~/&gt; </span><span class="t-cmd">ls collections/</span></div>
+        <div class="t-out" style="margin-top:.4rem">
+          <span class="t-key">robotics_career/</span><br>
+          <span class="t-key">ros_resources/</span><br>
+          <span class="t-key">learning_paths/</span>
+        </div>
+        <div style="margin-top:.4rem"><span class="t-prompt">~/&gt; </span><span class="t-cmd">echo $NOTE</span></div>
+        <div class="t-out"><span class="t-dim">Some links may be members-only on Medium.</span></div>
+      </div>
     </div>
 
+    <!-- ── Robotics Learning & Career ── -->
+    <div class="cat-header reveal">
+      <span class="cat-header-label"><i class="fas fa-robot" style="margin-right:.5rem"></i>Robotics Learning &amp; Career</span>
+      <div class="cat-header-line"></div>
+      <span class="tag">7 links</span>
+    </div>
 
-    <!-- Footer -->
-    <footer id="footer">
-      <div class="inner">
-        <ul class="icons">
-          <li><a href="https://www.linkedin.com/in/ibrahimmemon18/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
-          <li><a href="https://github.com/ibrahim-1811" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-          <li><a href="mailto:immemon1811@gmail.com" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
-        </ul>
-        <ul class="copyright">
-          <li>&copy; Mohammad Memon</li>
-        </ul>
+    <div class="link-list reveal">
+      <div class="link-item">
+        <div class="link-item-icon"><i class="fas fa-external-link-alt"></i></div>
+        <div class="link-item-body">
+          <a href="https://medium.com/@ardalantj/how-to-become-a-robotics-engineer-d7a9678fc1f8" target="_blank" rel="noopener">
+            How To Become a Robotics Engineer? (Part 1/2)
+          </a>
+          <span class="link-item-source">Ardalan Tajbakhsh · Medium</span>
+        </div>
+        <span class="tag">Career</span>
       </div>
-    </footer>
+      <div class="link-item">
+        <div class="link-item-icon"><i class="fas fa-external-link-alt"></i></div>
+        <div class="link-item-body">
+          <a href="https://medium.com/@ardalantj/how-to-become-a-robotics-engineer-part-2-2-9bdc3f15f60e" target="_blank" rel="noopener">
+            How To Become a Robotics Engineer? (Part 2/2)
+          </a>
+          <span class="link-item-source">Ardalan Tajbakhsh · Medium</span>
+        </div>
+        <span class="tag">Career</span>
+      </div>
+      <div class="link-item">
+        <div class="link-item-icon"><i class="fas fa-external-link-alt"></i></div>
+        <div class="link-item-body">
+          <a href="https://www.robotixwithsina.com/resources/" target="_blank" rel="noopener">
+            Robotix with Sina — Resources
+          </a>
+          <span class="link-item-source">robotixwithsina.com</span>
+        </div>
+        <span class="tag">Resources</span>
+      </div>
+      <div class="link-item">
+        <div class="link-item-icon"><i class="fas fa-external-link-alt"></i></div>
+        <div class="link-item-body">
+          <a href="https://medium.com/@rtellez/how-to-become-a-robotics-developer-3e6a60b21a9a" target="_blank" rel="noopener">
+            How to Become a Robotics Developer
+          </a>
+          <span class="link-item-source">Rodrigo Tellez · Medium</span>
+        </div>
+        <span class="tag">Career</span>
+      </div>
+      <div class="link-item">
+        <div class="link-item-icon"><i class="fas fa-external-link-alt"></i></div>
+        <div class="link-item-body">
+          <a href="https://medium.com/@saliimranz12/a-brief-roadmap-to-become-robotics-software-engineer-1e2fbbd66efa" target="_blank" rel="noopener">
+            A Brief Roadmap to Become Robotics Software Engineer
+          </a>
+          <span class="link-item-source">Salim Ranz · Medium</span>
+        </div>
+        <span class="tag">Roadmap</span>
+      </div>
+      <div class="link-item">
+        <div class="link-item-icon"><i class="fas fa-external-link-alt"></i></div>
+        <div class="link-item-body">
+          <a href="https://medium.com/exploring-ros-robotics/the-big-picture-understanding-what-ros-is-for-70e32e32f36a" target="_blank" rel="noopener">
+            The Big Picture: Understanding What ROS is For
+          </a>
+          <span class="link-item-source">Exploring ROS Robotics · Medium</span>
+        </div>
+        <span class="tag">ROS</span>
+      </div>
+      <div class="link-item">
+        <div class="link-item-icon"><i class="fas fa-external-link-alt"></i></div>
+        <div class="link-item-body">
+          <a href="https://www.robotixwithsina.com/how-to-become-a-robotics-engineer/" target="_blank" rel="noopener">
+            How to Become a Robotics Engineer?
+          </a>
+          <span class="link-item-source">robotixwithsina.com</span>
+        </div>
+        <span class="tag">Career</span>
+      </div>
+    </div>
 
-    <!-- Scripts -->
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/jquery.poptrox.min.js"></script>
-    <script src="assets/js/browser.min.js"></script>
-    <script src="assets/js/breakpoints.min.js"></script>
-    <script src="assets/js/util.js"></script>
-    <script src="assets/js/main.js"></script>
+    <!-- ── Coming soon notice ── -->
+    <div class="panel reveal" style="text-align:center;padding:2.5rem;margin-top:1.5rem">
+      <i class="fas fa-plus-circle" style="font-size:1.8rem;color:var(--clr-cyan);opacity:.35;display:block;margin-bottom:.8rem"></i>
+      <p style="font-family:var(--font-mono);font-size:.8rem;color:var(--clr-text-dim)">
+        More articles being added — check back soon.
+      </p>
+    </div>
 
-    <!-- Scroll Reveal Animation (same as homepage) -->
-    <script>
-      (function(){
-        const els=[...document.querySelectorAll('.reveal')];
-        if(!('IntersectionObserver' in window)){
-          els.forEach(e=>e.classList.add('is-visible'));
-          return;
-        }
-        const io=new IntersectionObserver((entries)=>{
-          entries.forEach(e=>{
-            if(e.isIntersecting){
-              e.target.classList.add('is-visible');
-              io.unobserve(e.target);
-            }
-          });
-        },{threshold:0.12});
-        els.forEach(e=>io.observe(e));
-      })();
-    </script>
-  </body>
+  </div><!-- /content-wrap -->
+</div><!-- /page-wrap -->
+
+<!-- ================================================================
+     FOOTER
+     ================================================================ -->
+<footer>
+  <p>
+    <a href="index.html">← Back to Portfolio</a> ·
+    <span>Mohammad Ibrahim Memon</span> ·
+    Robotics Engineer
+  </p>
+  <p style="margin-top:.4rem;font-size:.65rem;opacity:.5">ROS2 · Embedded · Autonomous Systems · Bonn, Germany</p>
+</footer>
+
+<script>
+/* Dropdown toggle */
+const navMore = document.getElementById('nav-more');
+document.getElementById('nav-more-toggle').addEventListener('click', (e) => {
+  e.stopPropagation();
+  navMore.classList.toggle('open');
+});
+document.addEventListener('click', () => navMore.classList.remove('open'));
+
+/* Mobile menu */
+document.getElementById('hamburger').addEventListener('click', () => {
+  document.getElementById('mobile-menu').classList.toggle('open');
+});
+
+/* Reveal on scroll */
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+}, { threshold: .1 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
 </html>

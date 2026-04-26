@@ -1,82 +1,210 @@
-<!DOCTYPE HTML>
-<html>
-  <head>
-    <title>Resume — Mohammad Memon</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link rel="stylesheet" href="assets/css/main.css" />
-			<link href="images/bg.jpg" rel="icon">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resume — Ibrahim Memon</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Fira+Code:wght@300;400;500&family=Rajdhani:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="assets/css/cyber-theme.css" />
+  <style>
+    /* Resume embed wrapper */
+    .resume-frame {
+      background: var(--clr-panel);
+      border: 1px solid var(--clr-border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 0 40px rgba(0,212,255,.07);
+    }
+    .resume-frame-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: .7rem 1.2rem;
+      background: #041223;
+      border-bottom: 1px solid var(--clr-border);
+    }
+    .resume-frame-header .dots { display: flex; gap: .4rem; }
+    .resume-frame-header .dot { width: 10px; height: 10px; border-radius: 50%; }
+    .resume-frame-header .dot.r { background: #ff5f57; }
+    .resume-frame-header .dot.y { background: #febc2e; }
+    .resume-frame-header .dot.g { background: #28c840; }
+    .resume-frame-header span {
+      font-family: var(--font-mono);
+      font-size: .68rem;
+      color: var(--clr-text-dim);
+    }
+    .resume-frame-body { padding: 1.5rem; }
 
-  </head>
-  <body class="is-preload">
-    <!-- Header -->
-    <header id="header" class="hero">
-      <div class="inner actions">
-        <nav style="margin-bottom:1rem;">
-          <a href="index.html">Home</a> ·
-          <a href="blogs.html">Collections</a> ·
-          <a href="bookmarks.html">Important Links</a> ·
-          <a href="Resume.html">Resume</a> ·
-        </nav>
-        <a href="index.html" class="image avatar">
-          <img src="images/my_photo.jpg" alt=""/>
-        </a>
-        <h1><strong>Resume</strong></h1>
-        <!-- <h2 style="font-size: large; color: rgb(242, 241, 241);">
-          A collection of important articles and resources I've found valuable in robotics — not my own blogs, but ones I recommend.
-        </h2> -->
+    /* Contact strip */
+    .contact-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem 2rem;
+      margin-top: 2rem;
+      padding: 1.2rem 1.4rem;
+      background: var(--clr-panel);
+      border: 1px solid var(--clr-border);
+      border-left: 3px solid var(--clr-cyan);
+      border-radius: var(--radius);
+    }
+    .contact-strip-item {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      font-family: var(--font-mono);
+      font-size: .78rem;
+    }
+    .contact-strip-item i { color: var(--clr-cyan); width: 14px; text-align: center; }
+    .contact-strip-item a { color: var(--clr-text); }
+    .contact-strip-item a:hover { color: var(--clr-cyan); }
+  </style>
+</head>
+<body>
+
+<!-- ================================================================
+     NAVIGATION
+     ================================================================ -->
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">IB<span>RAHIM</span>.exe</a>
+
+  <ul class="nav-links">
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#projects">Projects</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+    <li class="nav-more" id="nav-more">
+      <button class="nav-more-toggle" id="nav-more-toggle" aria-label="More pages">
+        Pages <i class="fas fa-chevron-down"></i>
+      </button>
+      <div class="nav-dropdown">
+        <a href="Resume.html" class="active"><i class="fas fa-file-alt"></i> Resume</a>
+        <a href="blogs.html"><i class="fas fa-book-open"></i> Collections</a>
+        <a href="bookmarks.html"><i class="fas fa-bookmark"></i> Resources</a>
       </div>
-    </header>
+    </li>
+    <li><a href="mailto:immemon1811@gmail.com" class="nav-cta">Hire Me</a></li>
+  </ul>
 
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
 
-			<div id="main">
+<div class="mobile-menu" id="mobile-menu">
+  <a href="index.html">← Back to Portfolio</a>
+  <div class="mobile-divider"></div>
+  <a href="Resume.html"><i class="fas fa-file-alt" style="color:var(--clr-cyan);margin-right:.5rem"></i>Resume</a>
+  <a href="blogs.html"><i class="fas fa-book-open" style="color:var(--clr-cyan);margin-right:.5rem"></i>Collections</a>
+  <a href="bookmarks.html"><i class="fas fa-bookmark" style="color:var(--clr-cyan);margin-right:.5rem"></i>Resources</a>
+</div>
 
-				<script src="https://static.elfsight.com/platform/platform.js" async></script>
-				<div class="elfsight-app-2643e62f-22e9-4af7-8fb3-a7b484d78990" data-elfsight-app-lazy></div>
-					
-  <header class="major">
-    <h2 style="color:#1abc9c;">Contact</h2>
-  </header>
+<!-- ================================================================
+     PAGE CONTENT
+     ================================================================ -->
+<div class="page-wrap">
 
-  <div class="contact-card">
-    <ul class="labeled-icons">
-      <li>
-        <h3 class="icon solid fa-home"><span class="label">Address</span></h3>
-        <a href="https://www.google.com/maps/search/?api=1&query=Bonn,53115,Germany" target="_blank">
-          Bonn, 53115<br />Germany
-        </a>
-      </li>
-      <li>
-        <h3 class="icon solid fa-mobile-alt"><span class="label">Phone</span></h3>
-        <a href="tel:+4915774001726">+49 1577 4001726</a>
-      </li>
-      <li>
-        <h3 class="icon solid fa-envelope"><span class="label">Email</span></h3>
-        <a href="mailto:immemon1811@gmail.com">immemon1811@gmail.com</a>
-      </li>
-    </ul>
+  <div class="page-hero reveal">
+    <p class="section-label">// curriculum vitae</p>
+    <h1>System.Resume</h1>
+    <p>
+      Robotics Engineer — ROS2 · Autonomous Systems · Embedded Hardware.
+      Open to full-time roles and research collaborations.
+    </p>
   </div>
-</section>
-<!-- Footer -->
-		<footer id="footer">
-			<div class="inner">
-				<ul class="icons">
-					<li><a href="https://www.linkedin.com/in/ibrahimmemon18/" class="icon brands fa-linkedin"><span class="label">linkedin</span></a></li>
-					<li><a href="https://github.com/ibrahim-1811" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-					<li><a href="mailto:immemon1811@gmail.com" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
-				</ul>
-				<ul class="copyright">
-					<li>&copy; Mohammad Memon</li>
-				</ul>
-			</div>
-		</footer>
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.poptrox.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
-	</body>				
+  <div class="content-wrap">
+
+    <!-- Quick action row -->
+    <div style="display:flex;gap:.8rem;flex-wrap:wrap;margin-bottom:2.5rem" class="reveal">
+      <a href="mailto:immemon1811@gmail.com?subject=CV Request" class="btn btn-outline">
+        <i class="fas fa-envelope"></i> Request Full CV
+      </a>
+      <a href="https://www.linkedin.com/in/ibrahimmemon18/" target="_blank" rel="noopener" class="btn btn-outline">
+        <i class="fab fa-linkedin"></i> LinkedIn Profile
+      </a>
+      <a href="https://github.com/ibrahim-1811" target="_blank" rel="noopener" class="btn btn-outline">
+        <i class="fab fa-github"></i> GitHub
+      </a>
+    </div>
+
+    <!-- Resume embed (Elfsight widget) -->
+    <div class="resume-frame reveal">
+      <div class="resume-frame-header">
+        <div class="dots">
+          <div class="dot r"></div>
+          <div class="dot y"></div>
+          <div class="dot g"></div>
+        </div>
+        <span>resume.pdf — viewer</span>
+        <span style="color:var(--clr-cyan);font-size:.65rem">LIVE</span>
+      </div>
+      <div class="resume-frame-body">
+        <script src="https://static.elfsight.com/platform/platform.js" async></script>
+        <div class="elfsight-app-2643e62f-22e9-4af7-8fb3-a7b484d78990" data-elfsight-app-lazy></div>
+      </div>
+    </div>
+
+    <!-- Contact strip -->
+    <div class="contact-strip reveal">
+      <div class="contact-strip-item">
+        <i class="fas fa-envelope"></i>
+        <a href="mailto:immemon1811@gmail.com">immemon1811@gmail.com</a>
+      </div>
+      <div class="contact-strip-item">
+        <i class="fas fa-phone"></i>
+        <a href="tel:+4915774001726">+49 15774001726</a>
+      </div>
+      <div class="contact-strip-item">
+        <i class="fas fa-map-marker-alt"></i>
+        <span style="color:var(--clr-text)">Bonn, 53115, Germany</span>
+      </div>
+      <div class="contact-strip-item">
+        <i class="fab fa-linkedin"></i>
+        <a href="https://www.linkedin.com/in/ibrahimmemon18/" target="_blank" rel="noopener">ibrahimmemon18</a>
+      </div>
+      <div class="contact-strip-item">
+        <i class="fab fa-github"></i>
+        <a href="https://github.com/ibrahim-1811" target="_blank" rel="noopener">ibrahim-1811</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ================================================================
+     FOOTER
+     ================================================================ -->
+<footer>
+  <p>
+    <a href="index.html">← Back to Portfolio</a> ·
+    <span>Mohammad Ibrahim Memon</span> ·
+    Robotics Engineer
+  </p>
+  <p style="margin-top:.4rem;font-size:.65rem;opacity:.5">ROS2 · Embedded · Autonomous Systems · Bonn, Germany</p>
+</footer>
+
+<script>
+/* Dropdown */
+const navMore = document.getElementById('nav-more');
+document.getElementById('nav-more-toggle').addEventListener('click', (e) => {
+  e.stopPropagation();
+  navMore.classList.toggle('open');
+});
+document.addEventListener('click', () => navMore.classList.remove('open'));
+
+/* Mobile menu */
+document.getElementById('hamburger').addEventListener('click', () => {
+  document.getElementById('mobile-menu').classList.toggle('open');
+});
+
+/* Reveal */
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+}, { threshold: .08 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
 </html>

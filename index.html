@@ -1,857 +1,2674 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <!--
-	Strata by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+ 
+   Mohammad Ibrahim Memon — Robotics Engineer Portfolio          
+   Design: Cyber Blue / Futuristic / Dark — Single-page HTML    
+   Author: Mohammad Ibrahim Memon                              
+   Version: 2.0 (June 2024)                                              
 -->
-<html>
-
+<html lang="en">
 <head>
-  <title>Memon: Portfolio</title>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-  <link rel="stylesheet" href="assets/css/main.css" />
-  <link href="images/bg.jpg" rel="icon">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mohammad Ibrahim Memon | Robotics Engineer</title>
+
+  <!-- ── Google Fonts ─────────────────────────────────────────── -->
+  <!-- Orbitron: techy display headings  |  Fira Code: monospace body -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Fira+Code:wght@300;400;500&family=Rajdhani:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- ── Font Awesome icons ────────────────────────────────────── -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
   <style>
-    video {
+    /* ============================================================
+       CSS CUSTOM PROPERTIES — Design tokens
+       ============================================================ */
+    :root {
+      --clr-bg:          #020b18;      /* deep navy background        */
+      --clr-bg2:         #040f1e;      /* slightly lighter panel bg   */
+      --clr-panel:       #071526;      /* card/panel background        */
+      --clr-border:      #0d2d4a;      /* subtle border               */
+      --clr-cyan:        #00d4ff;      /* primary accent — cyber blue  */
+      --clr-cyan-dim:    #0096b7;      /* dimmed cyan                 */
+      --clr-cyan-glow:   rgba(0,212,255,.18); /* glow layer           */
+      --clr-teal:        #00ffb3;      /* secondary accent — teal      */
+      --clr-teal-dim:    rgba(0,255,179,.12);
+      --clr-text:        #b8d4e8;      /* body text                   */
+      --clr-text-dim:    #5a7a96;      /* muted label text            */
+      --clr-white:       #e8f4ff;      /* near-white headings         */
+      --clr-danger:      #ff4d7d;      /* alert / badge               */
+      --font-display:    'Orbitron', monospace;
+      --font-mono:       'Fira Code', monospace;
+      --font-body:       'Rajdhani', sans-serif;
+      --nav-h:           60px;
+      --section-gap:     120px;
+      --radius:          6px;
+      --glow-sm:  0 0 8px  var(--clr-cyan);
+      --glow-md:  0 0 20px var(--clr-cyan);
+      --glow-lg:  0 0 40px var(--clr-cyan);
+    }
+
+    /* ============================================================
+       RESET & BASE
+       ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      background: var(--clr-bg);
+      color: var(--clr-text);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    a { color: var(--clr-cyan); text-decoration: none; transition: color .2s; }
+    a:hover { color: var(--clr-teal); }
+
+    h1,h2,h3,h4 {
+      font-family: var(--font-display);
+      color: var(--clr-white);
+      letter-spacing: .06em;
+      line-height: 1.2;
+    }
+
+    img { display: block; max-width: 100%; }
+    ul { list-style: none; }
+
+    /* ── Section wrapper ── */
+    .section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: var(--section-gap) 2rem;
+    }
+
+    /* ── Section heading ── */
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: .75rem;
+      color: var(--clr-cyan);
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      margin-bottom: .5rem;
+    }
+
+    .section-title {
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      margin-bottom: 3rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    /* decorative underline bar */
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 50%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--clr-cyan), transparent);
+    }
+
+    /* ── Utility ── */
+    .tag {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: .7rem;
+      padding: .2rem .55rem;
+      border-radius: 3px;
+      border: 1px solid var(--clr-cyan-dim);
+      color: var(--clr-cyan);
+      background: var(--clr-cyan-glow);
+      letter-spacing: .05em;
+    }
+
+    .glow-text { text-shadow: var(--glow-sm); color: var(--clr-cyan); }
+
+    /* reveal animation — triggered by IntersectionObserver */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .65s ease, transform .65s ease;
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ============================================================
+       PARTICLE CANVAS
+       ============================================================ */
+    #particle-canvas {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* ============================================================
+       NAVIGATION
+       ============================================================ */
+    nav#navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2.5rem;
+      z-index: 100;
+      background: rgba(2,11,24,.82);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--clr-border);
+      transition: background .3s;
+    }
+
+    /* Logo wordmark */
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: .9rem;
+      font-weight: 700;
+      color: var(--clr-cyan);
+      letter-spacing: .15em;
+    }
+    .nav-logo span { color: var(--clr-white); }
+
+    /* Nav links */
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-family: var(--font-mono);
+      font-size: .78rem;
+      color: var(--clr-text-dim);
+      letter-spacing: .1em;
+      transition: color .2s;
+      position: relative;
+    }
+    .nav-links a::before {
+      content: attr(data-num);
+      color: var(--clr-cyan);
+      margin-right: .3em;
+      font-size: .65rem;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--clr-cyan); }
+
+    /* Pages dropdown in nav */
+    .nav-more { position: relative; }
+    .nav-more-toggle {
+      font-family: var(--font-mono);
+      font-size: .78rem;
+      color: var(--clr-text-dim);
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0;
+      letter-spacing: .1em;
+      display: flex;
+      align-items: center;
+      gap: .3rem;
+      transition: color .2s;
+    }
+    .nav-more-toggle:hover { color: var(--clr-cyan); }
+    .nav-more-toggle i { font-size: .55rem; transition: transform .2s; }
+    .nav-more.open .nav-more-toggle i { transform: rotate(180deg); }
+
+    .nav-dropdown {
+      display: none;
+      position: absolute;
+      top: calc(100% + .9rem);
+      right: 0;
+      background: rgba(2,11,24,.97);
+      border: 1px solid var(--clr-border);
+      border-radius: var(--radius);
+      padding: .4rem 0;
+      min-width: 155px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 8px 24px rgba(0,0,0,.5);
+      z-index: 200;
+    }
+    .nav-more.open .nav-dropdown { display: block; }
+    .nav-dropdown a {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      padding: .5rem 1rem;
+      font-family: var(--font-mono);
+      font-size: .73rem;
+      color: var(--clr-text-dim);
+      transition: color .2s, background .2s;
+    }
+    .nav-dropdown a i { color: var(--clr-cyan); width: 14px; text-align: center; }
+    .nav-dropdown a:hover { color: var(--clr-cyan); background: var(--clr-cyan-glow); }
+
+    /* CTA button in nav */
+    .nav-cta {
+      font-family: var(--font-mono);
+      font-size: .75rem;
+      padding: .4rem 1rem;
+      border: 1px solid var(--clr-cyan);
+      border-radius: var(--radius);
+      color: var(--clr-cyan) !important;
+      transition: background .2s, box-shadow .2s !important;
+    }
+    .nav-cta:hover {
+      background: var(--clr-cyan-glow);
+      box-shadow: var(--glow-sm);
+    }
+
+    /* Hamburger — mobile */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block;
+      width: 22px; height: 2px;
+      background: var(--clr-cyan);
+      border-radius: 2px;
+      transition: .3s;
+    }
+
+    /* ============================================================
+       HERO SECTION
+       ============================================================ */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      z-index: 1;
+      padding-top: var(--nav-h);
+      overflow: hidden;
+    }
+
+    /* Scan-line overlay for CRT effect */
+    #hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0,212,255,.02) 2px,
+        rgba(0,212,255,.02) 4px
+      );
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 780px;
+      padding: 2rem;
+    }
+
+    /* Status badge at top */
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      font-family: var(--font-mono);
+      font-size: .72rem;
+      color: var(--clr-teal);
+      background: var(--clr-teal-dim);
+      border: 1px solid rgba(0,255,179,.25);
+      border-radius: 20px;
+      padding: .3rem .9rem;
+      margin-bottom: 2rem;
+      letter-spacing: .1em;
+    }
+    .hero-badge .dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--clr-teal);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%,100% { opacity: 1; transform: scale(1); }
+      50%      { opacity: .4; transform: scale(.7); }
+    }
+
+    /* Main name */
+    .hero-name {
+      font-size: clamp(2.2rem, 8vw, 5rem);
+      font-weight: 900;
+      letter-spacing: .04em;
+      line-height: 1;
+      margin-bottom: .5rem;
+      background: linear-gradient(135deg, var(--clr-white) 30%, var(--clr-cyan) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Typing subtitle */
+    .hero-subtitle {
+      font-family: var(--font-mono);
+      font-size: clamp(.85rem, 2vw, 1.15rem);
+      color: var(--clr-cyan);
+      margin-bottom: 1.8rem;
+      min-height: 2em;
+    }
+    .cursor {
+      display: inline-block;
+      width: 2px; height: 1em;
+      background: var(--clr-cyan);
+      margin-left: 2px;
+      vertical-align: middle;
+      animation: blink .7s infinite;
+    }
+    @keyframes blink { 0%,100% { opacity:1; } 50% { opacity:0; } }
+
+    .hero-desc {
+      font-size: 1rem;
+      color: var(--clr-text-dim);
+      max-width: 540px;
+      margin: 0 auto 2.4rem;
+      font-weight: 400;
+    }
+
+    /* Action buttons */
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      font-family: var(--font-mono);
+      font-size: .8rem;
+      padding: .7rem 1.6rem;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: .25s;
+      letter-spacing: .08em;
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+    }
+
+    .btn-primary {
+      background: var(--clr-cyan);
+      color: #020b18;
+      font-weight: 700;
+    }
+    .btn-primary:hover {
+      background: var(--clr-teal);
+      box-shadow: 0 0 20px rgba(0,212,255,.5);
+      color: #020b18;
+    }
+
+    .btn-outline {
+      border: 1px solid var(--clr-cyan);
+      color: var(--clr-cyan);
+      background: transparent;
+    }
+    .btn-outline:hover {
+      background: var(--clr-cyan-glow);
+      box-shadow: var(--glow-sm);
+      color: var(--clr-cyan);
+    }
+
+    /* Scroll hint */
+    .hero-scroll {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: var(--font-mono);
+      font-size: .65rem;
+      color: var(--clr-text-dim);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .5rem;
+      animation: floatUp 2s ease-in-out infinite;
+    }
+    .hero-scroll::before {
+      content: '';
+      width: 1px; height: 40px;
+      background: linear-gradient(to bottom, var(--clr-cyan), transparent);
+    }
+    @keyframes floatUp {
+      0%,100% { transform: translateX(-50%) translateY(0); }
+      50%       { transform: translateX(-50%) translateY(-6px); }
+    }
+
+    /* ── Quick stats bar ── */
+    .stats-bar {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      flex-wrap: wrap;
+      padding: 2.5rem 2rem;
+      background: var(--clr-panel);
+      border-top: 1px solid var(--clr-border);
+      border-bottom: 1px solid var(--clr-border);
+      position: relative;
+      z-index: 1;
+    }
+    .stat-item { text-align: center; }
+    .stat-val {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--clr-cyan);
+    }
+    .stat-lbl {
+      font-family: var(--font-mono);
+      font-size: .7rem;
+      color: var(--clr-text-dim);
+      letter-spacing: .1em;
+      margin-top: .2rem;
+    }
+
+    /* ============================================================
+       ABOUT — TERMINAL CARD
+       ============================================================ */
+    #about { position: relative; z-index: 1; }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    /* Terminal-style "about" panel */
+    .terminal {
+      background: #020e1c;
+      border: 1px solid var(--clr-border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 0 40px rgba(0,212,255,.07);
+      font-family: var(--font-mono);
+    }
+
+    .terminal-topbar {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      padding: .7rem 1rem;
+      background: #041223;
+      border-bottom: 1px solid var(--clr-border);
+    }
+    .tb-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+    }
+    .tb-dot.r { background: #ff5f57; }
+    .tb-dot.y { background: #febc2e; }
+    .tb-dot.g { background: #28c840; }
+    .terminal-topbar span {
+      margin-left: .5rem;
+      font-size: .7rem;
+      color: var(--clr-text-dim);
+    }
+
+    .terminal-body {
+      padding: 1.4rem 1.4rem 1.8rem;
+      font-size: .82rem;
+      line-height: 1.8;
+    }
+
+    /* Command prompt line */
+    .t-line { margin-bottom: .6rem; }
+    .t-prompt { color: var(--clr-teal); }
+    .t-cmd    { color: var(--clr-white); }
+    .t-out    { color: var(--clr-text); padding-left: 1.2rem; margin-bottom: 1rem; }
+    .t-key    { color: var(--clr-cyan-dim); }
+    .t-val    { color: var(--clr-white); }
+    .t-comment { color: #3d6680; }
+
+    /* About info block */
+    .about-info h3 {
+      font-size: 1rem;
+      color: var(--clr-teal);
+      font-family: var(--font-mono);
+      margin-bottom: 1rem;
+      letter-spacing: .1em;
+    }
+    .about-info p {
+      color: var(--clr-text);
+      margin-bottom: 1.2rem;
+      font-size: .96rem;
+    }
+
+    .info-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .6rem 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .info-list li {
+      font-family: var(--font-mono);
+      font-size: .75rem;
+      color: var(--clr-text-dim);
+    }
+    .info-list li strong {
+      color: var(--clr-cyan);
+      display: block;
+      font-size: .65rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      margin-bottom: .15rem;
+    }
+
+    /* ============================================================
+       SKILLS SECTION
+       ============================================================ */
+    #skills { position: relative; z-index: 1; background: var(--clr-bg2); }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.4rem;
+    }
+
+    .skill-card {
+      background: var(--clr-panel);
+      border: 1px solid var(--clr-border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      transition: border-color .3s, box-shadow .3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* top accent line */
+    .skill-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--clr-cyan), transparent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .4s ease;
+    }
+    .skill-card:hover::before { transform: scaleX(1); }
+    .skill-card:hover {
+      border-color: var(--clr-cyan-dim);
+      box-shadow: 0 0 20px rgba(0,212,255,.09);
+    }
+
+    .skill-card-icon {
+      font-size: 1.4rem;
+      color: var(--clr-cyan);
+      margin-bottom: .8rem;
+    }
+    .skill-card h4 {
+      font-size: .8rem;
+      font-family: var(--font-mono);
+      color: var(--clr-cyan);
+      letter-spacing: .12em;
+      margin-bottom: .9rem;
+      text-transform: uppercase;
+    }
+
+    /* Individual skill bars */
+    .skill-bar-wrap { margin-bottom: .55rem; }
+    .skill-bar-header {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--font-mono);
+      font-size: .7rem;
+      color: var(--clr-text-dim);
+      margin-bottom: .25rem;
+    }
+    .skill-bar-track {
+      height: 4px;
+      background: var(--clr-border);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .skill-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--clr-cyan), var(--clr-teal));
+      border-radius: 4px;
+      width: 0;
+      transition: width 1.2s cubic-bezier(.4,0,.2,1);
+    }
+
+    /* Tag clouds in skill cards */
+    .tag-cloud { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .5rem; }
+
+    /* ============================================================
+       EXPERIENCE — TIMELINE
+       ============================================================ */
+    #experience { position: relative; z-index: 1; }
+
+    .timeline {
+      position: relative;
+      padding-left: 2rem;
+    }
+    /* Vertical line */
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--clr-cyan), transparent);
+    }
+
+    .tl-item {
+      position: relative;
+      margin-bottom: 3rem;
+    }
+
+    /* Timeline dot */
+    .tl-dot {
+      position: absolute;
+      left: -2rem;
+      top: .3rem;
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--clr-cyan);
+      border: 2px solid var(--clr-bg);
+      box-shadow: var(--glow-sm);
+      transform: translateX(calc(-50% + .5px));
+    }
+    .tl-dot.teal { background: var(--clr-teal); box-shadow: 0 0 8px var(--clr-teal); }
+
+    .tl-card {
+      background: var(--clr-panel);
+      border: 1px solid var(--clr-border);
+      border-radius: var(--radius);
+      padding: 1.4rem 1.6rem;
+      transition: border-color .3s;
+    }
+    .tl-card:hover { border-color: var(--clr-cyan-dim); }
+
+    .tl-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: .5rem;
+      margin-bottom: .8rem;
+    }
+
+    .tl-title {
+      font-size: .85rem;
+      font-family: var(--font-display);
+      color: var(--clr-white);
+    }
+    .tl-role {
+      font-family: var(--font-mono);
+      font-size: .72rem;
+      color: var(--clr-cyan);
+      margin-top: .15rem;
+    }
+    .tl-meta {
+      font-family: var(--font-mono);
+      font-size: .68rem;
+      color: var(--clr-text-dim);
+      text-align: right;
+    }
+
+    .tl-body ul li {
+      font-size: .88rem;
+      color: var(--clr-text);
+      padding-left: 1rem;
+      position: relative;
+      margin-bottom: .35rem;
+    }
+    .tl-body ul li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--clr-cyan);
+      font-size: .6rem;
+      top: .1rem;
+    }
+
+    /* ============================================================
+       PROJECTS
+       ============================================================ */
+    #projects { position: relative; z-index: 1; background: var(--clr-bg2); }
+
+    .proj-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.4rem;
+    }
+
+    .proj-card {
+      background: var(--clr-panel);
+      border: 1px solid var(--clr-border);
+      border-radius: var(--radius);
+      padding: 1.6rem;
+      display: flex;
+      flex-direction: column;
+      gap: .8rem;
+      transition: border-color .3s, transform .3s, box-shadow .3s;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .proj-card:hover {
+      border-color: var(--clr-cyan);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 30px rgba(0,212,255,.12);
+    }
+    .proj-card.clickable {
+      position: relative;
+    }
+    .proj-card.clickable::before {
+      content: '→ View Details';
+      position: absolute;
+      top: 1rem;
+      right: 1.5rem;
+      font-family: var(--font-mono);
+      font-size: .7rem;
+      color: var(--clr-teal);
+      opacity: 0;
+      transition: opacity .3s;
+    }
+    .proj-card.clickable:hover::before {
+      opacity: 1;
+    }
+    .proj-card.video-link::before {
+      content: '↗ Watch Demo';
+    }
+
+    /* Corner notch decoration */
+    .proj-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; right: 0;
+      width: 30px; height: 30px;
+      border-bottom: 2px solid var(--clr-cyan);
+      border-right: 2px solid var(--clr-cyan);
+      border-radius: 0 0 var(--radius) 0;
+      opacity: 0;
+      transition: opacity .3s;
+    }
+    .proj-card:hover::after { opacity: 1; }
+
+    .proj-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .proj-icon {
+      font-size: 1.4rem;
+      color: var(--clr-cyan);
+    }
+    .proj-badge {
+      font-family: var(--font-mono);
+      font-size: .62rem;
+      padding: .18rem .55rem;
+      border-radius: 3px;
+      background: rgba(255,77,125,.1);
+      border: 1px solid rgba(255,77,125,.3);
+      color: var(--clr-danger);
+    }
+    .proj-badge.teal {
+      background: var(--clr-teal-dim);
+      border-color: rgba(0,255,179,.3);
+      color: var(--clr-teal);
+    }
+
+    .proj-card h3 {
+      font-size: .95rem;
+      font-family: var(--font-display);
+    }
+    .proj-card p {
+      font-size: .85rem;
+      color: var(--clr-text-dim);
+      flex: 1;
+    }
+
+    /* ============================================================
+       PUBLICATION
+       ============================================================ */
+    #publication { position: relative; z-index: 1; }
+
+    .pub-card {
+      background: var(--clr-panel);
+      border: 1px solid var(--clr-border);
+      border-left: 3px solid var(--clr-teal);
+      border-radius: var(--radius);
+      padding: 1.8rem 2rem;
+      display: flex;
+      gap: 2rem;
+      align-items: flex-start;
+      transition: box-shadow .3s;
+    }
+    .pub-card:hover { box-shadow: 0 0 30px rgba(0,255,179,.07); }
+    .pub-icon {
+      font-size: 2rem;
+      color: var(--clr-teal);
+      flex-shrink: 0;
+      margin-top: .2rem;
+    }
+    .pub-card h3 {
+      font-size: 1rem;
+      margin-bottom: .5rem;
+    }
+    .pub-card p {
+      font-family: var(--font-mono);
+      font-size: .75rem;
+      color: var(--clr-text-dim);
+    }
+
+    /* ============================================================
+       CONTACT
+       ============================================================ */
+    #contact { position: relative; z-index: 1; background: var(--clr-bg2); }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .contact-info h3 {
+      font-size: 1.1rem;
+      margin-bottom: 1.4rem;
+    }
+    .contact-info p {
+      color: var(--clr-text-dim);
+      font-size: .92rem;
+      margin-bottom: 2rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.2rem;
+    }
+    .contact-item-icon {
+      width: 36px; height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--clr-border);
+      border-radius: var(--radius);
+      color: var(--clr-cyan);
+      font-size: .85rem;
+      flex-shrink: 0;
+      background: var(--clr-panel);
+    }
+    .contact-item a, .contact-item span {
+      font-family: var(--font-mono);
+      font-size: .8rem;
+      color: var(--clr-text);
+    }
+    .contact-item a:hover { color: var(--clr-cyan); }
+
+    /* Social links */
+    .socials {
+      display: flex;
+      gap: .8rem;
+      margin-top: 2rem;
+    }
+    .social-btn {
+      width: 42px; height: 42px;
+      border: 1px solid var(--clr-border);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--clr-text-dim);
+      font-size: .95rem;
+      transition: .25s;
+    }
+    .social-btn:hover {
+      border-color: var(--clr-cyan);
+      color: var(--clr-cyan);
+      box-shadow: var(--glow-sm);
+    }
+
+    /* Contact terminal right panel */
+    .contact-terminal {
+      font-family: var(--font-mono);
+      font-size: .78rem;
+    }
+
+    /* ============================================================
+       FOOTER
+       ============================================================ */
+    footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 2.5rem 2rem;
+      border-top: 1px solid var(--clr-border);
+      font-family: var(--font-mono);
+      font-size: .72rem;
+      color: var(--clr-text-dim);
+    }
+    footer span { color: var(--clr-cyan); }
+
+    /* ============================================================
+       MOBILE NAV MENU
+       ============================================================ */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: var(--nav-h);
+      left: 0; right: 0;
+      background: rgba(2,11,24,.97);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--clr-border);
+      padding: 1.5rem 2rem;
+      z-index: 99;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-family: var(--font-mono);
+      font-size: .85rem;
+      color: var(--clr-text-dim);
+    }
+
+    /* ============================================================
+       RESPONSIVE
+       ============================================================ */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .about-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .stats-bar { gap: 2rem; }
+      .section { padding: 80px 1.2rem; }
+      --section-gap: 80px;
+    }
+
+    @media (max-width: 480px) {
+      .proj-grid { grid-template-columns: 1fr; }
+      .skills-grid { grid-template-columns: 1fr; }
+      .info-list { grid-template-columns: 1fr; }
+    }
+
+    /* ── Back to top button ── */
+    #back-top {
+      position: fixed;
+      bottom: 2rem; right: 2rem;
+      width: 40px; height: 40px;
+      border: 1px solid var(--clr-cyan);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--clr-cyan);
+      font-size: .85rem;
+      cursor: pointer;
+      z-index: 50;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .3s, box-shadow .3s;
+      background: rgba(2,11,24,.8);
+    }
+    #back-top.show { opacity: 1; pointer-events: auto; }
+    #back-top:hover { box-shadow: var(--glow-sm); }
+
+    /* ── Glitch animation for hero name (subtle) ── */
+    @keyframes glitch {
+      0%   { clip-path: inset(40% 0 61% 0); transform: skewX(0deg); }
+      20%  { clip-path: inset(92% 0 1% 0);  transform: skewX(1deg); }
+      40%  { clip-path: inset(43% 0 1% 0);  transform: skewX(-1deg); }
+      60%  { clip-path: inset(25% 0 58% 0); transform: skewX(2deg); }
+      80%  { clip-path: inset(54% 0 7% 0);  transform: skewX(-2deg); }
+      100% { clip-path: inset(58% 0 43% 0); transform: skewX(0deg); }
+    }
+
+    .hero-name-wrap { position: relative; display: inline-block; }
+    .hero-name-glitch {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--clr-white) 30%, var(--clr-cyan) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: glitch 4s infinite linear alternate-reverse;
+      opacity: 0.08;
+    }
+
+    /* ── Skill section intro hex grid decoration ── */
+    .hex-deco {
+      position: absolute;
+      right: -60px; top: 50%;
+      transform: translateY(-50%);
+      opacity: .04;
+      font-size: 12rem;
+      color: var(--clr-cyan);
+      pointer-events: none;
+      font-family: var(--font-display);
+    }
+
+    /* ============================================================
+       PROJECT MODAL
+       ============================================================ */
+    .project-modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: #020b18;
+      z-index: 200;
+      padding: 2rem;
+      overflow-y: auto;
+    }
+    .project-modal.active {
+      display: block;
+    }
+
+    .modal-content {
+      background: var(--clr-panel);
+      border: 1px solid var(--clr-border);
+      border-radius: var(--radius);
+      max-width: 900px;
       width: 100%;
+      margin: 2rem auto;
+      padding: 2.5rem;
+      position: relative;
+      box-shadow: 0 0 60px rgba(0,212,255,.15);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      width: 36px;
+      height: 36px;
+      background: transparent;
+      border: 1px solid var(--clr-border);
+      border-radius: var(--radius);
+      color: var(--clr-cyan);
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: border-color .2s, color .2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-close:hover {
+      border-color: var(--clr-cyan);
+      color: var(--clr-teal);
+    }
+
+    .modal-header h2 {
+      font-size: 1.6rem;
+      margin-bottom: .5rem;
+    }
+    .modal-meta {
+      font-family: var(--font-mono);
+      font-size: .8rem;
+      color: var(--clr-text-dim);
+      margin-bottom: 1.5rem;
+    }
+
+    .modal-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .gallery-item {
+      border: 1px solid var(--clr-border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      aspect-ratio: 16/9;
+      cursor: pointer;
+      transition: border-color .3s, transform .3s;
+    }
+    .gallery-item:hover {
+      border-color: var(--clr-cyan);
+      transform: scale(1.02);
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain; /* contain shows the full image — cover crops portrait shots */
+      background: var(--clr-bg);
+    }
+
+    /* ── Video tabs ───────────────────────────────────────────────────── */
+    .video-tabs {
+      display: flex;
+      gap: .4rem;
+      padding: .6rem .6rem 0;
+      background: #000;
+      border-bottom: 1px solid var(--clr-border);
+    }
+    .video-tab {
+      font-family: var(--font-mono);
+      font-size: .72rem;
+      letter-spacing: .05em;
+      padding: .35rem .85rem;
+      border: 1px solid transparent;
+      border-bottom: none;
+      border-radius: 4px 4px 0 0;
+      background: transparent;
+      color: var(--clr-text-dim);
+      cursor: pointer;
+      transition: color .2s, border-color .2s, background .2s;
+    }
+    .video-tab:hover { color: var(--clr-white); }
+    .video-tab.active {
+      color: var(--clr-cyan);
+      border-color: var(--clr-border);
+      background: rgba(0,212,255,.06);
+    }
+
+    /* ── Lightbox ─────────────────────────────────────────────────────── */
+    #lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(2,11,24,.94);
+      backdrop-filter: blur(6px);
+      align-items: center;
+      justify-content: center;
+    }
+    #lightbox.active { display: flex; }
+    #lightbox img {
+      max-width: min(92vw, 1100px);
+      max-height: 88vh;
+      object-fit: contain;
+      border: 1px solid var(--clr-border);
+      border-radius: var(--radius);
+      box-shadow: 0 0 60px rgba(0,212,255,.12);
+      user-select: none;
+    }
+    .lb-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(2,11,24,.7);
+      border: 1px solid var(--clr-border);
+      color: var(--clr-cyan);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.1rem;
+      transition: background .2s, border-color .2s;
+      z-index: 1;
+    }
+    .lb-btn:hover { background: rgba(0,212,255,.15); border-color: var(--clr-cyan); }
+    #lbPrev { left: 1rem; }
+    #lbNext { right: 1rem; }
+    #lbClose {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: rgba(2,11,24,.7);
+      border: 1px solid var(--clr-border);
+      color: var(--clr-white);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background .2s;
+    }
+    #lbClose:hover { background: rgba(255,255,255,.1); }
+    #lbCounter {
+      position: absolute;
+      bottom: 1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: var(--font-mono);
+      font-size: .75rem;
+      color: var(--clr-text-dim);
+      letter-spacing: .06em;
+    }
+
+    .modal-video {
+      margin-bottom: 2rem;
+      border: 1px solid var(--clr-border);
+      background: #000;
+    }
+    .modal-video iframe {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border: none;
+    }
+    .modal-video-actions {
+      display: flex;
+      justify-content: center;
+      gap: .8rem;
+      flex-wrap: wrap;
+      padding: .75rem;
+    }
+    .modal-video-actions .btn {
+      font-size: .72rem;
+      padding: .55rem 1rem;
+    }
+
+    .modal-description {
+      font-size: .95rem;
+      line-height: 1.8;
+      color: var(--clr-text);
+      margin-bottom: 1.5rem;
+    }
+
+    .modal-tech {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--clr-border);
+    }
+    .modal-tech h4 {
+      font-size: .85rem;
+      color: var(--clr-cyan);
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+    }
+    .modal-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+    }
+
+    /* Placeholder shown when video or images are not yet available */
+    .modal-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: .75rem;
+      padding: 2.5rem;
+      border: 1px dashed var(--clr-border);
+      border-radius: var(--radius);
+      margin-bottom: 2rem;
+      color: var(--clr-text-dim);
+      font-family: var(--font-mono);
+      font-size: .85rem;
+    }
+    .modal-placeholder i {
+      font-size: 2rem;
+      color: var(--clr-cyan);
+      opacity: .4;
+    }
+
+    @media (max-width: 768px) {
+      .modal-content {
+        padding: 1.5rem;
+        margin: 1rem auto;
+      }
+      .modal-close {
+        top: 1rem;
+        right: 1rem;
+      }
     }
   </style>
 </head>
+<body>
 
-<body class="is-preload">
+<!-- ================================================================
+     PARTICLE CANVAS — animated neural/robot dot network background
+     ================================================================ -->
+<canvas id="particle-canvas"></canvas>
 
-  <header id="header" class="hero">
-    <div class="inner">
-      <nav style="margin-bottom:1rem;">
-        <a href="index.html">Home</a> ·
-        <a href="blogs.html">Collections</a> ·
-        <a href="bookmarks.html">Important Links</a> ·
-        <a href="Resume.html">Resume</a> ·
-      </nav>
+<!-- ================================================================
+     NAVIGATION
+     ================================================================ -->
+<nav id="navbar">
+  <div class="nav-logo">IB<span>RAHIM</span>.exe</div>
 
-      <a href="index.html" class="image avatar">
-        <img src="images/my_photo.jpg" alt="">
+  <ul class="nav-links">
+    <li><a href="#about"       data-num="01">About</a></li>
+    <li><a href="#skills"      data-num="02">Skills</a></li>
+    <li><a href="#experience"  data-num="03">Experience</a></li>
+    <li><a href="#projects"    data-num="04">Projects</a></li>
+    <li><a href="#publication" data-num="05">Research</a></li>
+    <li><a href="#contact"     data-num="06">Contact</a></li>
+    <!-- Pages dropdown -->
+    <li class="nav-more" id="nav-more">
+      <button class="nav-more-toggle" id="nav-more-toggle" aria-label="More pages">
+        Pages <i class="fas fa-chevron-down"></i>
+      </button>
+      <div class="nav-dropdown">
+        <a href="Resume.html"><i class="fas fa-file-alt"></i> Resume</a>
+        <a href="blogs.html"><i class="fas fa-book-open"></i> Collections</a>
+        <a href="bookmarks.html"><i class="fas fa-bookmark"></i> Resources</a>
+      </div>
+    </li>
+    <li><a href="mailto:immemon1811@gmail.com" class="nav-cta">Hire Me</a></li>
+  </ul>
+
+  <!-- Mobile hamburger -->
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile dropdown menu -->
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#about"       onclick="closeMobile()">01. About</a>
+  <a href="#skills"      onclick="closeMobile()">02. Skills</a>
+  <a href="#experience"  onclick="closeMobile()">03. Experience</a>
+  <a href="#projects"    onclick="closeMobile()">04. Projects</a>
+  <a href="#publication" onclick="closeMobile()">05. Research</a>
+  <a href="#contact"     onclick="closeMobile()">06. Contact</a>
+  <div style="height:1px;background:var(--clr-border);margin:.2rem 0"></div>
+  <a href="Resume.html"     onclick="closeMobile()"><i class="fas fa-file-alt" style="color:var(--clr-cyan);margin-right:.5rem"></i>Resume</a>
+  <a href="blogs.html"      onclick="closeMobile()"><i class="fas fa-book-open" style="color:var(--clr-cyan);margin-right:.5rem"></i>Collections</a>
+  <a href="bookmarks.html"  onclick="closeMobile()"><i class="fas fa-bookmark" style="color:var(--clr-cyan);margin-right:.5rem"></i>Resources</a>
+  <a href="mailto:immemon1811@gmail.com">✉ Hire Me</a>
+</div>
+
+<!-- ================================================================
+     HERO SECTION
+     ================================================================ -->
+<section id="hero">
+  <div class="hero-inner">
+
+    <!-- Status badge -->
+    <div class="hero-badge">
+      <span class="dot"></span>
+      Available for Opportunities · Bonn, Germany
+    </div>
+
+    <!-- Name with subtle glitch -->
+    <div class="hero-name-wrap">
+      <h1 class="hero-name">Mohammad Ibrahim<br>Memon</h1>
+      <div class="hero-name-glitch" aria-hidden="true">Mohammad Ibrahim<br>Memon</div>
+    </div>
+
+    <!-- Typing effect subtitle -->
+    <p class="hero-subtitle">
+      <span id="typed-text"></span><span class="cursor"></span>
+    </p>
+
+    <p class="hero-desc">
+      Robotics Engineer specialising in ROS/ROS2 autonomous systems,
+      fault diagnosis, simulation &amp; embedded hardware-software co-design.
+      M.Sc Autonomous Systems · H-BRS, Bonn.
+    </p>
+
+    <div class="hero-actions">
+      <a href="#projects" class="btn btn-primary">
+        <i class="fas fa-robot"></i> View Projects
       </a>
-
-      <h1><strong id="typing-text">Mohammad Ibrahim Memon</strong></h1>
-
-      <div id="home" class="intro route bg-image" style="background-image:url(img/intro-bg.jpg)">
-        <p class="intro-subtitle">
-          Robotics System Engineer, Electronics Enthusiast<br>
-          <b>M.Sc Autonomous System</b><br>
-          <i>Hochschule Bonn-Rhein-Seig</i><br>
-          <b>B.Tech Mechatronics</b>
-        </p>
-      </div>
+      <a href="#contact" class="btn btn-outline">
+        <i class="fas fa-paper-plane"></i> Get In Touch
+      </a>
+      <a href="mailto:immemon1811@gmail.com?subject=CV Request" class="btn btn-outline">
+        <i class="fas fa-file-alt"></i> Request CV
+      </a>
     </div>
-  </header>
-
-  <!-- Main -->
-  <div id="main">
-
-    <!-- One -->
-    <section id="one" class="reveal">
-      <header class="major">
-        <h2>About me</h2>
-      </header>
-
-      <div class="tech-terminal">
-        <div class="terminal-header">
-          <div class="terminal-buttons">
-            <div class="terminal-dot red"></div>
-            <div class="terminal-dot yellow"></div>
-            <div class="terminal-dot green"></div>
-          </div>
-          <div class="terminal-title">ibrahim_memon.profile</div>
-        </div>
-        <div class="terminal-body">
-          <div class="terminal-command">whoami</div>
-          <div class="terminal-output">
-            <p>
-              Name: <span class="terminal-highlight">Mohammad Ibrahim Memon</span><br>
-              Role: <strong>Robotics Engineer</strong> | Autonomous Systems Specialist | Embedded Developer<br>
-              Education: M.Sc Autonomous Systems @ HBRS, B.Tech Mechatronics<br>
-            </p>
-          </div>
-
-          <div class="terminal-command">cat README.md</div>
-          <div class="terminal-output">
-            <p>
-              - 🤖 <strong>Robotics Engineer</strong> focused on system integration, real-time embedded systems, and
-              hardware-software co-design.<br>
-              - 🧠 MSc Autonomous Systems student at <strong>H-BRS (Bonn-Rhein-Sieg University of Applied
-                Sciences)</strong>.<br>
-              - 🔬 Keen interest in <strong>simulation, control systems, and autonomy</strong>.<br>
-              - 💡 Constantly learning and exploring how to make robots smarter, faster, and more reliable.
-            </p>
-          </div>
-
-          <div class="terminal-command">ls recent_projects/</div>
-          <div class="terminal-output">
-            <p>
-              - Robothon 2025 (Kinova Gen3)<br>
-              - ILP Fault Detection (R&D)<br>
-              - Garrulus Seeding Mechanism (PCB Design)<br>
-              - Autonomous Mobile Robot (LiDAR, ROS)<br>
-              - Underwater ROV System
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <div class="image main"
-        style="margin-top: 2em; display: flex; flex-direction: column; align-items: center; justify-content: center;">
-        <img src="images/intro_1.jpeg" alt="About Me Image"
-          style="width: 40%; max-width: 500px; height: auto; border-radius: 8px; box-shadow: 0 0 15px rgba(0, 255, 136, 0.4);" />
-        <p
-          style="margin-top: 10px; font-family: 'Courier New', monospace; color: #1abc9c; font-weight: bold; text-shadow: 0 0 5px #1abc9c;">
-          > Sum up my profile: [TRUE]
-        </p>
-      </div>
-
-      <ul class="actions">
-        <li><a href="Resume.html" class="button">
-            <font color="white">Resume</font>
-          </a></li>
-      </ul>
-    </section>
-
-
-    <section id="skills" class="reveal">
-      <header class="major">
-        <h2>Skills</h2>
-      </header>
-
-      <div class="skill-grid">
-        <!-- Programming -->
-        <article class="skill-card">
-          <div class="skill-icon"><span class="icon solid fa-code"></span></div>
-          <h3>Programming</h3>
-          <ul class="skill-list">
-            <li>Python, C++, C, Embedded C</li>
-            <li>MATLAB / Simulink</li>
-            <li>Bash scripting</li>
-          </ul>
-        </article>
-
-        <!-- Robotics Frameworks -->
-        <article class="skill-card">
-          <div class="skill-icon"><span class="icon solid fa-robot"></span></div>
-          <h3>Robotics Frameworks</h3>
-          <ul class="skill-list">
-            <li>ROS / ROS 2</li>
-            <li>MoveIt</li>
-            <li>Gazebo, Isaac Sim, Webots, Mujoco, Stage</li>
-          </ul>
-        </article>
-
-        <!-- Libraries & Tools -->
-        <article class="skill-card">
-          <div class="skill-icon"><span class="icon solid fa-cubes"></span></div>
-          <h3>Libraries &amp; Tools</h3>
-          <ul class="skill-list">
-            <li>OpenCV, NumPy, Pandas</li>
-            <li>PyTorch, Scikit-learn</li>
-            <li>SimPy, Matplotlib</li>
-          </ul>
-        </article>
-
-        <!-- Fault Detection & Diagnostics -->
-        <article class="skill-card">
-          <div class="skill-icon"><span class="icon solid fa-stethoscope"></span></div>
-          <h3>Fault Detection &amp; Diagnostics</h3>
-          <ul class="skill-list">
-            <li>Inductive Logic Programming (Prolog)</li>
-            <li>Root Cause Analysis (RCA)</li>
-            <li>DFMEA, Model-based FDD</li>
-            <li>Sensor Fault Injection</li>
-          </ul>
-        </article>
-
-        <!-- Hardware & Electronics -->
-        <article class="skill-card">
-          <div class="skill-icon"><span class="icon solid fa-microchip"></span></div>
-          <h3>Hardware &amp; Electronics</h3>
-          <ul class="skill-list">
-            <li>PCB Design (KiCad, EagleCAD)</li>
-            <li>Microcontrollers (I²C, SPI, UART)</li>
-            <li>Raspberry Pi, Arduino</li>
-            <li>Power Systems, eFuse protection</li>
-            <li>Soldering, Mixed-signal debugging</li>
-          </ul>
-        </article>
-
-        <!-- Testing & QA -->
-        <article class="skill-card">
-          <div class="skill-icon"><span class="icon solid fa-vial"></span></div>
-          <h3>Testing &amp; QA</h3>
-          <ul class="skill-list">
-            <li>Test frameworks &amp; benchmarking</li>
-            <li>Oscilloscope debugging</li>
-            <li>System validation &amp; integration</li>
-          </ul>
-        </article>
-
-        <!-- Version Control & CI/CD -->
-        <article class="skill-card">
-          <div class="skill-icon"><span class="icon brands fa-git-alt"></span></div>
-          <h3>Version Control &amp; CI/CD</h3>
-          <ul class="skill-list">
-            <li>Git, GitHub Actions</li>
-            <li>Linux development</li>
-            <li>CI/CD automation, Codacy</li>
-          </ul>
-        </article>
-
-        <!-- Project Management -->
-        <article class="skill-card">
-          <div class="skill-icon"><span class="icon solid fa-project-diagram"></span></div>
-          <h3>Project Management</h3>
-          <ul class="skill-list">
-            <li>Agile / Scrum</li>
-            <li>JIRA</li>
-            <li>Technical Documentation</li>
-          </ul>
-        </article>
-      </div>
-    </section>
-
-    <!-- Projects (Accordion) -->
-    <section id="two" class="reveal">
-      <header class="major">
-        <h2>Projects</h2>
-      </header>
-
-      <div class="tech-terminal">
-        <div class="terminal-header">
-          <div class="terminal-buttons">
-            <div class="terminal-dot red"></div>
-            <div class="terminal-dot yellow"></div>
-            <div class="terminal-dot green"></div>
-          </div>
-          <div class="terminal-title">~/projects/</div>
-        </div>
-        <div class="terminal-body">
-          <!-- Project 1: Robothon 2025 (New) -->
-          <details class="proj-acc" close>
-            <summary>Robothon 2025 (Grand Challenge)</summary>
-            <div class="proj-body">
-              <article class="work-item">
-                <a href="https://www.youtube.com/watch?v=FcK0cvRkM-Q&t=5s" class="image fit thumb">
-                  <img src="images/thumbs/multi_robot/kinova_arm.png" alt="Robothon 2025" />
-                </a>
-                <p>Achieved a <strong>Top 5 ranking</strong> in an international competition by automating complex
-                  manipulation tasks.</p>
-                <ul>
-                  <li>Vision-guided manipulation pipeline with <strong>MoveIt</strong> and <strong>OpenCV</strong></li>
-                  <li>Task state detection, button pressing, and stylus trajectory drawing</li>
-                  <li>Maze-solving algorithm with magnetic end-effector and visual feedback</li>
-                  <li><strong>Kinova Gen3</strong> arm manipulation under strict time limits</li>
-                </ul>
-                <p>
-                  <code style="background-color: #1abc9c; color:black;">Robothon</code>
-                  <code style="background-color: #1abc9c; color:black;">Kinova Gen3</code>
-                  <code style="background-color: #1abc9c; color:black;">ROS</code>
-                  <code style="background-color: #1abc9c; color:black;">Python</code>
-                  <code style="background-color: #1abc9c; color:black;">C++</code>
-                  <code style="background-color: #1abc9c; color:black;">MoveIt</code>
-                  <code style="background-color: #1abc9c; color:black;">OpenCV</code>
-                </p>
-              </article>
-            </div>
-          </details>
-
-          <!-- Project 2: Circuit Design – Garrulus Robotics (New) -->
-          <details class="proj-acc" close>
-            <summary>Circuit Design for Autonomous Tree-Seeding Robots (Garrulus)</summary>
-            <div class="proj-body">
-              <article class="work-item">
-                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 1.5em;">
-                  <a href="images/garullas_1.png" class="image fit thumb" style="margin: 0;"><img
-                      src="images/garullas_1.png" alt="Garrulus PCB 1" /></a>
-                  <a href="images/garullas_2.png" class="image fit thumb" style="margin: 0;"><img
-                      src="images/garullas_2.png" alt="Garrulus PCB 2" /></a>
-                  <a href="images/garullas_3.png" class="image fit thumb" style="margin: 0;"><img
-                      src="images/garullas_3.png" alt="Garrulus PCB 3" /></a>
-                  <a href="images/Garullas_4.png" class="image fit thumb" style="margin: 0;"><img
-                      src="images/Garullas_4.png" alt="Garrulus PCB 4" /></a>
-                </div>
-                <p>Designed and validated robust power distribution and protection circuits for field-deployed
-                  autonomous tree-seeding robots.</p>
-                <ul>
-                  <li>Designed PCB protection circuits for 3.3V, 5V, and 24V rails, implementing solenoid drivers and
-                    eFuse-based power distribution.</li>
-                  <li>Developed power sequencing, inrush-current limiting, and reverse-polarity protection.</li>
-                  <li>Created schematic and layout using <strong>KiCad</strong> and collaborated with hardware/firmware
-                    teams for integration.</li>
-                </ul>
-                <p>
-                  <code style="background-color: #1abc9c; color:black;">Circuit Design</code>
-                  <code style="background-color: #1abc9c; color:black;">KiCad</code>
-                  <code style="background-color: #1abc9c; color:black;">PCB Design</code>
-                  <code style="background-color: #1abc9c; color:black;">Power Electronics</code>
-                  <code style="background-color: #1abc9c; color:black;">Robotics</code>
-                </p>
-              </article>
-            </div>
-          </details>
-
-          <!-- Project 3: ILP-Based Fault Detection (New) -->
-          <details class="proj-acc" close>
-            <summary>ILP-Based Fault Detection and Diagnosis</summary>
-            <div class="proj-body">
-              <article class="work-item">
-                <a href="#" class="image fit thumb">
-                  <img src="images/thumbs/multi_robot/multi_robot.jpg" alt="ILP Fault Detection" />
-                </a>
-                <p>Interpretable fault detection framework for mobile robots using <strong>Inductive Logic Programming
-                    (ILP)</strong>.</p>
-                <ul>
-                  <li>Modeled faults: wheel slip, sensor noise, delay, communication issues</li>
-                  <li>Symbolic rules for diagnosis in single and multi-robot systems</li>
-                  <li>Studied fault propagation and coordination robustness</li>
-                  <li>Validated detection accuracy and interpretability in simulation & real robots</li>
-                </ul>
-                <p>
-                  <code style="background-color: #1abc9c; color:black;">ROS</code>
-                  <code style="background-color: #1abc9c; color:black;">Python</code>
-                  <code style="background-color: #1abc9c; color:black;">Prolog</code>
-                  <code style="background-color: #1abc9c; color:black;">ILP</code>
-                  <code style="background-color: #1abc9c; color:black;">Fault Detection</code>
-                </p>
-              </article>
-            </div>
-          </details>
-
-          <!-- Project 4: Explainable Robot Task Allocation (New) -->
-          <details class="proj-acc" close>
-            <summary>Explainable Robot Task Allocation using ILP</summary>
-            <div class="proj-body">
-              <article class="work-item">
-                <a href="https://youtu.be/m3gBvXjOTYQ?autoplay=1" class="image fit thumb">
-                  <img src="images/ILP_Project.jpg" alt="Video Thumbnail" />
-                </a>
-                <p>Symbolic task allocation framework generating interpretable rules for multi-robot systems.</p>
-                <ul>
-                  <li>Learned allocation rules based on robot states and capabilities</li>
-                  <li>Explains <strong>why</strong> tasks are assigned to specific robots</li>
-                  <li>Validated in <strong>ROS2</strong> simulation with dynamic scenarios</li>
-                </ul>
-                <p>
-                  <code style="background-color: #1abc9c; color:black;">ROS2</code>
-                  <code style="background-color: #1abc9c; color:black;">Python</code>
-                  <code style="background-color: #1abc9c; color:black;">Prolog</code>
-                  <code style="background-color: #1abc9c; color:black;">Multi-Robot Systems</code>
-                  <code style="background-color: #1abc9c; color:black;">Explainable AI</code>
-                </p>
-              </article>
-            </div>
-          </details>
-
-          <!-- Project 5: Multi-Robot Task Distribution (Updated) -->
-          <details class="proj-acc" close>
-            <summary>Multi-Robot Task Distribution</summary>
-            <div class="proj-body">
-              <article class="work-item">
-                <a href="https://youtu.be/asg0zFYG6K0?autoplay=1" class="image fit thumb">
-                  <img src="images/thumbs/multi_robot/multi_robot.jpg" alt="Video Thumbnail" />
-                </a>
-                <p>Scalable, decentralized multi-robot task allocation framework for dynamic environments.</p>
-                <ul>
-                  <li>Distributed task allocation (real robots + Gazebo)</li>
-                  <li>Coordinated parcel collection and delivery to central depot</li>
-                  <li><strong>CI pipelines</strong> using GitHub Actions and static analysis (Codacy)</li>
-                  <li>Fault-tolerant coordination for heterogeneous teams</li>
-                </ul>
-                <p>
-                  <code style="background-color: #1abc9c; color:black;">Multi-Robot Systems</code>
-                  <code style="background-color: #1abc9c; color:black;">Task Allocation</code>
-                  <code style="background-color: #1abc9c; color:black;">ROS2</code>
-                  <code style="background-color: #1abc9c; color:black;">Gazebo</code>
-                  <code style="background-color: #1abc9c; color:black;">CI/CD</code>
-                </p>
-              </article>
-            </div>
-          </details>
-
-          <!-- Project 6: Autonomous Mobile Robot (AMR) (Updated) -->
-          <details class="proj-acc">
-            <summary>Autonomous Mobile Robot Development (AMR)</summary>
-            <div class="proj-body">
-              <article class="work-item">
-                <a href="https://youtu.be/AcolNEWpMdM?autoplay=1" class="image fit thumb">
-                  <img src="images/thumbs/multi_robot/navigation.png" alt="Video Thumbnail" />
-                </a>
-                <p>Designed and developed an <strong>AMR</strong> capable of navigation in unknown spaces.</p>
-                <ul>
-                  <li><strong>SLAM</strong> for real-time mapping and localization</li>
-                  <li><strong>Motion planning</strong> (A*) for safe navigation to coordinate goals</li>
-                  <li>End-to-end design: circuit layout, power system, full software stack</li>
-                  <li>Lidar + Camera perception and sensor fusion</li>
-                </ul>
-                <p>
-                  <code style="background-color: #1abc9c; color:black;">AMR</code><code
-                    style="background-color: #1abc9c; color:black;">ROS</code><code
-                    style="background-color: #1abc9c; color:black;">SLAM</code><code
-                    style="background-color: #1abc9c; color:black;">Motion Planning</code>
-                  <code style="background-color: #1abc9c; color:black;">Lidar</code><code
-                    style="background-color: #1abc9c; color:black;">Electronics Design</code>
-                </p>
-              </article>
-            </div>
-          </details>
-
-          <!-- Project 7: Underwater ROV -->
-          <details class="proj-acc">
-            <summary>Underwater ROV</summary>
-            <div class="proj-body">
-              <article class="work-item">
-                <a href="https://youtu.be/nCYJSiTMKXI?autoplay=1" class="image fit thumb">
-                  <img src="images/thumbs/multi_robot/sauvc.png" alt="Video Thumbnail" />
-                </a>
-                <p>Designed and developed a <strong>ROV</strong> for underwater exploration and inspection.</p>
-                <ul>
-                  <li>Waterproof motors & thrusters (6-DOF)</li>
-                  <li>Onboard live camera</li>
-                  <li>Tethered comms + power</li>
-                  <li>Watertight enclosures</li>
-                  <li>Pool/tank testing for control stability</li>
-                </ul>
-                <p>
-                  <code style="background-color: #1abc9c; color:black;">ROV</code><code
-                    style="background-color: #1abc9c; color:black;">Underwater Robotics</code><code
-                    style="background-color: #1abc9c; color:black;">Thrusters</code>
-                  <code style="background-color: #1abc9c; color:black;">Waterproofing</code><code
-                    style="background-color: #1abc9c; color:black;">Live Camera Feed</code>
-                </p>
-              </article>
-            </div>
-          </details>
-
-          <!-- Project 8: Boxit – Inventory Tracking Robot -->
-          <details class="proj-acc">
-            <summary>Boxit – Inventory Tracking Robot</summary>
-            <div class="proj-body">
-              <article class="work-item">
-                <a href="https://youtu.be/7DjfuaVgfzQ?autoplay=1" class="image fit thumb">
-                  <img src="images/thumbs/multi_robot/box_it.png" alt="Video Thumbnail" />
-                </a>
-                <p>Automated box inventory tracking for warehouses.</p>
-                <ul>
-                  <li>Vision pipeline for detection & counting</li>
-                  <li>Inventory database logging</li>
-                  <li>Barcode/QR scanning with real-time updates</li>
-                  <li>Modular, scalable structure</li>
-                </ul>
-                <p>
-                  <code style="background-color: #1abc9c; color:black;">Inventory Tracking</code><code
-                    style="background-color: #1abc9c; color:black;">Computer Vision</code>
-                  <code style="background-color: #1abc9c; color:black;">QR Codes</code><code
-                    style="background-color: #1abc9c; color:black;">Database</code><code
-                    style="background-color: #1abc9c; color:black;">Warehouse Robotics</code>
-                </p>
-              </article>
-            </div>
-          </details>
-
-          <!-- Project 9: Circuit Design Project – Home Automation -->
-          <details class="proj-acc">
-            <summary>Circuit Design Project – Home Automation</summary>
-            <div class="proj-body">
-              <article class="work-item">
-                <a href="images/home_automation.jpg" class="image fit thumb">
-                  <img src="images/home_automation.jpg" alt="Circuit Design Project" />
-                </a>
-                <p>16-appliance control system designed and implemented in a university lab.</p>
-                <ul>
-                  <li>Reliable PCB switching design</li>
-                  <li>Microcontroller-based logic</li>
-                  <li>Safety features including surge protection</li>
-                </ul>
-                <p>
-                  <code style="background-color: #1abc9c; color:black;">Circuit Design</code><code
-                    style="background-color: #1abc9c; color:black;">Embedded Systems</code>
-                  <code style="background-color: #1abc9c; color:black;">Home Automation</code><code
-                    style="background-color: #1abc9c; color:black;">PCB Design</code>
-                </p>
-              </article>
-            </div>
-          </details>
-
-          <!-- Project 10: UR5 ARM – Pick and Place -->
-          <details class="proj-acc">
-            <summary>UR5 ARM – Pick and Place</summary>
-            <div class="proj-body">
-              <article class="work-item">
-                <a href="https://youtu.be/FStlGbfTc_0?autoplay=1" class="image fit thumb">
-                  <img src="images/thumbs/multi_robot/ur5_arm.png" alt="Video Thumbnail" />
-                </a>
-                <p>Industrial pick-and-place system using UR5.</p>
-                <ul>
-                  <li>Precise trajectory planning</li>
-                  <li>Vision-guided pick & place</li>
-                  <li>Gripper control for varied objects</li>
-                  <li>Sim validation before hardware</li>
-                </ul>
-                <p>
-                  <code style="background-color:#1abc9c; color:black;">UR5</code>
-                  <code style="background-color:#1abc9c; color:black;">Pick &amp; Place</code>
-                  <code style="background-color:#1abc9c; color:black;">ROS</code>
-                  <code style="background-color:#1abc9c; color:black;">Industrial Robotics</code>
-                  <code style="background-color:#1abc9c; color:black;">Gripper Control</code>
-                </p>
-              </article>
-            </div>
-          </details>
-        </div>
-      </div>
-
-    </section>
-
-
-
-    <section id="experience" class="reveal">
-      <header class="major">
-        <h2>Experience</h2>
-      </header>
-
-      <div class="tech-terminal">
-        <div class="terminal-header">
-          <div class="terminal-buttons">
-            <div class="terminal-dot red"></div>
-            <div class="terminal-dot yellow"></div>
-            <div class="terminal-dot green"></div>
-          </div>
-          <div class="terminal-title">career_history.log</div>
-        </div>
-        <div class="terminal-body">
-          <div class="timeline">
-
-            <!-- Garrulus Robotics -->
-            <div class="timeline-item">
-              <div class="timeline-content">
-                <div class="timeline-header">
-                  <div class="timeline-company">
-                    <div class="timeline-logo">
-                      <img src="images/logos/garullas.png" alt="Garrulus Robotics">
-                    </div>
-                    <div class="timeline-title">
-                      <h3>Garrulus Robotics</h3>
-                      <span class="role">Research Assistant</span>
-                    </div>
-                  </div>
-                  <div class="timeline-meta">
-                    <span class="timeline-date">05/2025 – 12/2025</span>
-                    <span class="timeline-loc">Bonn, Germany</span>
-                  </div>
-                </div>
-                <div class="timeline-body">
-                  <ul>
-                    <li>Designed and validated PCB protection circuits for 3.3V, 5V, and 24V rails, implementing
-                      solenoid
-                      drivers and eFuse-based power distribution.</li>
-                    <li>Developed power sequencing, inrush-current limiting, and reverse-polarity protection for
-                      field-deployed robots.</li>
-                    <li>Collaborated with hardware and firmware teams to integrate robust electronics into autonomous
-                      tree-seeding robots.</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <!-- Kelo Robotics -->
-            <div class="timeline-item">
-              <div class="timeline-content">
-                <div class="timeline-header">
-                  <div class="timeline-company">
-                    <div class="timeline-logo">
-                      <img src="images/logos/kelo.png" alt="KELO Robotics">
-                    </div>
-                    <div class="timeline-title">
-                      <h3>Kelo Robotics</h3>
-                      <span class="role">Research Assistant</span>
-                    </div>
-                  </div>
-                  <div class="timeline-meta">
-                    <span class="timeline-date">05/2024 – 08/2024</span>
-                    <span class="timeline-loc">Stuttgart, Germany</span>
-                  </div>
-                </div>
-                <div class="timeline-body">
-                  <ul>
-                    <li>Set up Isaac Sim and Gazebo environments for robotic simulation tasks.</li>
-                    <li>Researched and compared simulation frameworks for multi-agent navigation and control.</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <!-- Unbox Robotics -->
-            <div class="timeline-item">
-              <div class="timeline-content">
-                <div class="timeline-header">
-                  <div class="timeline-company">
-                    <div class="timeline-logo">
-                      <img src="images/logos/unbox.png" alt="Unbox Robotics">
-                    </div>
-                    <div class="timeline-title">
-                      <h3>Unbox Robotics Pvt. Ltd</h3>
-                      <span class="role">Robotics System Engineer</span>
-                    </div>
-                  </div>
-                  <div class="timeline-meta">
-                    <span class="timeline-date">06/2022 – 07/2023</span>
-                    <span class="timeline-loc">Pune, India</span>
-                  </div>
-                </div>
-                <div class="timeline-body">
-                  <ul>
-                    <li>Built automated test frameworks for feature validation, bug fixes, and development debugging,
-                      generating detailed reports.</li>
-                    <li>Conducted root cause analysis (RCA), executed DFMEA, and tested control boards using
-                      oscilloscopes
-                      for reliable system integration.</li>
-                    <li>Served as Scrum Master, managing integration challenges, robot deployments, and customer
-                      demonstrations.</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <!-- DashDot Robotics -->
-            <div class="timeline-item">
-              <div class="timeline-content">
-                <div class="timeline-header">
-                  <div class="timeline-company">
-                    <div class="timeline-logo">
-                      <img src="images/logos/dash_dot_robotics_logo.png" alt="DashDot Robotics">
-                    </div>
-                    <div class="timeline-title">
-                      <h3>DashDot Robotics Pvt. Ltd</h3>
-                      <span class="role">Embedded System Engineer</span>
-                    </div>
-                  </div>
-                  <div class="timeline-meta">
-                    <span class="timeline-date">03/2021 – 02/2022</span>
-                    <span class="timeline-loc">Ahmedabad, India</span>
-                  </div>
-                </div>
-                <div class="timeline-body">
-                  <ul>
-                    <li>Designed and prototyped hardware systems from scratch, ensuring optimal functionality and
-                      performance.</li>
-                    <li>Conducted circuit troubleshooting and root-cause analysis to resolve technical issues
-                      effectively.
-                    </li>
-                    <li>Developed firmware at the integration level, incorporating and calibrating various sensors.</li>
-                    <li>Mentored interns and guided project development.</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
-
-      <div class="image main"
-        style="margin-top: 2em; display: flex; flex-direction: column; align-items: center; justify-content: center;">
-        <img src="images/Intro_2.jpeg" alt="Experience Image"
-          style="width: 60%; max-width: 500px; height: auto; border-radius: 8px; box-shadow: 0 0 15px rgba(0, 255, 136, 0.4);" />
-        <p
-          style="margin-top: 10px; font-family: 'Courier New', monospace; color: #1abc9c; font-weight: bold; text-shadow: 0 0 5px #1abc9c;">
-          > Doing what I love...
-        </p>
-      </div>
-    </section>
-
-
-
-    <!-- Modal Popup for Video Playback -->
-    <div id="videoModal" class="video-modal">
-      <div class="video-modal-content">
-        <span class="video-modal-close">&times;</span>
-        <div id="videoModalContent"></div>
-      </div>
-    </div>
-
-    <section id="contact" class="reveal">
-      <header class="major">
-        <h2 style="color:#1abc9c;">Contact</h2>
-      </header>
-
-      <div class="contact-card">
-        <ul class="labeled-icons">
-          <li>
-            <h3 class="icon solid fa-home"><span class="label">Address</span></h3>
-            <a href="https://www.google.com/maps/search/?api=1&query=Bonn,53115,Germany" target="_blank">
-              Bonn, 53115<br />Germany
-            </a>
-          </li>
-          <li>
-            <h3 class="icon solid fa-mobile-alt"><span class="label">Phone</span></h3>
-            <a href="tel:+4915774001726">+49 1577 4001726</a>
-          </li>
-          <li>
-            <h3 class="icon solid fa-envelope"><span class="label">Email</span></h3>
-            <a href="mailto:immemon1811@gmail.com">immemon1811@gmail.com</a>
-          </li>
-        </ul>
-      </div>
-    </section>
   </div>
 
+  <!-- Scroll hint -->
+  <div class="hero-scroll">SCROLL</div>
+</section>
 
-  <!-- Footer -->
-  <footer id="footer">
-    <div class="inner">
-      <ul class="icons">
-        <li><a href="https://www.linkedin.com/in/ibrahimmemon18/" class="icon brands fa-linkedin"><span
-              class="label">linkedin</span></a></li>
-        <li><a href="https://github.com/ibrahim-1811" class="icon brands fa-github"><span
-              class="label">GitHub</span></a></li>
-        <li><a href="mailto:immemon1811@gmail.com" class="icon solid fa-envelope"><span class="label">Email</span></a>
-        </li>
-      </ul>
-      <ul class="copyright">
-        <li>&copy; Mohammad Memon</li>
-      </ul>
+<!-- Quick stats bar -->
+<div class="stats-bar">
+  <div class="stat-item">
+    <div class="stat-val">4+</div>
+    <div class="stat-lbl">Years Experience</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-val">Top 5</div>
+    <div class="stat-lbl">Robothon 2025</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-val">6+</div>
+    <div class="stat-lbl">ROS Projects</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-val">1</div>
+    <div class="stat-lbl">Patent Published</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-val">3</div>
+    <div class="stat-lbl">Countries Worked</div>
+  </div>
+</div>
+
+<!-- ================================================================
+     ABOUT
+     ================================================================ -->
+<section id="about">
+  <div class="section">
+    <p class="section-label reveal">// about me</p>
+    <h2 class="section-title reveal">System.Profile</h2>
+
+    <div class="about-grid">
+
+      <!-- Terminal panel -->
+      <div class="terminal reveal">
+        <div class="terminal-topbar">
+          <div class="tb-dot r"></div>
+          <div class="tb-dot y"></div>
+          <div class="tb-dot g"></div>
+          <span>ibrahim_memon.profile — bash</span>
+        </div>
+        <div class="terminal-body">
+
+          <div class="t-line">
+            <span class="t-prompt">~/&gt; </span>
+            <span class="t-cmd">cat profile.json</span>
+          </div>
+          <div class="t-out">
+            <span class="t-comment">// Identity</span><br>
+            <span class="t-key">"name":</span>
+            <span class="t-val"> "Mohammad Ibrahim Memon",</span><br>
+            <span class="t-key">"location":</span>
+            <span class="t-val"> "Bonn, Germany 🇩🇪",</span><br>
+            <span class="t-key">"email":</span>
+            <span class="t-val"> "immemon1811@gmail.com",</span><br>
+            <span class="t-key">"status":</span>
+            <span class="t-val" style="color:var(--clr-teal)"> "Open to Opportunities"</span><br>
+          </div>
+
+          <div class="t-line" style="margin-top:.4rem">
+            <span class="t-prompt">~/&gt; </span>
+            <span class="t-cmd">cat education.log</span>
+          </div>
+          <div class="t-out">
+            <span class="t-comment">// Academic</span><br>
+            <span class="t-key">"degree_1":</span>
+            <span class="t-val"> "M.Sc Autonomous Systems",</span><br>
+            <span class="t-key">"university":</span>
+            <span class="t-val"> "H-BRS, Bonn — 2026 (ongoing)",</span><br>
+            <span class="t-key">"degree_2":</span>
+            <span class="t-val"> "B.Tech Mechatronics",</span><br>
+            <span class="t-key">"university":</span>
+            <span class="t-val"> "UV Patel COE, India — 2022"</span>
+          </div>
+
+          <div class="t-line" style="margin-top:.4rem">
+            <span class="t-prompt">~/&gt; </span>
+            <span class="t-cmd">echo $LANGUAGES</span>
+          </div>
+          <div class="t-out">
+            <span class="t-val">English (C1) · German (A1 — active learner)</span>
+          </div>
+
+          <div class="t-line" style="margin-top:.4rem">
+            <span class="t-prompt">~/&gt; </span>
+            <span class="t-cmd t-comment">█ <span style="animation:blink .7s infinite;display:inline-block">▌</span></span>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Info block -->
+      <div class="about-info reveal" style="transition-delay:.15s">
+        <h3>// WHO AM I</h3>
+        <p>
+          I'm a robotics engineer with a passion for building autonomous systems
+          that work in the real world — from bare-metal firmware and PCB circuits
+          all the way up to ROS2 navigation stacks and vision-language pipelines.
+        </p>
+        <p>
+          I've shipped robots at startups in India, done simulation research in Germany,
+          and competed on the international stage. I believe in systems that
+          are <span class="glow-text">robust</span>,
+          <span class="glow-text">interpretable</span>, and
+          <span class="glow-text">deployable</span>.
+        </p>
+
+        <ul class="info-list">
+          <li><strong>Role</strong>Robotics System Engineer</li>
+          <li><strong>Speciality</strong>ROS2 · Embedded · Perception</li>
+          <li><strong>Location</strong>Bonn, Germany</li>
+            <!-- <li><strong>Phone</strong>+49 15774001726</li> -->
+          <li><strong>GitHub</strong>ibrahim-1811</li>
+          <li><strong>LinkedIn</strong>ibrahimmemon18</li>
+        </ul>
+
+        <div style="display:flex;gap:.8rem;flex-wrap:wrap;">
+          <a href="https://github.com/ibrahim-1811" target="_blank" class="btn btn-outline" style="font-size:.72rem;padding:.5rem 1.1rem">
+            <i class="fab fa-github"></i> GitHub
+          </a>
+          <a href="https://www.linkedin.com/in/ibrahimmemon18/" target="_blank" class="btn btn-outline" style="font-size:.72rem;padding:.5rem 1.1rem">
+            <i class="fab fa-linkedin"></i> LinkedIn
+          </a>
+        </div>
+      </div>
+
     </div>
-  </footer>
+  </div>
+</section>
 
-  <!-- Scripts -->
-  <script src="assets/js/jquery.min.js"></script>
-  <script src="assets/js/jquery.poptrox.min.js"></script>
-  <script src="assets/js/browser.min.js"></script>
-  <script src="assets/js/breakpoints.min.js"></script>
-  <script src="assets/js/util.js"></script>
-  <script src="assets/js/main.js"></script>
-  <script src="assets/js/script.js"></script> <!-- Custom Scripts -->
+<!-- ================================================================
+     SKILLS
+     ================================================================ -->
+<section id="skills">
+  <div class="section" style="position:relative">
+    <span class="hex-deco" aria-hidden="true">⬡</span>
+    <p class="section-label reveal">// technical stack</p>
+    <h2 class="section-title reveal">System.Skills</h2>
+
+    <div class="skills-grid">
+
+      <!-- Programming Languages -->
+      <div class="skill-card reveal">
+        <div class="skill-card-icon"><i class="fas fa-code"></i></div>
+        <h4>Programming</h4>
+        <div class="skill-bar-wrap">
+          <div class="skill-bar-header"><span>Python</span><span>92%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-w="90"></div></div>
+        </div>
+        <div class="skill-bar-wrap">
+          <div class="skill-bar-header"><span>C / C++</span><span>85%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-w="85"></div></div>
+        </div>
+        <div class="skill-bar-wrap">
+          <div class="skill-bar-header"><span>Embedded C</span><span>80%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-w="80"></div></div>
+        </div>
+        <div class="skill-bar-wrap">
+          <div class="skill-bar-header"><span>MATLAB</span><span>72%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-w="70"></div></div>
+        </div>
+      </div>
+
+      <!-- Robotics Middleware -->
+      <div class="skill-card reveal" style="transition-delay:.1s">
+        <div class="skill-card-icon"><i class="fas fa-robot"></i></div>
+        <h4>Robotics Middleware</h4>
+        <div class="skill-bar-wrap">
+          <div class="skill-bar-header"><span>ROS2 / ROS</span><span>90%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-w="90"></div></div>
+        </div>
+        <div class="skill-bar-wrap">
+          <div class="skill-bar-header"><span>MoveIt</span><span>78%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-w="80"></div></div>
+        </div>
+        <div class="skill-bar-wrap">
+          <div class="skill-bar-header"><span>Gazebo / Isaac Sim</span><span>80%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-w="80"></div></div>
+        </div>
+        <div class="skill-bar-wrap">
+          <div class="skill-bar-header"><span>tf2 / RViz</span><span>85%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-w="85"></div></div>
+        </div>
+      </div>
+
+      <!-- Machine Learning -->
+      <div class="skill-card reveal" style="transition-delay:.2s">
+        <div class="skill-card-icon"><i class="fas fa-brain"></i></div>
+        <h4>Machine Learning</h4>
+        <div class="skill-bar-wrap">
+          <div class="skill-bar-header"><span>PyTorch</span><span>80%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-w="80"></div></div>
+        </div>
+        <div class="skill-bar-wrap">
+          <div class="skill-bar-header"><span>TensorFlow</span><span>68%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-w="60"></div></div>
+        </div>
+        <div class="skill-bar-wrap">
+          <div class="skill-bar-header"><span>CNNs / Contrastive</span><span>75%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-w="75"></div></div>
+        </div>
+        <div class="skill-bar-wrap">
+          <div class="skill-bar-header"><span>OpenCV</span><span>85%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-w="85"></div></div>
+        </div>
+      </div>
+
+      <!-- Perception & Sensing -->
+      <div class="skill-card reveal" style="transition-delay:.05s">
+        <div class="skill-card-icon"><i class="fas fa-eye"></i></div>
+        <h4>Perception</h4>
+        <div class="tag-cloud">
+          <span class="tag">LiDAR–IMU Fusion</span>
+          <span class="tag">EKF / UKF</span>
+          <span class="tag">SLAM</span>
+          <span class="tag">Sensor Calibration</span>
+          <span class="tag">Vision-based State</span>
+          <span class="tag">Embedding Retrieval</span>
+          <span class="tag">Vision-to-Action</span>
+        </div>
+      </div>
+
+      <!-- Embedded Systems -->
+      <div class="skill-card reveal" style="transition-delay:.15s">
+        <div class="skill-card-icon"><i class="fas fa-microchip"></i></div>
+        <h4>Embedded Systems</h4>
+        <div class="tag-cloud">
+          <span class="tag">Bare-metal Firmware</span>
+          <span class="tag">GPIO / ADC</span>
+          <span class="tag">I2C / SPI / UART</span>
+          <span class="tag">Sensor Interfacing</span>
+          <span class="tag">PCB Design</span>
+          <span class="tag">eFuse / Power Rail</span>
+          <span class="tag">Hardware Bring-up</span>
+        </div>
+      </div>
+
+      <!-- System Engineering -->
+      <div class="skill-card reveal" style="transition-delay:.25s">
+        <div class="skill-card-icon"><i class="fas fa-project-diagram"></i></div>
+        <h4>System Engineering</h4>
+        <div class="tag-cloud">
+          <span class="tag">DFMEA</span>
+          <span class="tag">Root Cause Analysis</span>
+          <span class="tag">CI / GitHub Actions</span>
+          <span class="tag">Scrum Master</span>
+          <span class="tag">Integration Testing</span>
+          <span class="tag">Git</span>
+          <span class="tag">ILP / Prolog</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     EXPERIENCE
+     ================================================================ -->
+<section id="experience">
+  <div class="section">
+    <p class="section-label reveal">// work history</p>
+    <h2 class="section-title reveal">System.Experience</h2>
+
+    <div class="timeline">
+
+      <!-- Garrulus -->
+      <div class="tl-item reveal">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-header">
+            <div>
+              <div class="tl-title">Garrulus — Research Assistant</div>
+              <div class="tl-role">Autonomous Tree-Seeding Robots · Bonn, Germany</div>
+            </div>
+            <div class="tl-meta">
+              05/2025 – 12/2025<br>
+              <!-- <span class="tag" style="margin-top:.3rem">Current</span> -->
+            </div>
+          </div>
+            <div class="tl-body">
+            <ul>
+              <li>Designed &amp; validated PCB protection circuits for 3.3V, 5V, and 24V power rails with solenoid drivers and eFuse-based power distribution.</li>
+              <li>Developed power sequencing, inrush-current limiting, and reverse-polarity protection for field robots.</li>
+              <li>Collaborated with hardware and firmware teams to integrate robust electronics into autonomous tree-seeding robots.</li>
+              <li>Attached work: <a href="https://github.com/ibrahim-1811/garrulus-pcb-design" target="_blank" style="color: var(--clr-cyan);">GitHub Repository</a> &nbsp;·&nbsp; <a href="#projects" onclick="openProjectModal('garrulus-pcb')" style="color: var(--clr-cyan);">View Project</a></li>
+            </ul>
+            </div>
+          <div style="margin-top:.8rem;display:flex;gap:.4rem;flex-wrap:wrap">
+            <span class="tag">PCB Design</span>
+            <span class="tag">Power Electronics</span>
+            <span class="tag">eFuse</span>
+            <span class="tag">Embedded</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Kelo Robotics -->
+      <div class="tl-item reveal" style="transition-delay:.1s">
+        <div class="tl-dot teal"></div>
+        <div class="tl-card">
+          <div class="tl-header">
+            <div>
+              <div class="tl-title">Kelo Robotics — Research Assistant</div>
+              <div class="tl-role">Simulation &amp; Multi-agent Navigation · Stuttgart, Germany</div>
+            </div>
+            <div class="tl-meta">05/2024 – 08/2024</div>
+          </div>
+          <div class="tl-body">
+            <ul>
+              <li>Set up Isaac Sim and Gazebo environments for robotic simulation tasks.</li>
+              <li>Researched and compared simulation frameworks for multi-agent navigation and control.</li>
+            </ul>
+          </div>
+          <div style="margin-top:.8rem;display:flex;gap:.4rem;flex-wrap:wrap">
+            <span class="tag">Isaac Sim</span>
+            <span class="tag">Gazebo</span>
+            <span class="tag">Multi-agent</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Unbox Robotics -->
+      <div class="tl-item reveal" style="transition-delay:.2s">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-header">
+            <div>
+              <div class="tl-title">Unbox Robotics Pvt. Ltd — Robotics System Engineer</div>
+              <div class="tl-role">Warehouse Automation · Pune, India</div>
+            </div>
+            <div class="tl-meta">06/2022 – 07/2023</div>
+          </div>
+          <div class="tl-body">
+            <ul>
+              <li>Built and automated testing frameworks for feature validation, bug fixes, and development debugging, generating detailed reports.</li>
+              <li>Conducted RCA, executed DFMEA, and tested control boards with oscilloscopes for reliable system integration.</li>
+              <li>Served as Scrum Master, managing integration challenges, robot deployments, and customer demonstrations.</li>
+            </ul>
+          </div>
+          <div style="margin-top:.8rem;display:flex;gap:.4rem;flex-wrap:wrap">
+            <span class="tag">DFMEA</span>
+            <span class="tag">RCA</span>
+            <span class="tag">Scrum Master</span>
+            <span class="tag">Testing</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- DashDot -->
+      <div class="tl-item reveal" style="transition-delay:.3s">
+        <div class="tl-dot teal"></div>
+        <div class="tl-card">
+          <div class="tl-header">
+            <div>
+              <div class="tl-title">DashDot Robotics Pvt. Ltd — Embedded System Engineer</div>
+              <div class="tl-role">Hardware Prototyping &amp; Firmware · Ahmedabad, India</div>
+            </div>
+            <div class="tl-meta">03/2021 – 02/2022</div>
+          </div>
+          <div class="tl-body">
+            <ul>
+              <li>Designed and prototyped hardware systems from scratch, ensuring optimal functionality and performance.</li>
+              <li>Conducted circuit troubleshooting and root-cause analysis to resolve technical issues.</li>
+              <li>Developed firmware at integration level, incorporating and calibrating various sensors.</li>
+            </ul>
+          </div>
+          <div style="margin-top:.8rem;display:flex;gap:.4rem;flex-wrap:wrap">
+            <span class="tag">Firmware</span>
+            <span class="tag">Prototyping</span>
+            <span class="tag">Sensor Calibration</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     PROJECTS
+     ================================================================ -->
+<section id="projects">
+  <div class="section">
+    <p class="section-label reveal">// selected work</p>
+    <h2 class="section-title reveal">System.Projects</h2>
+
+    <div class="proj-grid">
+
+      <!-- Robothon 2025 -->
+      <div class="proj-card reveal" data-project="robothon">
+        <div class="proj-top">
+          <div class="proj-icon"><i class="fas fa-trophy"></i></div>
+          <span class="proj-badge">🏆 Top 5 International</span>
+        </div>
+        <h3>Robothon 2025 — Grand Challenge</h3>
+        <p>
+          Automated complex manipulation tasks with a Kinova Gen3 arm under strict time limits.
+          Vision-guided MoveIt pipeline for button detection, stylus grasping, and maze solving
+          via magnetic end-effector with continuous visual feedback.
+        </p>
+        <div class="tag-cloud">
+          <span class="tag">ROS</span>
+          <span class="tag">MoveIt</span>
+          <span class="tag">OpenCV</span>
+          <span class="tag">Kinova Gen3</span>
+          <span class="tag">C++</span>
+        </div>
+      </div>
+
+      <!-- Cross-Modal -->
+      <!-- ILP Fault Detection -->
+      <div class="proj-card reveal" data-project="ilp-fault" style="transition-delay:.2s">
+        <div class="proj-top">
+          <div class="proj-icon"><i class="fas fa-bug"></i></div>
+          <span class="proj-badge teal">Research</span>
+        </div>
+        <h3>ILP-Based Fault Detection for Mobile Robots</h3>
+        <p>
+          Interpretable fault detection framework using Inductive Logic Programming for
+          wheel slip, sensor noise, delay, and comm faults. Extended to multi-robot
+          systems for fault propagation &amp; scalability analysis.
+        </p>
+        <div class="tag-cloud">
+          <span class="tag">ROS</span>
+          <span class="tag">Python</span>
+          <span class="tag">Prolog</span>
+          <span class="tag">ILP</span>
+        </div>
+      </div>
+
+      <!-- Explainable Task Allocation -->
+      <div class="proj-card reveal" data-project="task-allocation" style="transition-delay:.05s">
+        <div class="proj-top">
+          <div class="proj-icon"><i class="fas fa-network-wired"></i></div>
+          <span class="proj-badge teal">Research</span>
+        </div>
+        <h3>Explainable Robot Task Allocation via ILP</h3>
+        <p>
+          Symbolic task allocation framework for multi-robot systems. Interpretable allocation
+          rules learned from robot state &amp; capabilities. Validated in ROS2 simulation
+          with dynamic task scenarios.
+        </p>
+        <div class="tag-cloud">
+          <span class="tag">ROS2</span>
+          <span class="tag">Prolog</span>
+          <span class="tag">Multi-Robot</span>
+          <span class="tag">Explainability</span>
+        </div>
+      </div>
+
+      <!-- Multi-Robot Task Distribution -->
+      <div class="proj-card reveal" data-project="multi-robot" style="transition-delay:.15s">
+        <div class="proj-top">
+          <div class="proj-icon"><i class="fas fa-sitemap"></i></div>
+          <span class="proj-badge">CI/CD</span>
+        </div>
+        <h3>Multi-Robot Task Distribution</h3>
+        <p>
+          Scalable task allocation for multiple robots in Gazebo. Coordinated parcel
+          collection &amp; delivery to a central depot. CI pipelines via GitHub Actions
+          with static analysis using Codacy.
+        </p>
+        <div class="tag-cloud">
+          <span class="tag">ROS2</span>
+          <span class="tag">Gazebo</span>
+          <span class="tag">SLAM</span>
+          <span class="tag">GitHub Actions</span>
+        </div>
+      </div>
+
+      <!-- Intrinsic: AI for Industry Challenge -->
+      <div class="proj-card reveal" data-project="intrensic" style="transition-delay:.35s">
+        <div class="proj-top">
+          <div class="proj-icon"><i class="fas fa-cube"></i></div>
+          <span class="proj-badge teal">In Progress</span>
+        </div>
+        <h3>AI for Industry Challenge — Intrinsic &amp; Open Robotics</h3>
+        <p>
+          Developed an end-to-end imitation-learning pipeline for robotic cable insertion in industrial electronics assembly.
+          Built a ROS2/Gazebo simulation stack, collected and filtered 157 successful episodes, trained an ACT policy for 100k steps
+          with multi-camera observations and TCP position-control actions for simulated connector insertion.
+        </p>
+        <div class="tag-cloud">
+          <span class="tag">ROS2</span>
+          <span class="tag">Gazebo</span>
+          <span class="tag">Imitation Learning</span>
+          <span class="tag">ACT Policy</span>
+          <span class="tag">LeRobot</span>
+          <span class="tag">PyTorch</span>
+          <span class="tag">Multi-camera</span>
+          <span class="tag">Manipulation</span>
+        </div>
+      </div>
+
+      <!-- AMR — Simulation + Real Robot -->
+      <div class="proj-card reveal" data-project="amr-real" style="transition-delay:.35s">
+        <div class="proj-top">
+          <div class="proj-icon"><i class="fas fa-robot"></i></div>
+          <span class="proj-badge">Hardware</span>
+        </div>
+        <h3>Autonomous Mobile Robot (AMR)</h3>
+        <p>
+          Full AMR project across simulation and real hardware — SLAM-based navigation,
+          A* global planning, Potential Fields local planner, and autonomous exploration
+          of unknown environments.
+        </p>
+        <div class="tag-cloud">
+          <span class="tag">ROS</span>
+          <span class="tag">SLAM</span>
+          <span class="tag">A*</span>
+          <span class="tag">Potential Fields</span>
+          <span class="tag">Exploration</span>
+          <span class="tag">LiDAR</span>
+          <span class="tag">Python</span>
+        </div>
+      </div>
+
+      <!-- Garrulus PCB Design -->
+      <div class="proj-card reveal" data-project="garrulus-pcb" style="transition-delay:.45s">
+        <div class="proj-top">
+          <div class="proj-icon"><i class="fas fa-microchip"></i></div>
+          <span class="proj-badge">Hardware</span>
+        </div>
+        <h3>Garrulus — PCB Protection Circuits</h3>
+        <p>
+          Designed and validated PCB protection circuits for 3.3 V, 5 V, and 24 V power rails
+          with solenoid drivers and eFuse-based power distribution for autonomous tree-seeding
+          field robots.
+        </p>
+        <div class="tag-cloud">
+          <span class="tag">PCB Design</span>
+          <span class="tag">Power Electronics</span>
+          <span class="tag">eFuse</span>
+          <span class="tag">KiCad</span>
+          <span class="tag">Embedded</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     PUBLICATION
+     ================================================================ -->
+<section id="publication">
+  <div class="section">
+    <p class="section-label reveal">// research output</p>
+    <h2 class="section-title reveal">System.Research</h2>
+
+    <div class="pub-card reveal">
+      <div class="pub-icon"><i class="fas fa-file-alt"></i></div>
+      <div>
+        <h3>Patent Publication</h3>
+        <p style="color:var(--clr-text);font-family:var(--font-body);font-size:.95rem;margin:0.5rem 0 0.8rem">
+          "An Inventory Management, Tracking and Consumption Predicting System using
+          Intelligent Container Box and Central Server"
+        </p>
+        <p>Patent Publication No: <strong style="color:var(--clr-cyan)">IN 202021029069 A (2020)</strong></p>
+        <div style="margin-top:1rem;display:flex;gap:.5rem;flex-wrap:wrap">
+          <span class="tag">IoT</span>
+          <span class="tag">Inventory Automation</span>
+          <span class="tag">India Patent</span>
+          <span class="tag">2020</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     CONTACT
+     ================================================================ -->
+<section id="contact">
+  <div class="section">
+    <p class="section-label reveal">// get in touch</p>
+    <h2 class="section-title reveal">System.Contact</h2>
+
+    <div class="contact-grid">
+
+      <!-- Left: info -->
+      <div class="contact-info reveal">
+        <h3>Let's Build Something Real</h3>
+        <p>
+          Open to research collaborations, full-time robotics engineering roles,
+          and embedded systems projects. Based in Bonn, available in Germany and remotely.
+        </p>
+
+        <div class="contact-item">
+          <div class="contact-item-icon"><i class="fas fa-envelope"></i></div>
+          <a href="mailto:immemon1811@gmail.com">immemon1811@gmail.com</a>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon"><i class="fas fa-phone"></i></div>
+          <a href="tel:+4915774001726">+49 15774001726</a>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon"><i class="fas fa-map-marker-alt"></i></div>
+          <span>Bonn, 53115, Germany</span>
+        </div>
+
+        <div class="socials">
+          <a href="https://github.com/ibrahim-1811" target="_blank" class="social-btn" aria-label="GitHub">
+            <i class="fab fa-github"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/ibrahimmemon18/" target="_blank" class="social-btn" aria-label="LinkedIn">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+          <a href="mailto:immemon1811@gmail.com" class="social-btn" aria-label="Email">
+            <i class="fas fa-envelope"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Right: terminal -->
+      <div class="contact-terminal reveal" style="transition-delay:.15s">
+        <div class="terminal">
+          <div class="terminal-topbar">
+            <div class="tb-dot r"></div>
+            <div class="tb-dot y"></div>
+            <div class="tb-dot g"></div>
+            <span>send_message.sh</span>
+          </div>
+          <div class="terminal-body">
+            <div class="t-line">
+              <span class="t-prompt">~/&gt; </span>
+              <span class="t-cmd">./contact --mode=quick</span>
+            </div>
+            <div class="t-out">
+              <span class="t-key">availability:</span>
+              <span class="t-val" style="color:var(--clr-teal)"> Open to offers</span><br>
+              <span class="t-key">response_time:</span>
+              <span class="t-val"> &lt; 24 hours</span><br>
+              <span class="t-key">preferred_lang:</span>
+              <span class="t-val"> English / German</span><br>
+              <span class="t-key">timezone:</span>
+              <span class="t-val"> CET / CEST (UTC+1/+2)</span>
+            </div>
+            <div class="t-line">
+              <span class="t-prompt">~/&gt; </span>
+              <span class="t-cmd">cat interests.txt</span>
+            </div>
+            <div class="t-out">
+              <span class="t-val">✔ Autonomous Mobile Robots</span><br>
+              <span class="t-val">✔ Manipulation & Grasping</span><br>
+              <span class="t-val">✔ Vision-Language Robotics</span><br>
+              <span class="t-val">✔ Embedded Systems Design</span><br>
+              <span class="t-val">✔ Multi-robot Coordination</span>
+            </div>
+            <div class="t-line">
+              <span class="t-prompt">~/&gt; </span>
+              <a href="mailto:immemon1811@gmail.com" class="btn btn-primary" style="font-size:.72rem;padding:.4rem 1rem;display:inline-flex">
+                <i class="fas fa-paper-plane"></i>&nbsp; Send Message
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     FOOTER
+     ================================================================ -->
+<footer>
+  <p>
+    Designed &amp; built with ♥ ·
+    <span>Mohammad Ibrahim Memon</span> ·
+    Robotics Engineer ·
+    <a href="https://github.com/ibrahim-1811" target="_blank">@ibrahim-1811</a>
+  </p>
+  <p style="margin-top:.4rem; font-size:.65rem; opacity:.5">
+    ROS2 · Embedded · Autonomous Systems · Bonn, Germany
+  </p>
+</footer>
+
+<!-- Back to top -->
+<button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">
+  <i class="fas fa-chevron-up"></i>
+</button>
+
+<!-- ================================================================
+     JAVASCRIPT
+     ================================================================ -->
+<script>
+/* ──────────────────────────────────────────────────────────────────
+   1. PARTICLE CANVAS — animated node-and-edge network
+   ────────────────────────────────────────────────────────────────── */
+(function () {
+  const canvas = document.getElementById('particle-canvas');
+  const ctx    = canvas.getContext('2d');
+
+  let W, H, particles = [], mouse = { x: -999, y: -999 };
+  const COUNT      = 90;   // number of particles
+  const CONN_DIST  = 130;  // max distance to draw connection line
+  const MOUSE_DIST = 160;  // mouse-attract radius
+
+  /* Resize handler — keep canvas full-window */
+  function resize() {
+    W = canvas.width  = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  /* Mouse tracking */
+  window.addEventListener('mousemove', e => {
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+  });
+
+  /* Particle factory */
+  function makeParticle() {
+    return {
+      x:  Math.random() * W,
+      y:  Math.random() * H,
+      vx: (Math.random() - .5) * .4,
+      vy: (Math.random() - .5) * .4,
+      r:  Math.random() * 1.5 + .8,
+    };
+  }
+
+  for (let i = 0; i < COUNT; i++) particles.push(makeParticle());
+
+  /* Animation loop */
+  function tick() {
+    ctx.clearRect(0, 0, W, H);
+
+    /* Move particles */
+    particles.forEach(p => {
+      // Gentle mouse attraction
+      const dx = mouse.x - p.x, dy = mouse.y - p.y;
+      const d  = Math.sqrt(dx*dx + dy*dy);
+      if (d < MOUSE_DIST) {
+        p.vx += dx / d * .012;
+        p.vy += dy / d * .012;
+      }
+
+      p.x += p.vx;
+      p.y += p.vy;
+
+      // Speed limit
+      const spd = Math.sqrt(p.vx*p.vx + p.vy*p.vy);
+      if (spd > 1.2) { p.vx *= .97; p.vy *= .97; }
+
+      // Bounce off edges
+      if (p.x < 0 || p.x > W) p.vx *= -1;
+      if (p.y < 0 || p.y > H) p.vy *= -1;
+      p.x = Math.max(0, Math.min(W, p.x));
+      p.y = Math.max(0, Math.min(H, p.y));
+    });
+
+    /* Draw connections */
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const a = particles[i], b = particles[j];
+        const dx = a.x - b.x, dy = a.y - b.y;
+        const d  = Math.sqrt(dx*dx + dy*dy);
+        if (d < CONN_DIST) {
+          const alpha = (1 - d / CONN_DIST) * .18;
+          ctx.beginPath();
+          ctx.strokeStyle = `rgba(0,212,255,${alpha})`;
+          ctx.lineWidth   = .7;
+          ctx.moveTo(a.x, a.y);
+          ctx.lineTo(b.x, b.y);
+          ctx.stroke();
+        }
+      }
+    }
+
+    /* Draw dots */
+    particles.forEach(p => {
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(0,212,255,.55)';
+      ctx.fill();
+    });
+
+    requestAnimationFrame(tick);
+  }
+
+  tick();
+})();
 
 
+/* ──────────────────────────────────────────────────────────────────
+   2. TYPING EFFECT — hero subtitle cycles through role strings
+   ────────────────────────────────────────────────────────────────── */
+(function () {
+  const lines = [
+    'Robotics System Engineer',
+    'ROS2 · Autonomous Systems',
+    'Embedded Systems Designer',
+    'Fault Detection Researcher',
+    'M.Sc Autonomous Systems @ H-BRS',
+    'Full-Stack Robotics Engineer',
+    'Hardware \& Software Co-Designer',
+    'ILP Fault Diagnosis Researcher',
+    'Building Robots That Work IRL',
 
-  <script>
-    (function () {
-      const els = [...document.querySelectorAll('.reveal')];
-      if (!('IntersectionObserver' in window)) {
-        els.forEach(e => e.classList.add('is-visible'));
+  ];
+
+  const el     = document.getElementById('typed-text');
+  let   li     = 0,   // line index
+        ci     = 0,   // char index
+        typing = true,
+        delay  = 0;
+
+  function step() {
+    const line = lines[li];
+
+    if (typing) {
+      el.textContent = line.slice(0, ci + 1);
+      ci++;
+      if (ci >= line.length) {
+        typing = false;
+        delay  = 0;
+        setTimeout(step, 1600); // pause before erasing
         return;
       }
-      const io = new IntersectionObserver((entries) => {
-        entries.forEach(e => {
-          if (e.isIntersecting) {
-            e.target.classList.add('is-visible');
-            io.unobserve(e.target);
-          }
-        });
-      }, { threshold: 0.12 });
-      els.forEach(e => io.observe(e));
-    })();
-  </script>
+    } else {
+      if (delay < 2) { delay++; }
+      el.textContent = line.slice(0, ci - 1);
+      ci--;
+      if (ci <= 0) {
+        typing = true;
+        li = (li + 1) % lines.length;
+        ci = 0;
+        setTimeout(step, 350);
+        return;
+      }
+    }
 
-  <script>
-    (function () {
-      const accs = document.querySelectorAll('.proj-acc');
+    setTimeout(step, typing ? 60 : 35);
+  }
 
-      function expand(d) {
-        const body = d.querySelector('.proj-body');
-        if (!body) return;
+  setTimeout(step, 700);
+})();
 
-        // Ensure we can measure full content height
-        body.style.transition = 'none';
-        body.style.maxHeight = 'none';
-        const end = body.scrollHeight;
 
-        // Start from current height (0 when closed)
-        body.style.maxHeight = '0px';
-        // Force reflow so the start value is taken
-        void body.offsetHeight;
+/* ──────────────────────────────────────────────────────────────────
+   3. INTERSECTION OBSERVER — reveal elements on scroll
+   ────────────────────────────────────────────────────────────────── */
+(function () {
+  const els = document.querySelectorAll('.reveal');
+  const io  = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
 
-        // Animate to full height
-        body.style.transition = 'max-height .35s ease, opacity .25s ease, padding .25s ease';
-        body.style.maxHeight = end + 'px';
-        body.style.opacity = '1';
-        body.style.paddingTop = '.9rem';
-        body.style.paddingBottom = '1.1rem';
-
-        // After the animation, release to auto height
-        body.addEventListener('transitionend', function done(e) {
-          if (e.propertyName === 'max-height') {
-            body.style.maxHeight = 'none';
-            body.removeEventListener('transitionend', done);
-          }
+        /* Animate skill bars when their card is visible */
+        e.target.querySelectorAll('.skill-bar-fill').forEach(bar => {
+          bar.style.width = bar.dataset.w + '%';
         });
       }
+    });
+  }, { threshold: .12 });
 
-      function collapse(d) {
-        const body = d.querySelector('.proj-body');
-        if (!body) return;
+  els.forEach(e => io.observe(e));
+})();
 
-        // If it was set to 'none', set a pixel height first
-        if (getComputedStyle(body).maxHeight === 'none') {
-          body.style.maxHeight = body.scrollHeight + 'px';
-          void body.offsetHeight;
-        }
-        body.style.maxHeight = '0px';
-        body.style.opacity = '0';
-        body.style.paddingTop = '0';
-        body.style.paddingBottom = '0';
+
+/* ──────────────────────────────────────────────────────────────────
+   4. NAV — active link highlight on scroll + background on scroll
+   ────────────────────────────────────────────────────────────────── */
+(function () {
+  const nav     = document.getElementById('navbar');
+  const links   = document.querySelectorAll('.nav-links a[href^="#"]');
+  const sections = [...links].map(l => document.querySelector(l.getAttribute('href'))).filter(Boolean);
+
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+
+    /* Navbar solid bg after hero */
+    nav.style.background = y > 80
+      ? 'rgba(2,11,24,.97)'
+      : 'rgba(2,11,24,.82)';
+
+    /* Active section highlight */
+    let current = '';
+    sections.forEach(s => {
+      if (y >= s.offsetTop - 100) current = '#' + s.id;
+    });
+    links.forEach(l => {
+      l.classList.toggle('active', l.getAttribute('href') === current);
+    });
+
+    /* Back-to-top button */
+    document.getElementById('back-top').classList.toggle('show', y > 400);
+  });
+})();
+
+
+/* ──────────────────────────────────────────────────────────────────
+   5. MOBILE MENU toggle
+   ────────────────────────────────────────────────────────────────── */
+const hamburger  = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobile-menu');
+
+hamburger.addEventListener('click', () => {
+  mobileMenu.classList.toggle('open');
+});
+
+function closeMobile() {
+  mobileMenu.classList.remove('open');
+}
+
+/* Pages dropdown toggle */
+const navMore       = document.getElementById('nav-more');
+const navMoreToggle = document.getElementById('nav-more-toggle');
+navMoreToggle.addEventListener('click', (e) => {
+  e.stopPropagation();
+  navMore.classList.toggle('open');
+});
+document.addEventListener('click', () => navMore.classList.remove('open'));
+</script>
+
+<!-- ================================================================
+     PROJECT MODAL SYSTEM
+     ================================================================ -->
+<div class="project-modal" id="projectModal">
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeProjectModal()">✕</button>
+    <div class="modal-header">
+      <h2 id="modalTitle"></h2>
+      <p class="modal-meta" id="modalMeta"></p>
+    </div>
+    <div id="modalVideo"></div>
+    <div class="modal-gallery" id="modalGallery"></div>
+    <div class="modal-description" id="modalDescription"></div>
+    <div class="modal-tech">
+      <h4>Technology Stack</h4>
+      <div class="modal-tags" id="modalTech"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ── PROJECT DATA ─────────────────────────────────────────────────────────
+   videoId: YouTube ID (11 chars after ?v=). Leave '' for placeholder.
+   images:  array of image paths relative to the site root.
+            Only include landscape screenshots — portrait images crop badly.
+   ──────────────────────────────────────────────────────────────────────── */
+const projectData = {
+  'robothon': {
+    title: 'Robothon 2025 — Grand Challenge',
+    meta: '🏆 Top 5 International | ROS · MoveIt · OpenCV',
+    videoId: 'FcK0cvRkM-Q',
+    images: [],
+    description: 'Automated complex manipulation tasks with a Kinova Gen3 arm under strict time limits. Vision-guided MoveIt pipeline for button detection, stylus grasping, and maze solving via magnetic end-effector with continuous visual feedback.',
+    tech: ['ROS', 'MoveIt', 'OpenCV', 'Kinova Gen3', 'C++']
+  },
+  'ilp-fault': {
+    title: 'ILP-Based Fault Detection for Mobile Robots',
+    meta: 'Research | Python · Prolog · ILP',
+    videoId: '',
+    images: [],
+    description: 'Interpretable fault detection framework using Inductive Logic Programming for wheel slip, sensor noise, delay, and comm faults. Extended to multi-robot systems for fault propagation & scalability analysis.',
+    tech: ['ROS', 'Python', 'Prolog', 'ILP']
+  },
+  'task-allocation': {
+    title: 'Explainable Robot Task Allocation via ILP',
+    meta: 'Research | ROS2 · Prolog · Multi-Robot',
+    videoId: 'm3gBvXjOTYQ',
+    images: [
+      'images/ILP_Project.jpg'
+    ],
+    description: 'Symbolic task allocation framework for multi-robot systems. Interpretable allocation rules learned from robot state & capabilities. Validated in ROS2 simulation with dynamic task scenarios.',
+    tech: ['ROS2', 'Prolog', 'Multi-Robot', 'Explainability']
+  },
+  'multi-robot': {
+    title: 'Multi-Robot Task Distribution',
+    meta: 'CI/CD | ROS2 · Gazebo · SLAM',
+    videoId: 'asg0zFYG6K0',
+    images: [
+      'images/thumbs/multi_robot/multi_robot.jpg'
+    ],
+    description: 'Scalable task allocation for multiple robots in Gazebo. Coordinated parcel collection & delivery to a central depot. CI pipelines via GitHub Actions with static analysis using Codacy.',
+    tech: ['ROS2', 'Gazebo', 'SLAM', 'GitHub Actions']
+  },
+  'amr-real': {
+    title: 'Autonomous Mobile Robot (AMR)',
+    meta: 'Hardware & Simulation | ROS · SLAM · A* · Potential Fields',
+    videoId: '',
+    videos: [
+      {
+        id: 'AcolNEWpMdM',
+        label: 'Simulation',
+        desc: 'Built and tested the full AMR software stack in simulation — LiDAR-based SLAM for mapping, A* for path planning, and motor control. Also led the circuit layout and power system design for the real hardware version.'
+      },
+      {
+        id: 'TIxDWtgllts',
+        label: 'Navigation',
+        desc: 'Deployed on real hardware: A* computes the global route across the known map while a Potential Fields local planner handles dynamic obstacle avoidance in real time, keeping the robot on track without collisions.'
+      },
+      {
+        id: 'qHKsl6RHDi8',
+        label: 'Exploration',
+        desc: 'Autonomous frontier-based exploration — the robot scans its surroundings, picks the nearest unexplored boundary, and navigates to it on its own until the entire environment is mapped without any human input.'
       }
+    ],
+    images: [],
+    description: 'End-to-end AMR project spanning simulation and real hardware. Covers SLAM-based mapping, A* global path planning, Potential Fields local obstacle avoidance, and fully autonomous exploration of unknown environments.',
+    tech: ['ROS', 'SLAM', 'A*', 'Potential Fields', 'Exploration', 'LiDAR', 'Python']
+  },
+  'intrensic': {
+    title: 'AI for Industry Challenge — Intrinsic & Open Robotics',
+    meta: 'In Progress | ROS2 · Gazebo · Imitation Learning',
+    videoId: '',
+    images: [],
+    description: 'Developed an end-to-end imitation-learning pipeline for robotic cable insertion in industrial electronics assembly. Built a ROS2/Gazebo simulation stack, collected and filtered 157 successful episodes, trained an ACT policy for 100k steps with multi-camera observations and TCP position-control actions for simulated connector insertion.',
+    tech: ['ROS2', 'Gazebo', 'Imitation Learning', 'ACT Policy', 'LeRobot', 'PyTorch', 'Multi-camera', 'Manipulation']
+  },
+  'garrulus-pcb': {
+    title: 'Garrulus — PCB Protection Circuits',
+    meta: 'Hardware | PCB Design · Power Electronics · eFuse',
+    videoId: '',
+    images: [
+      'images/garullas_1.png',
+      'images/garullas_2.png',
+      'images/garullas_3.png',
+      'images/garullas_4.png'
+    ],
+    description: 'Designed and validated PCB protection circuits for 3.3 V, 5 V, and 24 V power rails with solenoid drivers and eFuse-based power distribution. Developed power sequencing, inrush-current limiting, and reverse-polarity protection for Garrulus — autonomous tree-seeding field robots based in Bonn, Germany.',
+    tech: ['PCB Design', 'Power Electronics', 'eFuse', 'KiCad', 'Embedded', 'Solenoid Drivers']
+  }
+};
 
-      // Attach behavior
-      accs.forEach((d) => {
-        const body = d.querySelector('.proj-body');
-        if (!body) return;
+function renderProjectVideo(data) {
+  /* Multiple videos — tab switcher */
+  if (data.videos && data.videos.length > 0) {
+    const tabs = data.videos.map((v, i) =>
+      `<button class="video-tab${i === 0 ? ' active' : ''}" data-desc="${(v.desc || '').replace(/"/g, '&quot;')}" onclick="switchVideoTab(this,'${v.id}')">${v.label}</button>`
+    ).join('');
+    const first = data.videos[0];
+    return `
+      <div class="modal-video">
+        <div class="video-tabs">${tabs}</div>
+        <iframe id="modalVideoFrame"
+          src="https://www.youtube.com/embed/${first.id}?rel=0&modestbranding=1"
+          title="${data.title} — ${first.label}"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+        <div class="modal-video-actions">
+          <a class="btn btn-primary" id="modalVideoYtLink" href="https://youtu.be/${first.id}" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-youtube"></i> Watch on YouTube
+          </a>
+        </div>
+      </div>`;
+  }
 
-        // Start state
-        if (d.open) {
-          body.style.maxHeight = 'none';
-          body.style.opacity = '1';
-        } else {
-          body.style.maxHeight = '0px';
-          body.style.opacity = '0';
-          body.style.paddingTop = '0';
-          body.style.paddingBottom = '0';
-        }
+  /* Single video */
+  if (data.videoId) {
+    const watchUrl = getProjectVideoUrl(data);
+    return `
+      <div class="modal-video">
+        <iframe
+          src="https://www.youtube.com/embed/${data.videoId}?rel=0&modestbranding=1"
+          title="${data.title} demo"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+        <div class="modal-video-actions">
+          <a class="btn btn-primary" href="${watchUrl}" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-youtube"></i> Watch on YouTube
+          </a>
+        </div>
+      </div>`;
+  }
 
-        // Accordion: close siblings when one opens
-        d.addEventListener('toggle', () => {
-          if (d.open) {
-            accs.forEach((o) => { if (o !== d && o.open) { o.open = false; collapse(o); } });
-            expand(d);
-          } else {
-            collapse(d);
-          }
-        });
+  return `
+    <div class="modal-placeholder">
+      <i class="fas fa-film"></i>
+      <span>Video coming soon</span>
+    </div>`;
+}
 
-        // If images load later, re-measure height (so nothing is clipped)
-        body.querySelectorAll('img').forEach((img) => {
-          if (img.complete) return;
-          img.addEventListener('load', () => {
-            if (d.open) {
-              body.style.transition = 'none';
-              body.style.maxHeight = 'none';
-            }
-          });
-        });
+function switchVideoTab(btn, videoId) {
+  btn.closest('.modal-video').querySelectorAll('.video-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('modalVideoFrame').src =
+    `https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1`;
+  document.getElementById('modalVideoYtLink').href = `https://youtu.be/${videoId}`;
+  const desc = btn.dataset.desc;
+  if (desc) document.getElementById('modalDescription').textContent = desc;
+}
+
+function getProjectVideoUrl(data) {
+  return data.videoId ? `https://youtu.be/${data.videoId}` : '';
+}
+
+/* ── MODAL OPEN ────────────────────────────────────────────────────────── */
+function openProjectModal(projectId) {
+  const data = projectData[projectId];
+  if (!data) return;
+
+  document.getElementById('modalTitle').textContent = data.title;
+  document.getElementById('modalMeta').textContent = data.meta;
+  const initialDesc = (data.videos && data.videos[0] && data.videos[0].desc) ? data.videos[0].desc : data.description;
+  document.getElementById('modalDescription').textContent = initialDesc;
+
+  const videoDiv = document.getElementById('modalVideo');
+  videoDiv.innerHTML = '';
+
+  /* Images — gallery or "coming soon" notice */
+  const galleryDiv = document.getElementById('modalGallery');
+  if (data.images && data.images.length > 0) {
+    galleryDiv.innerHTML = data.images.map((src, i) => `
+      <div class="gallery-item" data-index="${i}">
+        <img src="${src}" alt="${data.title} screenshot" loading="lazy"
+             onerror="this.closest('.gallery-item').style.display='none'">
+      </div>`).join('');
+    galleryDiv.querySelectorAll('.gallery-item').forEach(item => {
+      item.addEventListener('click', () => {
+        openLightbox(data.images, parseInt(item.dataset.index));
       });
+    });
+  } else {
+    galleryDiv.innerHTML = `
+      <div class="modal-placeholder" style="grid-column:1/-1">
+        <i class="fas fa-images"></i>
+        <span>Project media coming soon</span>
+      </div>`;
+  }
 
-      // Recompute on resize for the open panel
-      window.addEventListener('resize', () => {
-        document.querySelectorAll('.proj-acc[open] .proj-body').forEach((body) => {
-          body.style.transition = 'none';
-          body.style.maxHeight = 'none';
-        });
-      });
-    })();
-  </script>
+  /* Tech tags */
+  document.getElementById('modalTech').innerHTML =
+    data.tech.map(t => `<span class="tag">${t}</span>`).join('');
 
+  document.getElementById('projectModal').classList.add('active');
+  document.getElementById('projectModal').scrollTop = 0;
+  document.body.style.overflow = 'hidden';
+  videoDiv.innerHTML = renderProjectVideo(data);
+}
 
+/* ── MODAL CLOSE ───────────────────────────────────────────────────────── */
+function closeProjectModal() {
+  document.getElementById('projectModal').classList.remove('active');
+  document.getElementById('modalVideo').innerHTML = '';
+  document.getElementById('projectModal').scrollTop = 0;
+  document.body.style.overflow = '';
+}
 
+/* Close on backdrop click */
+document.getElementById('projectModal').addEventListener('click', (e) => {
+  if (e.target.id === 'projectModal') closeProjectModal();
+});
 
+/* Close on Escape key */
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeProjectModal();
+});
+
+/* ── BIND CARDS via data-project attribute (order-independent) ─────────── */
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.proj-card[data-project]').forEach(card => {
+    const id = card.dataset.project;
+    const data = projectData[id];
+    if (data) {
+      card.classList.add('clickable');
+      if (data.videoId) card.classList.add('video-link');
+      card.addEventListener('click', () => openProjectModal(id));
+    }
+  });
+});
+</script>
+
+<!-- ── LIGHTBOX ──────────────────────────────────────────────────────── -->
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <button id="lbClose" aria-label="Close"><i class="fas fa-times"></i></button>
+  <button class="lb-btn" id="lbPrev" aria-label="Previous image"><i class="fas fa-chevron-left"></i></button>
+  <img id="lbImg" src="" alt="">
+  <button class="lb-btn" id="lbNext" aria-label="Next image"><i class="fas fa-chevron-right"></i></button>
+  <span id="lbCounter"></span>
+</div>
+
+<script>
+/* ── LIGHTBOX ───────────────────────────────────────────────────────── */
+(function () {
+  let images = [], index = 0;
+
+  const lb      = document.getElementById('lightbox');
+  const lbImg   = document.getElementById('lbImg');
+  const lbPrev  = document.getElementById('lbPrev');
+  const lbNext  = document.getElementById('lbNext');
+  const lbClose = document.getElementById('lbClose');
+  const lbCount = document.getElementById('lbCounter');
+
+  function show(i) {
+    index = (i + images.length) % images.length;
+    lbImg.src = images[index];
+    lbImg.alt = `Image ${index + 1} of ${images.length}`;
+    lbCount.textContent = `${index + 1} / ${images.length}`;
+    lbPrev.style.display = images.length > 1 ? 'flex' : 'none';
+    lbNext.style.display = images.length > 1 ? 'flex' : 'none';
+  }
+
+  function open(imgs, startIndex) {
+    images = imgs;
+    show(startIndex);
+    lb.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function close() {
+    lb.classList.remove('active');
+    lbImg.src = '';
+    document.body.style.overflow = '';
+  }
+
+  lbClose.addEventListener('click', close);
+  lbPrev.addEventListener('click', () => show(index - 1));
+  lbNext.addEventListener('click', () => show(index + 1));
+
+  lb.addEventListener('click', (e) => { if (e.target === lb) close(); });
+
+  document.addEventListener('keydown', (e) => {
+    if (!lb.classList.contains('active')) return;
+    if (e.key === 'Escape')      close();
+    if (e.key === 'ArrowLeft')   show(index - 1);
+    if (e.key === 'ArrowRight')  show(index + 1);
+  });
+
+  /* touch swipe */
+  let touchX = null;
+  lb.addEventListener('touchstart', (e) => { touchX = e.touches[0].clientX; }, { passive: true });
+  lb.addEventListener('touchend', (e) => {
+    if (touchX === null) return;
+    const dx = e.changedTouches[0].clientX - touchX;
+    if (Math.abs(dx) > 40) show(dx < 0 ? index + 1 : index - 1);
+    touchX = null;
+  });
+
+  /* attach to gallery items after modal renders */
+  window.openLightbox = open;
+})();
+</script>
 
 </body>
-
 </html>

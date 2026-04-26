@@ -1,0 +1,20 @@
+# Claude Code local config
+.claude/
+
+# VS Code workspace settings
+.vscode/
+
+# Codex file
+.codex
+
+# Dev/planning notes — not part of the site
+PORTFOLIO_UPDATES.md
+
+# Old/backup files
+index_old.html
+
+# macOS
+.DS_Store
+
+# Node (if ever used locally)
+node_modules/

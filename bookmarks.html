@@ -1,275 +1,307 @@
-<!DOCTYPE HTML>
-<html>
-  <head>
-    <title>Important Links — Mohammad Memon</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link rel="stylesheet" href="assets/css/main.css" />
-    <link href="images/bg.jpg" rel="icon">
-  </head>
-  <body class="is-preload">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resources — Ibrahim Memon</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Fira+Code:wght@300;400;500&family=Rajdhani:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="assets/css/cyber-theme.css" />
+</head>
+<body>
 
-    <!-- Header -->
-    <header id="header" class="hero">
-      <div class="actions inner">
-        <nav style="margin-bottom:1rem;">
-          <a href="index.html">Home</a> ·
-          <a href="blogs.html">Collections</a> ·
-          <a href="bookmarks.html">Important Links</a> ·
-          <a href="Resume.html">Resume</a> ·
-        </nav>
-        <a href="index.html" class="image avatar"><img src="images/my_photo.jpg" alt=""/></a>
-        <h1><strong>Bookmarks</strong></h1>
-        <h2 style="font-size: large; color: rgb(242, 241, 241);">
-          A curated list of resources I've found useful in my robotics journey.
-        </h2>
+<!-- ================================================================
+     NAVIGATION
+     ================================================================ -->
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">IB<span>RAHIM</span>.exe</a>
+
+  <ul class="nav-links">
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#projects">Projects</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+    <li class="nav-more" id="nav-more">
+      <button class="nav-more-toggle" id="nav-more-toggle" aria-label="More pages">
+        Pages <i class="fas fa-chevron-down"></i>
+      </button>
+      <div class="nav-dropdown">
+        <a href="Resume.html"><i class="fas fa-file-alt"></i> Resume</a>
+        <a href="blogs.html"><i class="fas fa-book-open"></i> Collections</a>
+        <a href="bookmarks.html" class="active"><i class="fas fa-bookmark"></i> Resources</a>
       </div>
-    </header>
+    </li>
+    <li><a href="mailto:immemon1811@gmail.com" class="nav-cta">Hire Me</a></li>
+  </ul>
 
-    <div id="main">
-      <section id="bookmarks" class="reveal">
-        <header class="major"><h2>Bookmarks</h2></header>
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
 
-        <p style="color: yellow; font-weight: bold; animation: blink 1s steps(2,start) infinite;">
-          Page under construction... will be adding much more soon...
-        </p>
-        <style>
-          @keyframes blink { to { visibility: hidden; } }
-        </style>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="index.html">← Back to Portfolio</a>
+  <div class="mobile-divider"></div>
+  <a href="Resume.html"><i class="fas fa-file-alt" style="color:var(--clr-cyan);margin-right:.5rem"></i>Resume</a>
+  <a href="blogs.html"><i class="fas fa-book-open" style="color:var(--clr-cyan);margin-right:.5rem"></i>Collections</a>
+  <a href="bookmarks.html"><i class="fas fa-bookmark" style="color:var(--clr-cyan);margin-right:.5rem"></i>Resources</a>
+</div>
 
-        <!-- ======================= MATHEMATICS ======================= -->
-        <div class="acc">
-          <input type="checkbox" id="acc-math">
-          <label for="acc-math" class="acc-head">Mathematics</label>
-          <div class="acc-content">
-            <!-- Curated Links -->
-            <div class="acc acc-nested">
-              <input type="checkbox" id="acc-math-links">
-              <label for="acc-math-links" class="acc-head">Curated Links</label>
-              <div class="acc-content">
-                <ul class="alt list-animated">
-                  <li><a href="https://www.tu-chemnitz.de/informatik/KI/edu/robotik/ws2017/trans.mat.pdf" target="_blank">Mathematics in Robotics</a></li>
-                  <li><a href="https://automaticaddison.com/how-to-describe-the-rotation-of-a-robot-in-3d/" target="_blank">How to Describe the Rotation of a Robot in 3D — Automatic Addison</a></li>
-                  <li><a href="https://medium.com/geekculture/the-following-article-describes-a-simple-approach-to-solving-a-common-problem-in-robotics-8276d0a6caee" target="_blank">Spatial Math in Robotics — Markus Buchholz (Medium)</a></li>
-                  <li><a href="https://ocw.mit.edu/courses/18-06-linear-algebra-spring-2010/video_galleries/video-lectures/" target="_blank">Linear Algebra — MIT OCW</a></li>
-                  <li><a href="https://www.andre-gaschler.com/rotationconverter/" target="_blank">Rotation Converter — Andre Gaschler</a></li>
-                  <li><a href="https://www.vlab.andcollege.du.ac.in/phySc/mpPhy/euler%20method/euler-sim.html" target="_blank">Euler's Method Simulation — Virtual Labs</a></li>
-                  <li><a href="https://python.plainenglish.io/reference-frame-transformations-in-python-with-numpy-and-matplotlib-6adeb901e0b0" target="_blank">Reference Frame Transformations in Python (NumPy/Matplotlib)</a></li>
-                  <li><a href="https://robotacademy.net.au/masterclass/paths-and-trajectories/" target="_blank">Paths and Trajectories — Robot Academy</a></li>
-                </ul>
-              </div>
-            </div>
+<!-- ================================================================
+     PAGE CONTENT
+     ================================================================ -->
+<div class="page-wrap">
 
-            <!-- Books & Additional Resources -->
-            <div class="acc acc-nested">
-              <input type="checkbox" id="acc-mech-books">
-              <label for="acc-mech-books" class="acc-head">Books & Additional Resources</label>
-              <div class="acc-content">
-                <ul class="alt list-animated">
-                  <li><a href="" target="_blank"></a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
+  <div class="page-hero reveal">
+    <p class="section-label">// technical bookmarks</p>
+    <h1>System.Resources</h1>
+    <p>
+      A curated directory of tools, docs, and references that actually helped.
+      Organised by domain — click a category to expand.
+    </p>
+  </div>
+
+  <div class="content-wrap">
+
+    <!-- Filesystem terminal -->
+    <div class="terminal reveal" style="margin-bottom:2.5rem;max-width:480px">
+      <div class="terminal-topbar">
+        <div class="tb-dot r"></div><div class="tb-dot y"></div><div class="tb-dot g"></div>
+        <span>~/resources/</span>
+      </div>
+      <div class="terminal-body">
+        <div><span class="t-prompt">~/&gt; </span><span class="t-cmd">tree resources/ -L 1</span></div>
+        <div class="t-out" style="margin-top:.4rem">
+          <span class="t-key">resources/</span><br>
+          <span class="t-dim">├── </span><span class="t-val">mathematics/</span><br>
+          <span class="t-dim">├── </span><span class="t-val">electronics/</span><br>
+          <span class="t-dim">├── </span><span class="t-val">robotics/</span><br>
+          <span class="t-dim">│&nbsp;&nbsp; ├── </span><span class="t-val">ros/</span><br>
+          <span class="t-dim">│&nbsp;&nbsp; └── </span><span class="t-val">ros2/</span><br>
+          <span class="t-dim">└── </span><span class="t-val">programming/</span>
         </div>
-
-        <!-- ======================= ELECTRONICS ======================= -->
-        <div class="acc">
-          <input type="checkbox" id="acc-elec">
-          <label for="acc-elec" class="acc-head">Electronics</label>
-          <div class="acc-content">
-            <div class="acc acc-nested">
-              <input type="checkbox" id="acc-elec-links">
-              <label for="acc-elec-links" class="acc-head">Curated Links</label>
-              <div class="acc-content">
-                <ul class="alt list-animated">
-                  <li><a href="https://www.best-microcontroller-projects.com/mcp23017.html" target="_blank">MCP23017 I/O Expander</a></li>
-                  <li><a href="https://circuitglobe.com/torque-equation-of-dc-motor.html" target="_blank">Torque Equation of DC Motor</a></li>
-                  <li><a href="https://itechworld.com.au/blogs/learn/102204998-how-to-calculate-your-solar-power-requirements" target="_blank">Calculate Solar Power Requirements</a></li>
-                  <li><a href="https://www.youtube.com/@ELECTRONOOBS" target="_blank">ELECTRONOOBS (YouTube)</a></li>
-                  <li><a href="https://www.youtube.com/@GreatScottLab" target="_blank">GreatScott! (YouTube)</a></li>
-                  <li><a href="https://johanschwind.medium.com/electronics-and-c-programming-for-a-mobile-robot-d40ae60608da" target="_blank">Electronics & C for a Mobile Robot</a></li>
-                  <li><a href="https://www.tytorobotics.com/blogs/articles/how-to-calculate-motor-poles-and-brushless-motor-kv" target="_blank">Motor Poles & KV</a></li>
-                  <li><a href="https://www.morphedo.com/blog/introduction-to-embedded-firmware-development" target="_blank">Intro to Embedded Firmware</a></li>
-                </ul>
-              </div>
-            </div>
-
-            <div class="acc acc-nested">
-              <input type="checkbox" id="acc-elec-books">
-              <label for="acc-elec-books" class="acc-head">Books & Additional Resources</label>
-              <div class="acc-content">
-                <ul class="alt list-animated">
-                  <!-- add your power/PCB books here -->
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- ======================= ROBOTICS ======================= -->
-        <div class="acc">
-          <input type="checkbox" id="acc-robotics">
-          <label for="acc-robotics" class="acc-head">Robotics</label>
-          <div class="acc-content">
-            <div class="acc acc-nested">
-              <input type="checkbox" id="acc-robotics-links">
-              <label for="acc-robotics-links" class="acc-head">Curated Links</label>
-              <div class="acc-content">
-                <ul class="alt list-animated">
-                  <li><a href="https://modernrobotics.northwestern.edu/nu-gm-book-resource/foundations-of-robot-motion/" target="_blank">Foundations of Robot Motion — Modern Robotics</a></li>
-                  <li><a href="https://www.raspberrypi.org/documentation/configuration/wireless/headless.md" target="_blank">Raspberry Pi Headless Setup</a></li>
-                  <li><a href="https://asianroboticsreview.com/home584-html" target="_blank">Asian Robotics Review</a></li>
-                  <li><a href="https://in.mathworks.com/solutions/robotics.html" target="_blank">MATLAB Robotics Solutions</a></li>
-                  <li><a href="https://www.therobotreport.com/" target="_blank">The Robot Report</a></li>
-                </ul>
-              </div>
-            </div>
-
-            <!-- ROS -->
-            <div class="acc acc-nested">
-              <input type="checkbox" id="acc-ros">
-              <label for="acc-ros" class="acc-head">ROS</label>
-              <div class="acc-content">
-                <ul class="alt list-animated">
-                  <li><a href="https://hackaday.io/project/27572-ros-navigation-stack-setup/details" target="_blank">ROS Navigation Stack Setup — Hackaday</a></li>
-                  <li><a href="https://automaticaddison.com/how-to-make-an-autonomous-wheeled-robot-using-ros/" target="_blank">Autonomous Wheeled Robot — Automatic Addison</a></li>
-                  <li><a href="https://www.clearpathrobotics.com/assets/guides/kinetic/ros/ROS%20Navigation%20Basics.html" target="_blank">ROS Navigation Basics — Clearpath</a></li>
-                  <li><a href="https://wiki.ros.org/ROS/Tutorials" target="_blank">ROS Tutorials — ROS Wiki</a></li>
-                  <li><a href="https://www.edx.org/learn/technology/eth-zurich-self-driving-cars-with-duckietown" target="_blank">Self-Driving Cars with Duckietown — edX</a></li>
-                </ul>
-              </div>
-            </div>
-
-            <!-- ROS 2 -->
-            <div class="acc acc-nested">
-              <input type="checkbox" id="acc-ros2">
-              <label for="acc-ros2" class="acc-head">ROS 2</label>
-              <div class="acc-content">
-                <ul class="alt list-animated">
-                  <li><a href="https://docs.ros.org/en/humble/" target="_blank">ROS 2 Humble Docs</a></li>
-                  <li><a href="https://husarion.com/tutorials/ros2-tutorials/1-ros2-introduction/" target="_blank">ROS 2 Introduction — Husarion</a></li>
-                  <li><a href="https://learnopencv.com/robot-operating-system-introduction/" target="_blank">Intro to ROS 2 — LearnOpenCV</a></li>
-                  <li><a href="https://roboticsbackend.com/category/ros2/" target="_blank">ROS 2 Resources — Robotics Backend</a></li>
-                </ul>
-              </div>
-            </div>
-
-            <!-- Books & Additional Resources -->
-            <div class="acc acc-nested">
-              <input type="checkbox" id="acc-robotics-books">
-              <label for="acc-robotics-books" class="acc-head">Books & Additional Resources</label>
-              <div class="acc-content">
-                <ul class="alt list-animated">
-                  <li><a href="https://github.com/Introduction-to-Autonomous-Robots/Introduction-to-Autonomous-Robots" target="_blank">Introduction to Autonomous Robots — GitHub</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- ======================= PROGRAMMING ======================= -->
-        <div class="acc">
-          <input type="checkbox" id="acc-prog">
-          <label for="acc-prog" class="acc-head">Programming</label>
-          <div class="acc-content">
-
-            <div class="acc acc-nested">
-              <input type="checkbox" id="acc-cpp">
-              <label for="acc-cpp" class="acc-head">C++</label>
-              <div class="acc-content">
-                <ul class="alt list-animated">
-                  <li><a href="https://cplusplus.com/reference/" target="_blank">cplusplus.com — Reference</a></li>
-                </ul>
-              </div>
-            </div>
-
-            <div class="acc acc-nested">
-              <input type="checkbox" id="acc-python">
-              <label for="acc-python" class="acc-head">Python</label>
-              <div class="acc-content">
-                <ul class="alt list-animated">
-                  <li><a href="https://www.py4e.com/" target="_blank">PY4E — Python for Everybody</a></li>
-                  <li><a href="https://ocw.mit.edu/courses/18-06-linear-algebra-spring-2010/video_galleries/video-lectures/" target="_blank">Linear Algebra — MIT OCW</a></li>
-                </ul>
-              </div>
-            </div>
-
-            <div class="acc acc-nested">
-              <input type="checkbox" id="acc-prog-books">
-              <label for="acc-prog-books" class="acc-head">Books & Additional Resources</label>
-              <div class="acc-content">
-                <ul class="alt list-animated">
-                  <li><a href="https://www.youtube.com/@CodeForYourself/featured" target="_blank">Code For Yourself — YouTube Channel</a></li>
-                </ul>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-      </section>
+      </div>
     </div>
 
-    <!-- Footer -->
-    <footer id="footer">
-      <div class="inner">
-        <ul class="icons">
-          <li><a href="https://www.linkedin.com/in/ibrahimmemon18/" class="icon brands fa-linkedin"><span class="label">linkedin</span></a></li>
-          <li><a href="https://github.com/ibrahim-1811" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-          <li><a href="mailto:immemon1811@gmail.com" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
-        </ul>
-        <ul class="copyright">
-          <li>&copy; Mohammad Memon</li>
-        </ul>
+    <!-- ── Mathematics ── -->
+    <div class="acc-block reveal">
+      <input type="checkbox" class="acc-toggle" id="acc-math">
+      <label class="acc-label" for="acc-math">
+        <span class="acc-icon"><i class="fas fa-square-root-alt"></i></span>
+        Mathematics
+        <span class="acc-chevron"><i class="fas fa-chevron-down"></i></span>
+      </label>
+      <div class="acc-body">
+
+        <div class="acc-nested">
+          <input type="checkbox" class="acc-toggle" id="acc-math-links">
+          <label class="acc-label" for="acc-math-links">
+            <span class="acc-icon"><i class="fas fa-link"></i></span>
+            Curated Links
+            <span class="acc-chevron"><i class="fas fa-chevron-down"></i></span>
+          </label>
+          <div class="acc-body">
+            <ul class="acc-links">
+              <li><a href="https://www.tu-chemnitz.de/informatik/KI/edu/robotik/ws2017/trans.mat.pdf" target="_blank" rel="noopener">Mathematics in Robotics — TU Chemnitz (PDF)</a></li>
+              <li><a href="https://automaticaddison.com/how-to-describe-the-rotation-of-a-robot-in-3d/" target="_blank" rel="noopener">How to Describe the Rotation of a Robot in 3D — Automatic Addison</a></li>
+              <li><a href="https://medium.com/geekculture/the-following-article-describes-a-simple-approach-to-solving-a-common-problem-in-robotics-8276d0a6caee" target="_blank" rel="noopener">Spatial Math in Robotics — Markus Buchholz (Medium)</a></li>
+              <li><a href="https://ocw.mit.edu/courses/18-06-linear-algebra-spring-2010/video_galleries/video-lectures/" target="_blank" rel="noopener">Linear Algebra — MIT OCW</a></li>
+              <li><a href="https://www.andre-gaschler.com/rotationconverter/" target="_blank" rel="noopener">Rotation Converter Tool — Andre Gaschler</a></li>
+              <li><a href="https://www.vlab.andcollege.du.ac.in/phySc/mpPhy/euler%20method/euler-sim.html" target="_blank" rel="noopener">Euler's Method Simulation — Virtual Labs</a></li>
+              <li><a href="https://python.plainenglish.io/reference-frame-transformations-in-python-with-numpy-and-matplotlib-6adeb901e0b0" target="_blank" rel="noopener">Reference Frame Transformations in Python (NumPy + Matplotlib)</a></li>
+              <li><a href="https://robotacademy.net.au/masterclass/paths-and-trajectories/" target="_blank" rel="noopener">Paths and Trajectories — Robot Academy</a></li>
+            </ul>
+          </div>
+        </div>
+
       </div>
-    </footer>
+    </div>
 
-    <!-- Scripts -->
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/jquery.poptrox.min.js"></script>
-    <script src="assets/js/browser.min.js"></script>
-    <script src="assets/js/breakpoints.min.js"></script>
-    <script src="assets/js/util.js"></script>
-    <script src="assets/js/main.js"></script>
+    <!-- ── Electronics ── -->
+    <div class="acc-block reveal">
+      <input type="checkbox" class="acc-toggle" id="acc-elec">
+      <label class="acc-label" for="acc-elec">
+        <span class="acc-icon"><i class="fas fa-microchip"></i></span>
+        Electronics
+        <span class="acc-chevron"><i class="fas fa-chevron-down"></i></span>
+      </label>
+      <div class="acc-body">
 
-    <!-- Scroll reveal for sections -->
-    <script>
-      (function(){
-        const els=[...document.querySelectorAll('.reveal')];
-        if(!('IntersectionObserver' in window)){ els.forEach(e=>e.classList.add('is-visible')); return; }
-        const io=new IntersectionObserver((entries)=>{
-          entries.forEach(e=>{
-            if(e.isIntersecting){ e.target.classList.add('is-visible'); io.unobserve(e.target); }
-          });
-        },{ threshold: 0.12 });
-        els.forEach(e=>io.observe(e));
-      })();
-    </script>
+        <div class="acc-nested">
+          <input type="checkbox" class="acc-toggle" id="acc-elec-links">
+          <label class="acc-label" for="acc-elec-links">
+            <span class="acc-icon"><i class="fas fa-link"></i></span>
+            Curated Links
+            <span class="acc-chevron"><i class="fas fa-chevron-down"></i></span>
+          </label>
+          <div class="acc-body">
+            <ul class="acc-links">
+              <li><a href="https://www.best-microcontroller-projects.com/mcp23017.html" target="_blank" rel="noopener">MCP23017 I/O Expander Guide</a></li>
+              <li><a href="https://circuitglobe.com/torque-equation-of-dc-motor.html" target="_blank" rel="noopener">Torque Equation of DC Motor — Circuit Globe</a></li>
+              <li><a href="https://itechworld.com.au/blogs/learn/102204998-how-to-calculate-your-solar-power-requirements" target="_blank" rel="noopener">Calculate Solar Power Requirements</a></li>
+              <li><a href="https://www.youtube.com/@ELECTRONOOBS" target="_blank" rel="noopener">ELECTRONOOBS — YouTube Channel</a></li>
+              <li><a href="https://www.youtube.com/@GreatScottLab" target="_blank" rel="noopener">GreatScott! — YouTube Channel</a></li>
+              <li><a href="https://johanschwind.medium.com/electronics-and-c-programming-for-a-mobile-robot-d40ae60608da" target="_blank" rel="noopener">Electronics &amp; C Programming for a Mobile Robot</a></li>
+              <li><a href="https://www.tytorobotics.com/blogs/articles/how-to-calculate-motor-poles-and-brushless-motor-kv" target="_blank" rel="noopener">Motor Poles &amp; Brushless Motor KV — Tyto Robotics</a></li>
+              <li><a href="https://www.morphedo.com/blog/introduction-to-embedded-firmware-development" target="_blank" rel="noopener">Introduction to Embedded Firmware Development</a></li>
+            </ul>
+          </div>
+        </div>
 
-    <!-- Stagger in list items when accordion opens -->
-    <script>
-      (function(){
-        document.addEventListener('change', (e)=>{
-          const box = e.target;
-          if(box.matches('input[type="checkbox"]')){
-            const content = box.parentElement.querySelector('.acc-content');
-            if(!content) return;
-            // add a class to trigger reflow-based stagger on newly opened sections
-            if(box.checked){
-              content.classList.add('opening');
-              setTimeout(()=>content.classList.remove('opening'), 400);
-            }
-          }
-        });
-      })();
-    </script>
-    
-  <!-- <div class="test gradient"></div> -->
+      </div>
+    </div>
 
+    <!-- ── Robotics ── -->
+    <div class="acc-block reveal">
+      <input type="checkbox" class="acc-toggle" id="acc-robotics">
+      <label class="acc-label" for="acc-robotics">
+        <span class="acc-icon"><i class="fas fa-robot"></i></span>
+        Robotics
+        <span class="acc-chevron"><i class="fas fa-chevron-down"></i></span>
+      </label>
+      <div class="acc-body">
 
+        <div class="acc-nested">
+          <input type="checkbox" class="acc-toggle" id="acc-robotics-gen">
+          <label class="acc-label" for="acc-robotics-gen">
+            <span class="acc-icon"><i class="fas fa-link"></i></span>
+            General Resources
+            <span class="acc-chevron"><i class="fas fa-chevron-down"></i></span>
+          </label>
+          <div class="acc-body">
+            <ul class="acc-links">
+              <li><a href="https://modernrobotics.northwestern.edu/nu-gm-book-resource/foundations-of-robot-motion/" target="_blank" rel="noopener">Foundations of Robot Motion — Northwestern / Modern Robotics</a></li>
+              <li><a href="https://www.raspberrypi.org/documentation/configuration/wireless/headless.md" target="_blank" rel="noopener">Raspberry Pi Headless Setup</a></li>
+              <li><a href="https://asianroboticsreview.com/home584-html" target="_blank" rel="noopener">Asian Robotics Review</a></li>
+              <li><a href="https://in.mathworks.com/solutions/robotics.html" target="_blank" rel="noopener">MATLAB Robotics Solutions</a></li>
+              <li><a href="https://www.therobotreport.com/" target="_blank" rel="noopener">The Robot Report</a></li>
+              <li><a href="https://github.com/Introduction-to-Autonomous-Robots/Introduction-to-Autonomous-Robots" target="_blank" rel="noopener">Introduction to Autonomous Robots — GitHub Book</a></li>
+            </ul>
+          </div>
+        </div>
 
-  </body>
+        <div class="acc-nested">
+          <input type="checkbox" class="acc-toggle" id="acc-ros">
+          <label class="acc-label" for="acc-ros">
+            <span class="acc-icon"><i class="fas fa-cogs"></i></span>
+            ROS (1)
+            <span class="acc-chevron"><i class="fas fa-chevron-down"></i></span>
+          </label>
+          <div class="acc-body">
+            <ul class="acc-links">
+              <li><a href="https://hackaday.io/project/27572-ros-navigation-stack-setup/details" target="_blank" rel="noopener">ROS Navigation Stack Setup — Hackaday</a></li>
+              <li><a href="https://automaticaddison.com/how-to-make-an-autonomous-wheeled-robot-using-ros/" target="_blank" rel="noopener">Autonomous Wheeled Robot with ROS — Automatic Addison</a></li>
+              <li><a href="https://www.clearpathrobotics.com/assets/guides/kinetic/ros/ROS%20Navigation%20Basics.html" target="_blank" rel="noopener">ROS Navigation Basics — Clearpath</a></li>
+              <li><a href="https://wiki.ros.org/ROS/Tutorials" target="_blank" rel="noopener">ROS Tutorials — ROS Wiki (official)</a></li>
+              <li><a href="https://www.edx.org/learn/technology/eth-zurich-self-driving-cars-with-duckietown" target="_blank" rel="noopener">Self-Driving Cars with Duckietown — ETH Zürich (edX)</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="acc-nested">
+          <input type="checkbox" class="acc-toggle" id="acc-ros2">
+          <label class="acc-label" for="acc-ros2">
+            <span class="acc-icon"><i class="fas fa-cogs"></i></span>
+            ROS 2
+            <span class="acc-chevron"><i class="fas fa-chevron-down"></i></span>
+          </label>
+          <div class="acc-body">
+            <ul class="acc-links">
+              <li><a href="https://docs.ros.org/en/humble/" target="_blank" rel="noopener">ROS 2 Humble Documentation (official)</a></li>
+              <li><a href="https://husarion.com/tutorials/ros2-tutorials/1-ros2-introduction/" target="_blank" rel="noopener">ROS 2 Introduction — Husarion</a></li>
+              <li><a href="https://learnopencv.com/robot-operating-system-introduction/" target="_blank" rel="noopener">Intro to ROS 2 — LearnOpenCV</a></li>
+              <li><a href="https://roboticsbackend.com/category/ros2/" target="_blank" rel="noopener">ROS 2 Resources — Robotics Backend</a></li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── Programming ── -->
+    <div class="acc-block reveal">
+      <input type="checkbox" class="acc-toggle" id="acc-prog">
+      <label class="acc-label" for="acc-prog">
+        <span class="acc-icon"><i class="fas fa-code"></i></span>
+        Programming
+        <span class="acc-chevron"><i class="fas fa-chevron-down"></i></span>
+      </label>
+      <div class="acc-body">
+
+        <div class="acc-nested">
+          <input type="checkbox" class="acc-toggle" id="acc-cpp">
+          <label class="acc-label" for="acc-cpp">
+            <span class="acc-icon"><i class="fas fa-file-code"></i></span>
+            C++
+            <span class="acc-chevron"><i class="fas fa-chevron-down"></i></span>
+          </label>
+          <div class="acc-body">
+            <ul class="acc-links">
+              <li><a href="https://cplusplus.com/reference/" target="_blank" rel="noopener">cplusplus.com — Standard Library Reference</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="acc-nested">
+          <input type="checkbox" class="acc-toggle" id="acc-python">
+          <label class="acc-label" for="acc-python">
+            <span class="acc-icon"><i class="fab fa-python"></i></span>
+            Python
+            <span class="acc-chevron"><i class="fas fa-chevron-down"></i></span>
+          </label>
+          <div class="acc-body">
+            <ul class="acc-links">
+              <li><a href="https://www.py4e.com/" target="_blank" rel="noopener">PY4E — Python for Everybody</a></li>
+              <li><a href="https://ocw.mit.edu/courses/18-06-linear-algebra-spring-2010/video_galleries/video-lectures/" target="_blank" rel="noopener">Linear Algebra — MIT OCW (useful for NumPy)</a></li>
+              <li><a href="https://www.youtube.com/@CodeForYourself/featured" target="_blank" rel="noopener">Code For Yourself — YouTube Channel</a></li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Add more note -->
+    <div class="panel reveal" style="text-align:center;padding:2.5rem;margin-top:1.2rem">
+      <i class="fas fa-folder-plus" style="font-size:1.8rem;color:var(--clr-cyan);opacity:.3;display:block;margin-bottom:.8rem"></i>
+      <p style="font-family:var(--font-mono);font-size:.8rem;color:var(--clr-text-dim)">More categories coming — Machine Learning, Simulation, PCB Design.</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- ================================================================
+     FOOTER
+     ================================================================ -->
+<footer>
+  <p>
+    <a href="index.html">← Back to Portfolio</a> ·
+    <span>Mohammad Ibrahim Memon</span> ·
+    Robotics Engineer
+  </p>
+  <p style="margin-top:.4rem;font-size:.65rem;opacity:.5">ROS2 · Embedded · Autonomous Systems · Bonn, Germany</p>
+</footer>
+
+<script>
+/* Dropdown */
+const navMore = document.getElementById('nav-more');
+document.getElementById('nav-more-toggle').addEventListener('click', (e) => {
+  e.stopPropagation();
+  navMore.classList.toggle('open');
+});
+document.addEventListener('click', () => navMore.classList.remove('open'));
+
+/* Mobile menu */
+document.getElementById('hamburger').addEventListener('click', () => {
+  document.getElementById('mobile-menu').classList.toggle('open');
+});
+
+/* Reveal */
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+}, { threshold: .08 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
 </html>
-
-
