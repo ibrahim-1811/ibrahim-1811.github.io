@@ -24,3 +24,5 @@ node_modules/
 dist/
 test-results/
 playwright-report/
+
+review-artifacts/

@@ -8,8 +8,14 @@ import { capabilities } from './capabilities';
 
 describe('content consumed by the homepage', () => {
   it('has stable unique identifiers and the approved project priority', () => {
-    const slugs = featuredProjects.map(project => project.slug);
-    expect(slugs).toEqual(['simplr','mrta','invite-industrial-manipulation','intrinsic-ai-challenge','robothon-2025']);
+    const slugs = featuredProjects.map((project) => project.slug);
+    expect(slugs).toEqual([
+      'simplr',
+      'mrta',
+      'invite-industrial-manipulation',
+      'intrinsic-ai-challenge',
+      'robothon-2025',
+    ]);
     expect(new Set(slugs).size).toBe(slugs.length);
     expect(experience[0].company).toBe('INVITE GmbH');
   });
@@ -28,13 +34,19 @@ describe('content consumed by the homepage', () => {
     }
   });
   it('distinguishes publications, research projects and patent publications', () => {
-    expect(research.map(item => item.type)).toEqual(['Publication','Research project','Patent publication']);
+    expect(research.map((item) => item.type)).toEqual([
+      'Publication',
+      'Research project',
+      'Patent publication',
+    ]);
     expect(research[0].venue).toBe('PlanRob, ICAPS 2026');
-    expect(research.every(item => item.href === null)).toBe(true);
+    expect(research.every((item) => item.href === null)).toBe(true);
   });
   it('uses candidate education status and plain capability lists', () => {
     expect(profile.education.status).toBe('M.Sc. candidate');
     expect(profile.education.expected).toBe('June 2027');
-    expect(capabilities.every(group => group.items.every(item => typeof item === 'string'))).toBe(true);
+    expect(
+      capabilities.every((group) => group.items.every((item) => typeof item === 'string')),
+    ).toBe(true);
   });
 });

@@ -6,7 +6,9 @@ export function readStoredTheme() {
   try {
     const value = localStorage.getItem(THEME_STORAGE_KEY);
     return isTheme(value) ? value : null;
-  } catch { return null; }
+  } catch {
+    return null;
+  }
 }
 
 export function setDocumentTheme(theme) {

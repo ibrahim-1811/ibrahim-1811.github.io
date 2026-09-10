@@ -7,17 +7,60 @@
     <script>
       (() => {
         let stored;
-        try { stored = localStorage.getItem('portfolio-theme'); } catch {}
-        const theme = stored === 'light' || stored === 'dark' ? stored
-          : (window.matchMedia?.('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        try {
+          stored = localStorage.getItem('portfolio-theme');
+        } catch {}
+        const theme =
+          stored === 'light' || stored === 'dark'
+            ? stored
+            : window.matchMedia?.('(prefers-color-scheme: dark)').matches
+              ? 'dark'
+              : 'light';
         document.documentElement.dataset.theme = theme;
         document.documentElement.style.colorScheme = theme;
       })();
+    </script>
+    <meta
+      name="description"
+      content="Mohammad Ibrahim Memon is a robotics engineer working on industrial manipulation, Physical AI, robot learning, digital twins, ROS 2 and NVIDIA Isaac Sim."
+    />
+    <link rel="canonical" href="https://mohammadmemon.com/" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Mohammad Ibrahim Memon | Robotics Engineer" />
+    <meta
+      property="og:description"
+      content="Industrial manipulation, Physical AI, robot learning, digital twins and explainable autonomous systems."
+    />
+    <meta property="og:url" content="https://mohammadmemon.com/" />
+    <meta name="twitter:card" content="summary" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Mohammad Ibrahim Memon",
+        "jobTitle": "Robotics Engineer",
+        "url": "https://mohammadmemon.com/",
+        "sameAs": ["https://github.com/ibrahim-1811", "https://www.linkedin.com/in/ibrahimmemon18"],
+        "address": { "@type": "PostalAddress", "addressLocality": "Bonn", "addressCountry": "DE" },
+        "description": "Robotics engineer and M.Sc. Autonomous Systems candidate at Hochschule Bonn-Rhein-Sieg."
+      }
     </script>
     <title>Mohammad Ibrahim Memon | Robotics Engineer</title>
   </head>
   <body>
     <div id="root"></div>
+    <noscript
+      ><main style="max-width: 45rem; margin: 4rem auto; padding: 1.5rem; font-family: system-ui">
+        <h1>Mohammad Ibrahim Memon</h1>
+        <p>Robotics Engineer · Industrial Manipulation · Physical AI · Autonomous Systems</p>
+        <p>
+          The interactive portfolio requires JavaScript. You can still
+          <a href="/Mohammad_Memon_CV_2026.pdf">download my CV</a> or
+          <a href="mailto:immemon1811@gmail.com">contact me by email</a>.
+        </p>
+      </main></noscript
+    >
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

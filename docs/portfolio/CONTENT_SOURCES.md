@@ -16,7 +16,7 @@ Professional source of truth: `Mohammad_Memon_CV_2026 (Copy).pdf`, copied byte-f
 | Fault-diagnosis project date | Omitted: plan says 2026, legacy project data says 2024, latest CV gives no year |
 | Employer content | High-level public CV scope only; no workcell photographs or confidential technical artifacts |
 | CV portrait | Exact JPEG extracted with `pdfimages -j`; 897 × 1280; no retouching |
-| MRTA interface image | `images/ILP_Project.jpg`, explicitly mapped to task allocation in `assets/js/projects-data.js`; caption says existing research prototype |
+| MRTA interface image | `images/ILP_Project.jpg`, explicitly mapped to task allocation in `assets/js/projects-data.js`; caption says existing research prototype; resized to 1680 × 920 WebP for delivery |
 | Robothon image | `images/thumbs/multi_robot/kinova_arm.png`; associated with Robothon in Git commit `e8add90:index.html` |
 | GitHub / LinkedIn | Updated CV handles and baseline homepage links |
 | Capabilities | Updated CV and approved positioning; unsupported RealSense/ZED specifics omitted |

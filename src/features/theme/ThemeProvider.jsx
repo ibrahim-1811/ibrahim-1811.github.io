@@ -1,11 +1,19 @@
 import { createContext, useContext, useEffect, useLayoutEffect, useState } from 'react';
-import { isTheme, readStoredTheme, setDocumentTheme, SYSTEM_THEME_QUERY, THEME_STORAGE_KEY } from './theme';
+import {
+  isTheme,
+  readStoredTheme,
+  setDocumentTheme,
+  SYSTEM_THEME_QUERY,
+  THEME_STORAGE_KEY,
+} from './theme';
 
 const ThemeContext = createContext(null);
 
 export function ThemeProvider({ children }) {
   const [preference, setPreference] = useState(readStoredTheme);
-  const [systemDark, setSystemDark] = useState(() => window.matchMedia?.(SYSTEM_THEME_QUERY).matches ?? false);
+  const [systemDark, setSystemDark] = useState(
+    () => window.matchMedia?.(SYSTEM_THEME_QUERY).matches ?? false,
+  );
   const theme = preference ?? (systemDark ? 'dark' : 'light');
 
   useLayoutEffect(() => setDocumentTheme(theme), [theme]);
@@ -29,10 +37,14 @@ export function ThemeProvider({ children }) {
   const toggleTheme = () => {
     const next = theme === 'dark' ? 'light' : 'dark';
     setPreference(next);
-    try { localStorage.setItem(THEME_STORAGE_KEY, next); } catch { /* Keep an in-memory preference when storage is unavailable. */ }
+    try {
+      localStorage.setItem(THEME_STORAGE_KEY, next);
+    } catch {
+      /* Keep an in-memory preference when storage is unavailable. */
+    }
   };
 
-  return <ThemeContext.Provider value={{theme, toggleTheme}}>{children}</ThemeContext.Provider>;
+  return <ThemeContext.Provider value={{ theme, toggleTheme }}>{children}</ThemeContext.Provider>;
 }
 
 export function useTheme() {
