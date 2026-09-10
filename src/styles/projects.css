@@ -637,15 +637,20 @@
   }
 }
 @container card-media (max-width: 27rem) {
+  .project-card__media--diagram {
+    padding: 0.8rem 1rem;
+  }
   .system-diagram--card .system-diagram__parts {
-    margin-top: 0.55rem;
+    margin-top: 0.5rem;
   }
   .system-diagram--card.system-diagram--stack .system-part {
-    grid-template-columns: minmax(0, 1fr);
-    padding: 0.38rem 0.65rem;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0.5rem;
+    padding: 0.3rem 0.6rem;
   }
+  /* Keep "Future direction" visible so planned work never reads as delivered. */
   .system-diagram--card.system-diagram--stack .system-part__name,
-  .system-diagram--card .status-badge {
+  .system-diagram--card .system-part:not([data-tone='future']) .status-badge {
     display: none;
   }
   .system-diagram--card.system-diagram--flow .system-part__detail {

@@ -54,7 +54,12 @@ export default function YouTubeEmbed({ media, playing, onPlay }) {
           referrerPolicy="strict-origin-when-cross-origin"
         />
       ) : (
-        <button type="button" className="video-frame__facade" onClick={play}>
+        <button
+          type="button"
+          className="video-frame__facade"
+          aria-label={`Play video: ${media.title}`}
+          onClick={play}
+        >
           {poster && (
             <img
               key={poster}
@@ -74,9 +79,7 @@ export default function YouTubeEmbed({ media, playing, onPlay }) {
           <span className="video-frame__play">
             <Icon name="play" size={22} />
           </span>
-          <span className="video-frame__label">
-            Play video<span className="sr-only">: {media.title}</span>
-          </span>
+          <span className="video-frame__label">Play video</span>
         </button>
       )}
     </div>

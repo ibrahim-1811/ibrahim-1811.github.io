@@ -81,14 +81,13 @@ html.has-open-dialog body {
   gap: 1.75rem clamp(2rem, 5vw, 5rem);
 }
 .project-dialog__meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.25rem 0.8rem;
   color: var(--text-muted);
   font-family: var(--font-mono);
   font-size: 0.7rem;
+  line-height: 1.7;
 }
 .project-dialog__meta span {
+  margin-right: 0.8rem;
   color: var(--accent);
   font-weight: 600;
 }

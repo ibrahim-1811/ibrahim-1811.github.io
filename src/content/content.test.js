@@ -38,7 +38,7 @@ describe('project inventory and hierarchy', () => {
     expect(slugsIn('archive')).toEqual([
       'multi-robot-task-distribution',
       'ur5-pick-and-place',
-      'underwater-rov',
+      'underwater-vehicle',
       'box-it',
       'home-automation-circuit',
     ]);

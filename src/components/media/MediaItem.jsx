@@ -61,9 +61,9 @@ export default function MediaItem({ item, variant = 'tile', playing, onPlay }) {
               href={video.watchUrl}
               target="_blank"
               rel="noopener noreferrer"
+              aria-label={`YouTube: ${item.title} (opens in a new tab)`}
             >
               YouTube
-              <span className="sr-only">: {item.title}, opens in a new tab</span>
               <Icon name="external" size={13} />
             </a>
           )}

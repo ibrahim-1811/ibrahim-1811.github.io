@@ -133,7 +133,8 @@ export const projects = [
         },
         {
           name: 'Robot & task state',
-          detail: 'Symbolic world state: robot availability, battery and order progress',
+          detail:
+            'Symbolic world state as Prolog facts, e.g. idle, closest and most_charged robots',
           status: 'implemented',
         },
         {
@@ -199,8 +200,9 @@ export const projects = [
       {
         type: 'youtube',
         url: 'https://youtu.be/m3gBvXjOTYQ',
-        title: 'Explainable task allocation — system demonstration',
-        caption: 'Demonstration of the explainable warehouse task-allocation system.',
+        title: 'Explainable task allocation — project demo (2025)',
+        caption:
+          'Earlier demo: the task manager turns robot state into facts (idle, closest, most_charged) and an ILP rule selects the robot.',
         role: 'hero',
         poster: '/images/projects/mrta-control.webp',
         posterAlt:
@@ -362,8 +364,8 @@ export const projects = [
       {
         type: 'youtube',
         url: 'https://www.youtube.com/watch?v=FcK0cvRkM-Q',
-        title: 'Robothon 2025 — Kinova Gen3 task-board run',
-        caption: 'The Kinova Gen3 working through the Robothon task board.',
+        title: 'Robothon 2025 — first trial run',
+        caption: 'Team ctrl_bot’s first trial on the Kinova Gen3 task board.',
         role: 'hero',
       },
       {
@@ -412,12 +414,12 @@ export const projects = [
     tier: 'supporting',
     title: 'Autonomous Mobile Robot (AMR)',
     shortTitle: 'Autonomous Mobile Robot',
-    subtitle: 'From circuit design to autonomous navigation',
+    subtitle: 'Navigation from simulation to real hardware',
     category: ['Mobile robotics', 'Navigation', 'Hardware'],
     summary:
-      'An AMR built end to end — circuit layout and power system through ROS navigation: LiDAR SLAM, A* planning, potential-field avoidance and frontier exploration.',
+      'Mobile-robot autonomy across simulation and real hardware: LiDAR SLAM, A* global planning, potential-field obstacle avoidance and frontier exploration.',
     description:
-      'An autonomous mobile robot designed end to end: electronics, power system and the full ROS software stack. The stack was built and tested in simulation first, then deployed on the physical robot for navigation to coordinate goals and autonomous exploration of unknown spaces.',
+      'Autonomous navigation for mobile robots, developed in simulation and run on real hardware: LiDAR-based SLAM for mapping, A* routes to coordinate goals, a potential-field local planner for obstacle avoidance and frontier-based exploration of unknown spaces. The original AMR build also covered the circuit layout and power system.',
     system: {
       layout: 'flow',
       title: 'Navigation stack',
@@ -429,9 +431,9 @@ export const projects = [
       ],
     },
     contribution: [
-      'Led the end-to-end design, including circuit layout, power system and full software-stack integration.',
-      'Built and tested the software stack in simulation: LiDAR-based SLAM, A* path planning and motor control.',
-      'Deployed navigation on the physical robot with A* global planning and a potential-field local planner.',
+      'Led the end-to-end design of an AMR, including circuit layout, power system and full software-stack integration.',
+      'Built and tested the navigation stack in simulation: LiDAR-based SLAM, A* path planning and motor control.',
+      'Ran A* global planning with a potential-field local planner for real-time obstacle avoidance on a physical robot.',
       'Implemented frontier-based exploration to map unknown environments autonomously.',
     ],
     hardware: ['LiDAR', 'Custom circuit layout and power system'],
@@ -450,7 +452,7 @@ export const projects = [
       {
         type: 'youtube',
         url: 'https://youtu.be/TIxDWtgllts',
-        title: 'Navigation on the physical robot',
+        title: 'Navigation on a physical robot',
         caption: 'A* global routing with a potential-field local planner for obstacle avoidance.',
         role: 'demo',
       },
@@ -577,7 +579,7 @@ export const projects = [
         type: 'youtube',
         url: 'https://youtu.be/asg0zFYG6K0',
         title: 'Multi-robot task distribution',
-        caption: 'Task distribution demonstration.',
+        caption: 'TurtleBot3 robots in Gazebo driven by the task-distribution nodes.',
         role: 'demo',
       },
       {
@@ -613,13 +615,13 @@ export const projects = [
     links: {},
   },
   {
-    slug: 'underwater-rov',
+    slug: 'underwater-vehicle',
     tier: 'archive',
-    title: 'Underwater ROV',
+    title: 'Underwater Vehicle',
     subtitle: 'Vehicle design for underwater exploration and inspection',
     category: ['Marine robotics', 'Mechanical design'],
     summary:
-      'An ROV for underwater exploration and inspection: six-DOF thruster layout, onboard camera, tethered power and communication, watertight enclosures and pool testing.',
+      'An underwater vehicle for exploration and inspection: six-DOF thruster layout, onboard camera, watertight enclosures and pool testing.',
     technologies: ['Thrusters', 'Waterproofing', 'CAD'],
     media: [
       {

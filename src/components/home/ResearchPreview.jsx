@@ -34,10 +34,11 @@ export default function ResearchPreview() {
                       type="button"
                       className="text-button"
                       aria-haspopup="dialog"
+                      aria-label={`View project: ${project.shortTitle}`}
                       data-project-trigger={project.slug}
                       onClick={(event) => openProject(project.slug, event.currentTarget)}
                     >
-                      View project<span className="sr-only">: {project.shortTitle}</span>
+                      View project
                       <Icon name="arrow" size={15} />
                     </button>
                   )}
