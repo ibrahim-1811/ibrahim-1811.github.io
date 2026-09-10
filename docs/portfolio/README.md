@@ -47,7 +47,7 @@ The approved design is:
 Flagship work:
 
 1. SIMPLR
-2. Explainable MRTA R&D
+2. Outcome-Aware ILP (explainable multi-robot task allocation R&D)
 3. INVITE industrial manipulation and digital twins
 4. Intrinsic AI for Industry Challenge
 5. Robothon 2025
@@ -68,6 +68,10 @@ Current research project title:
 `Outcome-Aware ILP for Explainable Grid-Aware Task Allocation in Multi-Robot Warehouse Systems`
 
 The portfolio should eventually show the actual warehouse simulation, architecture, allocation pipeline, explainability layer, experimental comparison, and research publication connection rather than describing it as a generic multi robot project.
+
+## Editing project content
+
+All project cards and dialogs are driven by `src/content/projects.js`. See `PROJECT_CONTENT_GUIDE.md` for adding projects, metrics, YouTube videos and images.
 
 ## Media
 
