@@ -21,8 +21,10 @@ const paths = {
       <path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5" />
     </>
   ),
+  'arrow-left': <path d="M20 12H4m7-7-7 7 7 7" />,
   menu: <path d="M4 7h16M4 17h16" />,
   close: <path d="m6 6 12 12M18 6 6 18" />,
+  play: <path d="M8 5.5v13l10.5-6.5z" fill="currentColor" />,
 };
 
 export default function Icon({ name = 'arrow', size = 20 }) {
