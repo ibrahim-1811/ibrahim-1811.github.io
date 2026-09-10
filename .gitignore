@@ -18,3 +18,9 @@ index_old.html
 
 # Node (if ever used locally)
 node_modules/
+
+# Isolated development and generated frontend output
+.worktrees/
+dist/
+test-results/
+playwright-report/
