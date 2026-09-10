@@ -166,9 +166,12 @@ test('applies the saved theme before the React bundle can execute', async ({ pag
   expect(await page.locator('html').evaluate((element) => element.style.colorScheme)).toBe('dark');
 });
 
-test('visible header labels match accessible names for voice control', async ({page}) => {
+test('visible header labels match accessible names for voice control', async ({ page }) => {
   await page.goto('/');
-  await expect(page.getByRole('heading',{level:1})).toBeVisible();
-  const result = await new AxeBuilder({page}).include('header').withRules(['label-content-name-mismatch']).analyze();
+  await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+  const result = await new AxeBuilder({ page })
+    .include('header')
+    .withRules(['label-content-name-mismatch'])
+    .analyze();
   expect(result.violations).toEqual([]);
 });
