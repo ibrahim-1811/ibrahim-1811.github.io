@@ -7,6 +7,7 @@
   --gutter: clamp(1.25rem, 5vw, 4rem);
   --section-space: clamp(4rem, 7vw, 7rem);
   --radius: 12px;
+  --radius-lg: 18px;
   --bg: #f7f8f5;
   --surface: #ffffff;
   --surface-muted: #edf1ed;
@@ -18,6 +19,12 @@
   --result: #326d45;
   --on-accent: #ffffff;
   --focus: #00766a;
+  --result-soft: #e3efe6;
+  --backdrop: rgb(16 28 25 / 0.52);
+  --identity-rule: linear-gradient(90deg, var(--accent), var(--result));
+  --shadow-card: 0 1px 2px rgb(16 36 32 / 0.04), 0 10px 28px -18px rgb(16 36 32 / 0.2);
+  --shadow-card-hover: 0 2px 6px rgb(16 36 32 / 0.05), 0 22px 44px -22px rgb(16 36 32 / 0.34);
+  --shadow-dialog: 0 36px 100px -24px rgb(12 30 26 / 0.42);
 }
 html[data-theme='dark'] {
   --bg: #111a18;
@@ -31,4 +38,9 @@ html[data-theme='dark'] {
   --result: #9acb99;
   --on-accent: #11251e;
   --focus: #83d5c4;
+  --result-soft: #1c3124;
+  --backdrop: rgb(3 7 6 / 0.74);
+  --shadow-card: 0 1px 2px rgb(0 0 0 / 0.3);
+  --shadow-card-hover: 0 20px 44px -22px rgb(0 0 0 / 0.75);
+  --shadow-dialog: 0 36px 100px -16px rgb(0 0 0 / 0.72);
 }

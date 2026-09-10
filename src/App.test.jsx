@@ -28,7 +28,7 @@ it('provides primary navigation, working section targets and CV downloads', () =
     if (href.startsWith('#')) expect(document.getElementById(href.slice(1))).not.toBeNull();
   }
 });
-it('renders the five flagship projects in approved order', () => {
+it('renders the project hierarchy in approved order', () => {
   renderApp();
   const work = screen.getByRole('region', { name: 'Selected Engineering Work' });
   expect(
@@ -37,16 +37,22 @@ it('renders the five flagship projects in approved order', () => {
       .map((article) => article.id),
   ).toEqual([
     'simplr',
-    'mrta',
+    'outcome-aware-ilp',
     'invite-industrial-manipulation',
     'intrinsic-ai-challenge',
     'robothon-2025',
+    'ilp-fault-diagnosis',
+    'autonomous-mobile-robot',
+    'garrulus-power-electronics',
+    'cross-modal-action-retrieval',
   ]);
   expect(work).toHaveTextContent('Top 40 / 400');
-  expect(work).toHaveTextContent('157');
-  expect(work).toHaveTextContent('100k');
+  expect(work).toHaveTextContent('2,000 successful demonstrations');
+  expect(work).not.toHaveTextContent(/\b157\b/);
+  expect(work).toHaveTextContent('ICAPS 2026');
   expect(work).toHaveTextContent('Top 5');
   expect(within(work).queryByRole('link', { name: /case study/i })).not.toBeInTheDocument();
+  expect(document.querySelectorAll('iframe')).toHaveLength(0);
 });
 it('renders research, experience, capabilities, about and contact', () => {
   renderApp();
