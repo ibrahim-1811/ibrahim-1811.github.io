@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title id="pd-page-title">Project — Mohammad Memon</title>
+<meta name="robots" content="noindex,follow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Fira+Code:wght@400;500&family=Rajdhani:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+/* ===== TOKENS ===================================================== */
+:root {
+  --clr-bg:       #020b18;
+  --clr-bg2:      #040f1e;
+  --clr-panel:    #071526;
+  --clr-border:   #0d2d4a;
+  --clr-cyan:     #00d4ff;
+  --clr-teal:     #00ffb3;
+  --clr-teal-dim: rgba(0,255,179,.12);
+  --clr-text:     #b8d4e8;
+  --clr-text-dim: #5a7a96;
+  --clr-white:    #e8f4ff;
+  --clr-danger:   #ff4d7d;
+  --clr-gold:     #ffd166;
+  --font-display: 'Orbitron', monospace;
+  --font-mono:    'Fira Code', monospace;
+  --font-body:    'Rajdhani', sans-serif;
+  --radius:       6px;
+  --max-w:        860px;
+}
+
+/* ===== RESET ====================================================== */
+*,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--clr-bg);
+  color: var(--clr-text);
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+a { color: var(--clr-cyan); text-decoration: none; }
+a:hover { text-decoration: underline; }
+ul { list-style: none; }
+img { max-width: 100%; display: block; }
+
+/* ===== READING PROGRESS BAR ====================================== */
+#pd-progress {
+  position: fixed; top: 0; left: 0;
+  height: 2px; width: 0%;
+  background: linear-gradient(90deg, var(--clr-cyan), var(--clr-teal));
+  z-index: 9999;
+  transition: width .1s linear;
+}
+
+/* ===== TOP NAV ==================================================== */
+.pd-nav {
+  position: sticky; top: 0;
+  background: rgba(2,11,24,.92);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--clr-border);
+  padding: .75rem 1.5rem;
+  display: flex; align-items: center; gap: .8rem;
+  z-index: 200;
+}
+.pd-nav-back {
+  font-family: var(--font-mono); font-size: .7rem;
+  color: var(--clr-text-dim);
+  display: flex; align-items: center; gap: .4rem;
+  transition: color .2s; white-space: nowrap;
+}
+.pd-nav-back:hover { color: var(--clr-cyan); text-decoration: none; }
+.pd-nav-sep { color: var(--clr-border); }
+.pd-nav-crumb {
+  font-family: var(--font-mono); font-size: .68rem;
+  color: var(--clr-text-dim);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 1;
+}
+.pd-nav-logo {
+  margin-left: auto;
+  font-family: var(--font-display); font-size: .68rem;
+  color: var(--clr-cyan); white-space: nowrap;
+}
+.pd-nav-logo span { color: var(--clr-white); }
+
+/* ===== HERO ======================================================= */
+.pd-hero {
+  background: linear-gradient(160deg, #040f1e 0%, #020b18 100%);
+  border-bottom: 1px solid var(--clr-border);
+  padding: 4.5rem 1.5rem 3.5rem;
+  position: relative; overflow: hidden;
+}
+.pd-hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(0,212,255,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,212,255,.04) 1px, transparent 1px);
+  background-size: 44px 44px;
+  pointer-events: none;
+}
+.pd-hero::after {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--clr-cyan), transparent);
+}
+.pd-hero-inner { max-width: var(--max-w); margin: 0 auto; position: relative; }
+
+/* Badge */
+.pd-badge {
+  display: inline-block;
+  font-family: var(--font-mono); font-size: .62rem;
+  letter-spacing: .1em; text-transform: uppercase;
+  padding: .22rem .75rem; border-radius: 3px; margin-bottom: 1.1rem;
+}
+.pd-badge-gold    { background: rgba(255,209,102,.1); border: 1px solid rgba(255,209,102,.4); color: var(--clr-gold); }
+.pd-badge-teal    { background: var(--clr-teal-dim);  border: 1px solid rgba(0,255,179,.3);   color: var(--clr-teal); }
+.pd-badge-default { background: rgba(0,212,255,.08);  border: 1px solid rgba(0,212,255,.3);   color: var(--clr-cyan); }
+.pd-badge-danger  { background: rgba(255,77,125,.1);  border: 1px solid rgba(255,77,125,.3);  color: var(--clr-danger); }
+
+.pd-hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 4vw, 2.1rem);
+  font-weight: 900; color: var(--clr-white);
+  line-height: 1.2; margin-bottom: .6rem;
+}
+.pd-hero-sub {
+  font-family: var(--font-mono); font-size: .72rem;
+  color: var(--clr-text-dim); letter-spacing: .06em; margin-bottom: 1rem;
+}
+.pd-hero-tagline {
+  font-size: 1.1rem; color: var(--clr-text);
+  max-width: 680px; margin-bottom: 2.2rem; line-height: 1.65;
+}
+
+/* Quick stats */
+.pd-stats { display: flex; gap: .9rem; flex-wrap: wrap; }
+.pd-stat {
+  background: var(--clr-panel);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius);
+  padding: .6rem 1.1rem;
+  min-width: 100px;
+}
+.pd-stat-label {
+  font-family: var(--font-mono); font-size: .58rem;
+  letter-spacing: .12em; text-transform: uppercase;
+  color: var(--clr-text-dim); display: block; margin-bottom: .18rem;
+}
+.pd-stat-value { font-size: .88rem; color: var(--clr-white); font-weight: 600; }
+
+/* ===== CONTENT ==================================================== */
+.pd-content {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 1.5rem 5rem;
+}
+
+/* Section */
+.pd-section {
+  padding: 2.8rem 0;
+  border-bottom: 1px solid rgba(13,45,74,.6);
+  opacity: 0; transform: translateY(18px);
+  transition: opacity .5s ease, transform .5s ease;
+}
+.pd-section.visible { opacity: 1; transform: none; }
+.pd-section:last-child { border-bottom: none; }
+
+.pd-section-num {
+  font-family: var(--font-mono); font-size: .62rem;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: var(--clr-cyan); margin-bottom: .35rem;
+}
+.pd-section-title {
+  font-family: var(--font-display); font-size: .95rem;
+  color: var(--clr-white); letter-spacing: .06em; margin-bottom: 1.2rem;
+}
+.pd-text { color: var(--clr-text); font-size: 1rem; line-height: 1.85; }
+
+/* Section accent colours */
+.pd-sec-problem .pd-section-num  { color: var(--clr-danger); }
+.pd-sec-problem .pd-text         { border-left: 2px solid rgba(255,77,125,.35); padding-left: 1.2rem; }
+.pd-sec-solution .pd-section-num { color: var(--clr-teal); }
+.pd-sec-results  .pd-section-num { color: var(--clr-gold); }
+
+/* Bullet lists */
+.pd-bullets { display: flex; flex-direction: column; gap: .55rem; }
+.pd-bullets li {
+  display: flex; gap: .7rem; align-items: flex-start;
+  color: var(--clr-text); font-size: 1rem; line-height: 1.7;
+}
+.pd-bullets li::before {
+  content: '▸'; color: var(--clr-cyan);
+  font-size: .78rem; flex-shrink: 0; margin-top: .25rem;
+}
+.pd-sec-results .pd-bullets li::before { color: var(--clr-teal); }
+
+/* Tech tags */
+.pd-tags { display: flex; flex-wrap: wrap; gap: .45rem; }
+.pd-tag {
+  font-family: var(--font-mono); font-size: .65rem;
+  padding: .26rem .7rem; border-radius: 3px;
+  background: rgba(0,212,255,.07);
+  border: 1px solid rgba(0,212,255,.2);
+  color: var(--clr-cyan); letter-spacing: .04em;
+}
+
+/* ===== VIDEO ==================================================== */
+.pd-video-wrap {
+  background: #000;
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius); overflow: hidden;
+}
+.pd-video-tabs {
+  display: flex; gap: .4rem;
+  padding: .6rem .6rem 0; background: #000;
+  border-bottom: 1px solid var(--clr-border);
+}
+.pd-video-tab {
+  font-family: var(--font-mono); font-size: .7rem;
+  padding: .3rem .85rem;
+  border: 1px solid transparent; border-bottom: none;
+  border-radius: 4px 4px 0 0;
+  background: transparent; color: var(--clr-text-dim);
+  cursor: pointer; transition: color .2s, border-color .2s, background .2s;
+}
+.pd-video-tab:hover { color: var(--clr-white); }
+.pd-video-tab.active {
+  color: var(--clr-cyan); border-color: var(--clr-border);
+  background: rgba(0,212,255,.06);
+}
+.pd-video-frame { width: 100%; aspect-ratio: 16/9; border: none; display: block; }
+.pd-video-desc {
+  padding: .7rem 1rem;
+  font-family: var(--font-mono); font-size: .7rem;
+  color: var(--clr-text-dim);
+  border-top: 1px solid var(--clr-border);
+  line-height: 1.6;
+}
+.pd-video-actions {
+  display: flex; gap: .6rem;
+  padding: .65rem 1rem;
+  border-top: 1px solid var(--clr-border);
+  background: rgba(0,0,0,.3);
+}
+
+/* ===== GALLERY ================================================== */
+.pd-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+}
+.pd-gallery-item {
+  aspect-ratio: 16/9; overflow: hidden;
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius); cursor: pointer;
+  transition: border-color .3s, transform .3s;
+  background: var(--clr-panel);
+}
+.pd-gallery-item:hover { border-color: var(--clr-cyan); transform: scale(1.02); }
+.pd-gallery-item img { width: 100%; height: 100%; object-fit: contain; }
+
+/* ===== BUTTONS ================================================== */
+.pd-links { display: flex; flex-wrap: wrap; gap: .7rem; margin-top: 1rem; }
+.pd-btn {
+  font-family: var(--font-mono); font-size: .74rem;
+  padding: .6rem 1.3rem; border-radius: var(--radius);
+  border: 1px solid rgba(0,212,255,.4);
+  background: transparent; color: var(--clr-cyan);
+  display: inline-flex; align-items: center; gap: .5rem;
+  cursor: pointer; transition: background .2s, border-color .2s;
+  text-decoration: none;
+}
+.pd-btn:hover { background: rgba(0,212,255,.1); border-color: var(--clr-cyan); text-decoration: none; }
+.pd-btn-primary {
+  background: var(--clr-cyan); color: #020b18;
+  border-color: var(--clr-cyan); font-weight: 700;
+}
+.pd-btn-primary:hover { background: var(--clr-teal); border-color: var(--clr-teal); color: #020b18; }
+
+/* ===== FOOTER NAV =============================================== */
+.pd-footer-nav {
+  background: var(--clr-bg2);
+  border-top: 1px solid var(--clr-border);
+  padding: 2.5rem 1.5rem;
+}
+.pd-footer-inner {
+  max-width: var(--max-w); margin: 0 auto;
+  display: flex; justify-content: space-between;
+  align-items: center; gap: 1rem; flex-wrap: wrap;
+}
+.pd-nav-proj { display: flex; flex-direction: column; gap: .2rem; }
+.pd-nav-proj-label {
+  font-family: var(--font-mono); font-size: .58rem;
+  color: var(--clr-text-dim); letter-spacing: .1em; text-transform: uppercase;
+}
+.pd-nav-proj-name {
+  font-size: .9rem; color: var(--clr-white); font-weight: 600;
+  max-width: 260px; line-height: 1.3;
+}
+.pd-nav-proj-link {
+  font-family: var(--font-mono); font-size: .68rem;
+  color: var(--clr-cyan); margin-top: .3rem;
+  display: inline-flex; align-items: center; gap: .4rem;
+}
+.pd-nav-proj-link:hover { color: var(--clr-teal); text-decoration: none; }
+.pd-nav-proj.right { text-align: right; }
+.pd-nav-proj.right .pd-nav-proj-link { justify-content: flex-end; }
+
+/* ===== LIGHTBOX ================================================= */
+#lb {
+  display: none; position: fixed; inset: 0; z-index: 9999;
+  background: rgba(2,11,24,.95); backdrop-filter: blur(6px);
+  align-items: center; justify-content: center;
+}
+#lb.active { display: flex; }
+#lb-img { max-width: min(92vw,1100px); max-height: 88vh; object-fit: contain; border: 1px solid var(--clr-border); border-radius: var(--radius); }
+.lb-btn {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  background: rgba(2,11,24,.7); border: 1px solid var(--clr-border);
+  color: var(--clr-cyan); width: 42px; height: 42px;
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  cursor: pointer; font-size: 1rem; transition: background .2s;
+}
+.lb-btn:hover { background: rgba(0,212,255,.15); }
+#lb-prev { left: 1rem; }
+#lb-next { right: 1rem; }
+#lb-close {
+  position: absolute; top: 1rem; right: 1rem;
+  width: 36px; height: 36px; border-radius: 50%;
+  background: rgba(2,11,24,.7); border: 1px solid var(--clr-border);
+  color: var(--clr-white); display: flex; align-items: center;
+  justify-content: center; cursor: pointer; font-size: .9rem;
+}
+#lb-count {
+  position: absolute; bottom: 1rem; left: 50%; transform: translateX(-50%);
+  font-family: var(--font-mono); font-size: .72rem; color: var(--clr-text-dim);
+}
+
+/* ===== NOT FOUND ================================================ */
+.pd-not-found {
+  max-width: 480px; margin: 8rem auto;
+  text-align: center; padding: 2rem;
+}
+.pd-not-found h1 {
+  font-family: var(--font-display); font-size: 1.3rem;
+  color: var(--clr-white); margin-bottom: 1rem;
+}
+.pd-not-found p { color: var(--clr-text-dim); margin-bottom: 2rem; }
+
+/* ===== RESPONSIVE =============================================== */
+@media (max-width: 600px) {
+  .pd-hero { padding: 2.5rem 1rem 2rem; }
+  .pd-content { padding: 0 1rem 3.5rem; }
+  .pd-stats { gap: .5rem; }
+  .pd-stat { padding: .5rem .75rem; min-width: auto; }
+  .pd-footer-inner { flex-direction: column; align-items: flex-start; }
+  .pd-nav-proj.right { text-align: left; }
+  .pd-nav-proj.right .pd-nav-proj-link { justify-content: flex-start; }
+  .pd-gallery { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 400px) {
+  .pd-gallery { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div id="pd-progress"></div>
+
+<!-- Top nav -->
+<nav class="pd-nav">
+  <a href="../index.html#projects" class="pd-nav-back">
+    <i class="fas fa-arrow-left"></i> Projects
+  </a>
+  <span class="pd-nav-sep">/</span>
+  <span class="pd-nav-crumb" id="pd-crumb">Loading…</span>
+  <a href="../index.html" class="pd-nav-logo">IB<span>RAHIM</span>.exe</a>
+</nav>
+
+<!-- Main content rendered by JS -->
+<main id="pd-main">
+  <div style="max-width:480px;margin:7rem auto;text-align:center;padding:2rem">
+    <p style="font-family:var(--font-mono);font-size:.8rem;color:var(--clr-text-dim)">
+      // loading project…
+    </p>
+  </div>
+</main>
+
+<footer id="pd-footer"></footer>
+
+<!-- Lightbox -->
+<div id="lb" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <button id="lb-close" aria-label="Close"><i class="fas fa-times"></i></button>
+  <button class="lb-btn" id="lb-prev" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>
+  <img id="lb-img" src="" alt="">
+  <button class="lb-btn" id="lb-next" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
+  <span id="lb-count"></span>
+</div>
+
+<script src="../assets/js/projects-data.js"></script>
+<script>
+'use strict';
+
+/* ── URL param ─────────────────────────────────────────────────── */
+const pid   = new URLSearchParams(window.location.search).get('id') || '';
+const data  = (typeof PROJECTS_DATA !== 'undefined') ? PROJECTS_DATA[pid] : null;
+
+/* ── Reading progress bar ──────────────────────────────────────── */
+window.addEventListener('scroll', () => {
+  const h = document.documentElement.scrollHeight - window.innerHeight;
+  if (h > 0)
+    document.getElementById('pd-progress').style.width = (window.scrollY / h * 100) + '%';
+});
+
+/* ── Lightbox ──────────────────────────────────────────────────── */
+(function () {
+  let imgs = [], idx = 0;
+  const lb    = document.getElementById('lb');
+  const lbImg = document.getElementById('lb-img');
+  const lbCnt = document.getElementById('lb-count');
+
+  function show(i) {
+    idx = (i + imgs.length) % imgs.length;
+    lbImg.src = imgs[idx];
+    lbCnt.textContent = imgs.length > 1 ? `${idx + 1} / ${imgs.length}` : '';
+    document.getElementById('lb-prev').style.display = imgs.length > 1 ? 'flex' : 'none';
+    document.getElementById('lb-next').style.display = imgs.length > 1 ? 'flex' : 'none';
+  }
+  window.openLb = function (images, start) {
+    imgs = images; show(start);
+    lb.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  };
+  function closeLb() {
+    lb.classList.remove('active');
+    lbImg.src = '';
+    document.body.style.overflow = '';
+  }
+  document.getElementById('lb-close').addEventListener('click', closeLb);
+  document.getElementById('lb-prev').addEventListener('click', () => show(idx - 1));
+  document.getElementById('lb-next').addEventListener('click', () => show(idx + 1));
+  lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
+  document.addEventListener('keydown', e => {
+    if (!lb.classList.contains('active')) return;
+    if (e.key === 'Escape')     closeLb();
+    if (e.key === 'ArrowLeft')  show(idx - 1);
+    if (e.key === 'ArrowRight') show(idx + 1);
+  });
+  let tx = null;
+  lb.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
+  lb.addEventListener('touchend', e => {
+    if (tx === null) return;
+    const dx = e.changedTouches[0].clientX - tx;
+    if (Math.abs(dx) > 40) show(dx < 0 ? idx + 1 : idx - 1);
+    tx = null;
+  });
+})();
+
+/* ── Video tab switcher ────────────────────────────────────────── */
+window.pdTab = function (btn, videoId, desc) {
+  btn.closest('.pd-video-wrap').querySelectorAll('.pd-video-tab')
+     .forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('pd-vframe').src =
+    `https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1`;
+  document.getElementById('pd-vyt').href = `https://youtu.be/${videoId}`;
+  const d = document.getElementById('pd-vdesc');
+  if (d) d.textContent = desc || '';
+};
+
+/* ── Section reveal on scroll ──────────────────────────────────── */
+const revealObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.07 });
+
+/* ── Image path helper (data stores root-relative paths) ────────── */
+function ip(p) { return p && p.startsWith('http') ? p : '../' + p; }
+
+/* ── Escape HTML ────────────────────────────────────────────────── */
+function esc(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+/* ── Render ─────────────────────────────────────────────────────── */
+if (!data) {
+  document.getElementById('pd-crumb').textContent = 'Not found';
+  document.title = 'Project not found — Mohammad Memon';
+  document.getElementById('pd-main').innerHTML = `
+    <div class="pd-not-found">
+      <h1>Project not found</h1>
+      <p>No case study exists for <code>${esc(pid) || 'this project'}</code>.</p>
+      <a href="../index.html#projects" class="pd-btn pd-btn-primary">
+        <i class="fas fa-arrow-left"></i> Back to Projects
+      </a>
+    </div>`;
+} else {
+  /* --- Meta -------------------------------------------------------- */
+  document.title = data.title + ' — Mohammad Memon';
+  document.getElementById('pd-crumb').textContent = data.title;
+
+  /* --- Badge ------------------------------------------------------- */
+  const badgeCls = {
+    gold: 'pd-badge-gold', teal: 'pd-badge-teal',
+    danger: 'pd-badge-danger', default: 'pd-badge-default'
+  }[data.badgeType] || 'pd-badge-default';
+
+  /* --- Videos HTML ------------------------------------------------- */
+  let videoHTML = '';
+  if (data.videos && data.videos.length > 0) {
+    const first = data.videos[0];
+    const tabs  = data.videos.map((v, i) =>
+      `<button class="pd-video-tab${i === 0 ? ' active' : ''}"
+         onclick="pdTab(this,'${esc(v.id)}','${esc(v.desc||'')}')">${esc(v.label)}</button>`
+    ).join('');
+    videoHTML = `
+      <div class="pd-section" id="s-video">
+        <div class="pd-section-num">07 / Demo</div>
+        <div class="pd-section-title">DEMO VIDEOS</div>
+        <div class="pd-video-wrap">
+          <div class="pd-video-tabs">${tabs}</div>
+          <iframe id="pd-vframe" class="pd-video-frame"
+            src="https://www.youtube.com/embed/${esc(first.id)}?rel=0&modestbranding=1"
+            title="${esc(data.title)}"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
+          ${first.desc
+            ? `<div class="pd-video-desc" id="pd-vdesc">${esc(first.desc)}</div>`
+            : `<div id="pd-vdesc" style="display:none"></div>`}
+          <div class="pd-video-actions">
+            <a id="pd-vyt" href="https://youtu.be/${esc(first.id)}"
+               target="_blank" rel="noopener noreferrer" class="pd-btn">
+              <i class="fab fa-youtube"></i> Watch on YouTube
+            </a>
+          </div>
+        </div>
+      </div>`;
+  } else if (data.videoId) {
+    videoHTML = `
+      <div class="pd-section" id="s-video">
+        <div class="pd-section-num">07 / Demo</div>
+        <div class="pd-section-title">DEMO VIDEO</div>
+        <div class="pd-video-wrap">
+          <iframe class="pd-video-frame"
+            src="https://www.youtube.com/embed/${esc(data.videoId)}?rel=0&modestbranding=1"
+            title="${esc(data.title)}"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
+          <div class="pd-video-actions">
+            <a href="https://youtu.be/${esc(data.videoId)}"
+               target="_blank" rel="noopener noreferrer" class="pd-btn">
+              <i class="fab fa-youtube"></i> Watch on YouTube
+            </a>
+          </div>
+        </div>
+      </div>`;
+  }
+
+  /* --- Gallery HTML ------------------------------------------------ */
+  let galleryHTML = '';
+  if (data.images && data.images.length > 0) {
+    const items = data.images.map((src, i) =>
+      `<div class="pd-gallery-item" onclick="openLb(window.__imgs,${i})">
+        <img src="${ip(src)}" alt="${esc(data.title)} image ${i + 1}" loading="lazy"
+             onerror="this.closest('.pd-gallery-item').style.display='none'">
+      </div>`
+    ).join('');
+    galleryHTML = `
+      <div class="pd-section" id="s-gallery">
+        <div class="pd-section-num">08 / Media</div>
+        <div class="pd-section-title">GALLERY</div>
+        <div class="pd-gallery">${items}</div>
+      </div>`;
+    window.__imgs = data.images.map(ip);
+  }
+
+  /* --- Links HTML -------------------------------------------------- */
+  const linkDefs = [
+    { key: 'github', icon: 'fab fa-github',              label: 'GitHub Repository' },
+    { key: 'demo',   icon: 'fas fa-external-link-alt',   label: 'Live Demo'         },
+    { key: 'paper',  icon: 'fas fa-file-alt',            label: 'Paper'             },
+    { key: 'video',  icon: 'fab fa-youtube',             label: 'Demo Video'        }
+  ];
+  let linksHTML = '';
+  if (data.links && Object.keys(data.links).length > 0) {
+    const btns = linkDefs.filter(d => data.links[d.key])
+      .map(d => `<a href="${esc(data.links[d.key])}" target="_blank" rel="noopener noreferrer" class="pd-btn">
+                   <i class="${d.icon}"></i> ${d.label}
+                 </a>`)
+      .join('');
+    if (btns) linksHTML = `<div class="pd-section" id="s-links"><div class="pd-links">${btns}</div></div>`;
+  }
+
+  /* --- Section number helpers ------------------------------------- */
+  let sn = 1;
+  const num = () => String(sn++).padStart(2, '0');
+
+  /* --- Build contribution & result bullets ------------------------ */
+  const cBullets = (data.contribution || []).map(c => `<li>${esc(c)}</li>`).join('');
+  const rBullets = (data.results      || []).map(r => `<li>${esc(r)}</li>`).join('');
+
+  /* --- Render main HTML ------------------------------------------- */
+  document.getElementById('pd-main').innerHTML = `
+
+    <!-- HERO -->
+    <div class="pd-hero">
+      <div class="pd-hero-inner">
+        <div class="pd-badge ${badgeCls}">${esc(data.badge)}</div>
+        <h1 class="pd-hero-title">${esc(data.title)}</h1>
+        <p class="pd-hero-sub">${esc(data.subtitle || '')}</p>
+        <p class="pd-hero-tagline">${esc(data.tagline || '')}</p>
+        <div class="pd-stats">
+          <div class="pd-stat">
+            <span class="pd-stat-label">Role</span>
+            <span class="pd-stat-value">${esc(data.role)}</span>
+          </div>
+          <div class="pd-stat">
+            <span class="pd-stat-label">Timeline</span>
+            <span class="pd-stat-value">${esc(data.timeline)}</span>
+          </div>
+          <div class="pd-stat">
+            <span class="pd-stat-label">Status</span>
+            <span class="pd-stat-value">${esc(data.status)}</span>
+          </div>
+          ${data.team ? `<div class="pd-stat">
+            <span class="pd-stat-label">Team</span>
+            <span class="pd-stat-value">${esc(data.team)}</span>
+          </div>` : ''}
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="pd-content">
+
+      <!-- 01 Overview -->
+      <div class="pd-section pd-sec-overview" id="s-overview">
+        <div class="pd-section-num">${num()} / Overview</div>
+        <div class="pd-section-title">PROJECT OVERVIEW</div>
+        <p class="pd-text">${esc(data.overview || data.description || '')}</p>
+      </div>
+
+      <!-- 02 Problem -->
+      ${data.problem ? `
+      <div class="pd-section pd-sec-problem" id="s-problem">
+        <div class="pd-section-num">${num()} / Problem</div>
+        <div class="pd-section-title">PROBLEM &amp; CHALLENGE</div>
+        <p class="pd-text">${esc(data.problem)}</p>
+      </div>` : (sn++, '')}
+
+      <!-- 03 Solution -->
+      ${data.solution ? `
+      <div class="pd-section pd-sec-solution" id="s-solution">
+        <div class="pd-section-num">${num()} / Approach</div>
+        <div class="pd-section-title">SOLUTION &amp; APPROACH</div>
+        <p class="pd-text">${esc(data.solution)}</p>
+      </div>` : (sn++, '')}
+
+      <!-- 04 Contribution -->
+      ${cBullets ? `
+      <div class="pd-section" id="s-contribution">
+        <div class="pd-section-num">${num()} / Contribution</div>
+        <div class="pd-section-title">MY CONTRIBUTION</div>
+        <ul class="pd-bullets">${cBullets}</ul>
+      </div>` : (sn++, '')}
+
+      <!-- 05 Results -->
+      ${rBullets ? `
+      <div class="pd-section pd-sec-results" id="s-results">
+        <div class="pd-section-num">${num()} / Impact</div>
+        <div class="pd-section-title">RESULTS &amp; IMPACT</div>
+        <ul class="pd-bullets">${rBullets}</ul>
+      </div>` : (sn++, '')}
+
+      <!-- 06 Tech Stack -->
+      <div class="pd-section" id="s-tech">
+        <div class="pd-section-num">${num()} / Stack</div>
+        <div class="pd-section-title">TECHNOLOGY STACK</div>
+        <div class="pd-tags">
+          ${data.tech.map(t => `<span class="pd-tag">${esc(t)}</span>`).join('')}
+        </div>
+      </div>
+
+      ${videoHTML}
+      ${galleryHTML}
+      ${linksHTML}
+
+    </div>
+  `;
+
+  /* Observe sections for scroll reveal */
+  document.querySelectorAll('.pd-section').forEach(s => revealObs.observe(s));
+}
+
+/* ── Footer prev / next navigation ─────────────────────────────── */
+(function () {
+  if (!data || typeof PROJECT_ORDER === 'undefined') return;
+  const i       = PROJECT_ORDER.indexOf(pid);
+  const prevId  = i > 0                          ? PROJECT_ORDER[i - 1] : null;
+  const nextId  = i < PROJECT_ORDER.length - 1   ? PROJECT_ORDER[i + 1] : null;
+  const prevD   = prevId ? PROJECTS_DATA[prevId] : null;
+  const nextD   = nextId ? PROJECTS_DATA[nextId] : null;
+
+  document.getElementById('pd-footer').innerHTML = `
+    <nav class="pd-footer-nav">
+      <div class="pd-footer-inner">
+        ${prevD ? `
+          <div class="pd-nav-proj left">
+            <span class="pd-nav-proj-label">← Previous</span>
+            <span class="pd-nav-proj-name">${esc(prevD.title)}</span>
+            <a href="project.html?id=${prevId}" class="pd-nav-proj-link">
+              <i class="fas fa-arrow-left"></i> View Project
+            </a>
+          </div>` : '<div></div>'}
+
+        <a href="../index.html#projects" class="pd-btn" style="align-self:center">
+          <i class="fas fa-th-large"></i> All Projects
+        </a>
+
+        ${nextD ? `
+          <div class="pd-nav-proj right">
+            <span class="pd-nav-proj-label">Next →</span>
+            <span class="pd-nav-proj-name">${esc(nextD.title)}</span>
+            <a href="project.html?id=${nextId}" class="pd-nav-proj-link">
+              View Project <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>` : '<div></div>'}
+      </div>
+    </nav>`;
+})();
+</script>
+</body>
+</html>
