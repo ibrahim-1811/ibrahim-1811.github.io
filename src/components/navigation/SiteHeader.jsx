@@ -75,11 +75,12 @@ export default function SiteHeader() {
       }}
     >
       <Container className="header-inner">
-        <a className="wordmark" href="#top" aria-label="Mohammad Memon, back to top">
+        <a className="wordmark" href="#top">
           <span className="identity-mark" aria-hidden="true">
             m.
           </span>
           <span>Mohammad Memon</span>
+          <span className="sr-only">, back to top</span>
         </a>
         <nav className="desktop-navigation" aria-label="Primary">
           <NavLinks />
