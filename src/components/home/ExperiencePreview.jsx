@@ -1,6 +1,7 @@
 import { experience } from '../../content/experience';
 import Container from '../layout/Container';
 import SectionHeading from '../layout/SectionHeading';
+import Icon from '../ui/Icon';
 export default function ExperiencePreview() {
   return (
     <section
@@ -32,7 +33,21 @@ export default function ExperiencePreview() {
                     item.company.charAt(0)
                   )}
                 </span>
-                <h3>{item.company}</h3>
+                <h3>
+                  {item.website ? (
+                    <a
+                      href={item.website}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${item.company} (opens in a new tab)`}
+                    >
+                      {item.company}
+                      <Icon name="external" size={13} />
+                    </a>
+                  ) : (
+                    item.company
+                  )}
+                </h3>
                 <p>{item.role}</p>
                 <span>{item.location}</span>
               </div>

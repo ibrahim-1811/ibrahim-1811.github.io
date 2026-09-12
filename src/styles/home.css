@@ -430,6 +430,23 @@
   font-size: 1.05rem;
   letter-spacing: -0.015em;
 }
+.experience-role h3 a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: inherit;
+  text-decoration: none;
+}
+.experience-role h3 a svg {
+  color: var(--text-muted);
+}
+.experience-role h3 a:hover {
+  color: var(--accent);
+  text-decoration: underline;
+}
+.experience-role h3 a:hover svg {
+  color: var(--accent);
+}
 .experience-role p {
   font-size: 0.82rem;
   margin-top: 0.35rem;

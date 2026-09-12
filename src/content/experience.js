@@ -1,7 +1,8 @@
 /**
  * Experience timeline. `logo` (optional) is a path inside public/, e.g.
  * '/images/logos/invite-gmbh.webp'. Logos sit on a white tile in both themes;
- * without one, the company's initial is shown instead.
+ * without one, the company's initial is shown instead. `website` (optional) turns
+ * the company name into a link that opens in a new tab.
  */
 export const experience = [
   {
@@ -12,6 +13,7 @@ export const experience = [
     period: '05/2026 - Present',
     summary:
       'Industrial robot manipulation, ROS 2 and MoveIt 2 integration, NVIDIA Isaac Sim digital twins, RGB-D sensing, demonstration acquisition, LeRobot, ACT and Isaac Mimic.',
+    website: 'https://www.invite-research.com/',
   },
   {
     company: 'Garrulus',
@@ -21,6 +23,7 @@ export const experience = [
     period: '05/2025 - 12/2025',
     summary:
       'PCB protection, power distribution, eFuse protection, solenoid drivers and power sequencing for autonomous tree-seeding robots.',
+    website: 'https://garrulus-project.github.io/',
   },
   {
     company: 'Kelo Robotics',
@@ -30,6 +33,7 @@ export const experience = [
     period: '05/2024 - 08/2024',
     summary:
       'NVIDIA Isaac Sim and Gazebo evaluation for robotic navigation, control, sensor integration and multi-agent simulation.',
+    website: 'https://www.kelo-robotics.com/',
   },
   {
     company: 'Unbox Robotics Pvt. Ltd',
@@ -39,6 +43,7 @@ export const experience = [
     period: '06/2022 - 07/2023',
     summary:
       'Automated validation, regression testing, system debugging, DFMEA, deployment support and warehouse-robot integration.',
+    website: 'https://www.unboxrobotics.com/',
   },
   {
     company: 'DashDot Robotics Pvt. Ltd',
@@ -48,5 +53,6 @@ export const experience = [
     period: '03/2021 - 02/2022',
     summary:
       'Embedded hardware, sensor interfaces, hardware bring-up, circuit debugging, sensor calibration and firmware integration.',
+    website: 'https://www.dashdotrobotics.com/',
   },
 ];
