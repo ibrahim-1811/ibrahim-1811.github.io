@@ -112,6 +112,9 @@
   display: flex;
   align-items: center;
   align-items: safe center;
+  /* Not clipping lets 16:10 act as a minimum: a tall diagram on a narrow card grows instead.
+     The card's own overflow still rounds the corners. */
+  overflow: visible;
   padding: clamp(1rem, 4cqi, 1.75rem) clamp(1rem, 5cqi, 2rem);
 }
 .project-card__badge {
@@ -554,7 +557,8 @@
   }
 }
 
-/* Card plate: a compact, visual-only copy of the dialog diagram. */
+/* Card plate: a compact, visual-only copy of the dialog diagram. Plates show the short part
+   names; the longer descriptions appear only where they fit, and always in the dialog. */
 .system-diagram--card {
   width: 100%;
 }
@@ -564,35 +568,30 @@
 .system-diagram--card .system-diagram__parts {
   margin-top: 0.7rem;
 }
-.system-diagram--card.system-diagram--stack .system-diagram__parts {
-  gap: 3px;
-}
-.system-diagram--card.system-diagram--stack .system-part {
-  grid-template-columns: minmax(6.5rem, 34%) minmax(0, 1fr) auto;
-  gap: 0.75rem;
-  padding: 0.48rem 0.75rem;
-}
-.system-diagram--card.system-diagram--stack .system-part__name {
-  font-size: 0.72rem;
-}
 .system-diagram--card .system-part__detail {
-  overflow: hidden;
-  font-size: 0.8rem;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  display: none;
 }
 .system-diagram--card .status-badge {
   padding: 0.05rem 0.45rem;
   font-size: 0.72rem;
 }
+.system-diagram--card.system-diagram--stack .system-diagram__parts {
+  gap: 3px;
+}
+.system-diagram--card.system-diagram--stack .system-part {
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.75rem;
+  padding: 0.5rem 0.75rem;
+}
 .system-diagram--card.system-diagram--flow .system-diagram__parts {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.55rem 1.25rem;
+  gap: 0.6rem 1.25rem;
 }
 .system-diagram--card.system-diagram--flow .system-part {
   grid-template-columns: 1.75rem minmax(0, 1fr);
-  gap: 0.05rem 0.65rem;
+  align-items: center;
+  gap: 0 0.65rem;
   padding: 0;
 }
 .system-diagram--card.system-diagram--flow .system-part::before {
@@ -607,13 +606,17 @@
   padding-top: 0;
   font-size: 0.84rem;
 }
-.system-diagram--card.system-diagram--flow .system-part__detail {
-  display: -webkit-box;
-  font-size: 0.78rem;
-  line-height: 1.4;
-  white-space: normal;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
+@container card-media (width < 32rem) {
+  /* Without the description column the layer name becomes the readable label. */
+  .system-diagram--card.system-diagram--stack .system-part__name {
+    font-family: var(--font-sans);
+    font-size: 0.84rem;
+    font-weight: 550;
+    line-height: 1.35;
+    letter-spacing: 0;
+    text-transform: none;
+    color: var(--text);
+  }
 }
 @container card-media (min-width: 32rem) {
   .system-diagram--card .system-diagram__caption {
@@ -631,9 +634,9 @@
     font-size: 0.72rem;
   }
   .system-diagram--card.system-diagram--stack .system-part__detail {
+    display: block;
     font-size: 0.9rem;
     line-height: 1.4;
-    white-space: normal;
   }
 }
 @container card-media (max-width: 27rem) {
@@ -644,17 +647,12 @@
     margin-top: 0.5rem;
   }
   .system-diagram--card.system-diagram--stack .system-part {
-    grid-template-columns: minmax(0, 1fr) auto;
     gap: 0.5rem;
-    padding: 0.3rem 0.6rem;
+    padding: 0.28rem 0.65rem;
   }
   /* Keep "Future direction" visible so planned work never reads as delivered. */
-  .system-diagram--card.system-diagram--stack .system-part__name,
   .system-diagram--card .system-part:not([data-tone='future']) .status-badge {
     display: none;
-  }
-  .system-diagram--card.system-diagram--flow .system-part__detail {
-    -webkit-line-clamp: 1;
   }
 }
 
@@ -688,8 +686,15 @@
     order: 0;
     flex: 0 0 44%;
     aspect-ratio: auto;
+    min-height: 14rem;
     border-bottom: 0;
     border-left: 1px solid var(--border);
+  }
+  /* Fill the side panel at the text's height; a portrait photo must not set the row height. */
+  .project-tier--secondary .project-card:last-child:nth-child(odd) .project-card__media img {
+    position: absolute;
+    inset: 0;
+    height: 100%;
   }
 }
 @media (max-width: 860px) {
@@ -720,6 +725,7 @@
     order: -1;
     flex: none;
     aspect-ratio: 16 / 10;
+    min-height: 0;
     border-bottom: 1px solid var(--border);
     border-left: 0;
   }
