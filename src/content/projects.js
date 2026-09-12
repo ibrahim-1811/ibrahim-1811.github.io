@@ -244,14 +244,13 @@ export const projects = [
     media: [
       {
         type: 'youtube',
-        url: 'https://youtu.be/m3gBvXjOTYQ',
-        title: 'Explainable task allocation — project demo (2025)',
-        caption:
-          'Earlier demo: the task manager turns robot state into facts (idle, closest, most_charged) and an ILP rule selects the robot.',
+        url: 'https://youtu.be/k6qkr25Wk5c',
+        title: 'Outcome-aware task allocation with ILP — R&D video (2026)',
+        caption: 'Current R&D project (2026).',
         role: 'hero',
-        poster: '/images/projects/mrta-control.webp',
+        poster: '/images/projects/outcome-aware-ilp-poster.webp',
         posterAlt:
-          'Warehouse control interface showing four robots with battery level and status, an order form and active orders with progress',
+          'Project overview: a warehouse map with collection, dropoff and charging zones and robot paths, beside the system flow from orders to Gazebo execution and the benchmarked allocation strategies',
         posterPosition: 'left center',
       },
     ],
@@ -492,7 +491,8 @@ export const projects = [
         caption: 'LiDAR-based SLAM, A* path planning and motor control tested in simulation.',
         role: 'hero',
         poster: '/images/projects/amr-gazebo-rviz.webp',
-        posterAlt: 'Gazebo simulation beside an RViz occupancy map showing the robot navigating',
+        posterAlt:
+          'Project overview: a mobile robot with a SLAM map, A* global planning, local obstacle avoidance and frontier exploration, from simulation to real hardware',
       },
       {
         type: 'youtube',
