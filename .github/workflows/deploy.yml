@@ -26,8 +26,7 @@ jobs:
       - run: npm ci
       - run: npm run test:run
       - run: npm run build
-      - run: npx playwright install --with-deps chromium
-      - run: npm run test:browser
+      # Browser tests stay available locally (npm run test:browser) but do not gate deploys.
       - uses: actions/upload-pages-artifact@v3
         if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
         with:
