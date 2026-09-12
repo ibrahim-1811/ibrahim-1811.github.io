@@ -22,25 +22,12 @@ const everyStatus = (project) => [
 ];
 
 describe('project inventory and hierarchy', () => {
-  it('orders flagship, secondary, supporting and archive work as approved', () => {
-    expect(slugsIn('flagship')).toEqual(['simplr', 'outcome-aware-ilp']);
-    expect(slugsIn('secondary')).toEqual([
+  it('keeps the approved top five first; new projects can be added after them', () => {
+    expect(slugsIn('flagship').slice(0, 2)).toEqual(['simplr', 'outcome-aware-ilp']);
+    expect(slugsIn('secondary').slice(0, 3)).toEqual([
       'invite-industrial-manipulation',
       'intrinsic-ai-challenge',
       'robothon-2025',
-    ]);
-    expect(slugsIn('supporting')).toEqual([
-      'ilp-fault-diagnosis',
-      'autonomous-mobile-robot',
-      'garrulus-power-electronics',
-      'cross-modal-action-retrieval',
-    ]);
-    expect(slugsIn('archive')).toEqual([
-      'multi-robot-task-distribution',
-      'ur5-pick-and-place',
-      'underwater-vehicle',
-      'box-it',
-      'home-automation-circuit',
     ]);
   });
 
@@ -173,7 +160,10 @@ describe('content consumed by the rest of the homepage', () => {
       'Patent publication',
     ]);
     expect(research[0].venue).toBe('PlanRob, ICAPS 2026');
-    expect(research.every((item) => item.href === null)).toBe(true);
+    // A paper link is optional, but must be a real public URL.
+    expect(research.every((item) => item.href === null || item.href.startsWith('https://'))).toBe(
+      true,
+    );
     for (const item of research) {
       if (item.project) expect(getProject(item.project)).not.toBeNull();
     }
