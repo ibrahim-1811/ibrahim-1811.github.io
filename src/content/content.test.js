@@ -87,7 +87,9 @@ describe('project inventory and hierarchy', () => {
     const simplr = getProject('simplr');
     expect(simplr.subtitle).toBe('Simulation Multipurpose Lab Robot');
     expect(simplr.scope.items.length).toBeGreaterThan(1);
-    expect(simplr.system.parts.find((part) => /VLA/.test(part.detail)).status).toBe('future');
+    expect(simplr.system.parts.find((part) => /VLA/.test(part.detail)).status).toBe(
+      'in-development',
+    );
     expect(simplr.direction).toMatch(/not a deployed capability/);
     expect(getProject('outcome-aware-ilp').system.parts.at(-1)).toMatchObject({
       name: 'Outcome-aware ILP',

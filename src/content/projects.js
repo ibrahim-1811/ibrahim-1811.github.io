@@ -60,9 +60,9 @@ export const projects = [
       title: 'Platform architecture',
       parts: [
         {
-          name: 'Research direction',
-          detail: 'Vision-language-action (VLA) policies',
-          status: 'future',
+          name: 'VLA policies',
+          detail: 'Cosmos VLA fine-tuning from a pretrained Cosmos DROID policy',
+          status: 'in-development',
         },
         {
           name: 'Robot learning',
@@ -111,7 +111,7 @@ export const projects = [
     ],
     technologies: ['UR10', 'UR5e', 'ROS 2', 'Isaac Sim', 'LeRobot', 'ACT', 'MoveIt 2'],
     direction:
-      'Grow the platform from its first workflow into a family of laboratory tasks, and use the collected demonstrations to study vision-language-action (VLA) policies. VLA work is a research direction, not a deployed capability.',
+      'Grow the platform from its first workflow into a family of laboratory tasks. Vision-language-action (VLA) fine-tuning with NVIDIA Cosmos is in progress, targeting closed-loop evaluation in Isaac Sim and Isaac Lab — it is not a deployed capability.',
     media: [
       {
         type: 'youtube',
