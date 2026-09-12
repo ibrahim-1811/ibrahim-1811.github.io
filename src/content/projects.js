@@ -119,10 +119,10 @@ export const projects = [
         title: 'Pick, place and pour — ACT policy results',
         caption: 'ACT results with 48 episodes, in Isaac Sim with ROS 2.',
         role: 'hero',
-        // Your own thumbnail: put the file in public/images/projects/ and uncomment.
-        // It is shown before Play and also becomes the homepage card image.
-        // poster: '/images/projects/simplr-hero.webp',
-        // posterAlt: 'Robot arm in the SIMPLR workcell in Isaac Sim during the pick, place and pour task',
+        // Custom thumbnail: shown before Play and used as the homepage card image.
+        poster: '/images/projects/Simplr.webp',
+        posterAlt:
+          'Robot arm in the SIMPLR workcell in Isaac Sim during the pick, place and pour task',
       },
       {
         type: 'youtube',
