@@ -128,11 +128,15 @@ describe('project dialog', () => {
       .map((heading) => heading.textContent);
     expect(sections).toEqual([
       'Problem',
+      'System',
       'Laboratory task scope',
       'Direction',
       'Hardware',
       'Software',
+      'Media',
     ]);
+    // The hero video leads; the three other SIMPLR videos sit in the Media gallery.
+    expect(within(dialog()).getAllByRole('button', { name: /^Play video/ })).toHaveLength(4);
     expect(within(dialog()).getByText('Platform architecture')).toBeInTheDocument();
     expect(within(dialog()).getAllByText('Future direction').length).toBeGreaterThan(1);
     expect(within(dialog()).queryByText('My contribution')).not.toBeInTheDocument();

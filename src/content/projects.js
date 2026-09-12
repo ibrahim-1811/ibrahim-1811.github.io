@@ -76,7 +76,7 @@ export const projects = [
         },
         {
           name: 'Simulation & control',
-          detail: 'NVIDIA Isaac Sim · ROS 2 Jazzy',
+          detail: 'NVIDIA Isaac Sim · ROS 2 Jazzy · MoveIt 2',
           status: 'implemented',
         },
         { name: 'Robot platform', detail: 'UR5e · Robotiq 2F-85 · wrist-mounted RGB-D camera' },
@@ -97,11 +97,53 @@ export const projects = [
       ],
     },
     hardware: ['UR5e', 'Robotiq 2F-85', 'Wrist-mounted RGB-D camera'],
-    software: ['ROS 2 Jazzy', 'NVIDIA Isaac Sim', 'Isaac Lab', 'Isaac Mimic', 'LeRobot', 'ACT'],
-    technologies: ['UR5e', 'ROS 2', 'Isaac Sim', 'Isaac Lab', 'LeRobot', 'ACT'],
+    software: [
+      'ROS 2 Jazzy',
+      'MoveIt 2',
+      'NVIDIA Isaac Sim',
+      'Isaac Lab',
+      'Isaac Mimic',
+      'LeRobot',
+      'ACT',
+    ],
+    technologies: ['UR5e', 'ROS 2', 'MoveIt 2', 'Isaac Sim', 'LeRobot', 'ACT'],
     direction:
       'Grow the platform from its first workflow into a family of laboratory tasks, and use the collected demonstrations to study vision-language-action (VLA) policies. VLA work is a research direction, not a deployed capability.',
-    media: [],
+    media: [
+      {
+        type: 'youtube',
+        url: 'https://youtu.be/ExUtlcb3bo0',
+        title: 'Pick, place and pour — ACT policy results',
+        caption: 'ACT results with 48 episodes, in Isaac Sim with ROS 2.',
+        role: 'hero',
+        // Your own thumbnail: put the file in public/images/projects/ and uncomment.
+        // It is shown before Play and also becomes the homepage card image.
+        // poster: '/images/projects/simplr-hero.webp',
+        // posterAlt: 'Robot arm in the SIMPLR workcell in Isaac Sim during the pick, place and pour task',
+      },
+      {
+        type: 'youtube',
+        url: 'https://youtu.be/qZvUJIwh2CI',
+        title: 'Simulation episode generation',
+        caption:
+          'MoveIt 2, Isaac Sim and ROS 2 act as the teacher that generates demonstration episodes.',
+        role: 'dataset',
+      },
+      {
+        type: 'youtube',
+        url: 'https://youtu.be/KS72OFBWFC4',
+        title: 'Imitation-learning policy execution',
+        caption: 'LeRobot ACT policy in Isaac Sim with ROS 2 and MoveIt 2 — 9 episodes.',
+        role: 'experiment',
+      },
+      {
+        type: 'youtube',
+        url: 'https://youtu.be/xPCJixAphGg',
+        title: 'ACT with a different bottle and scene',
+        caption: 'Part 2: the ACT policy with a different bottle and scene.',
+        role: 'experiment',
+      },
+    ],
     links: {},
   },
   {
