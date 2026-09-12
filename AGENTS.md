@@ -53,7 +53,7 @@ SIMPLR means Simulation Multipurpose Lab Robot. It is a reusable laboratory mani
 
 Current system direction includes:
 
-- UR5e
+- UR10 and UR5e
 - Robotiq 2F-85
 - Wrist mounted RGB-D perception
 - ROS 2 Jazzy

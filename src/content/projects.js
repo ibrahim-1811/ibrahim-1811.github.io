@@ -50,7 +50,7 @@ export const projects = [
     status: 'Current development',
     current: true,
     summary:
-      'A reusable laboratory manipulation platform connecting a UR5e workcell, NVIDIA Isaac simulation and demonstration-driven robot learning — built for many lab tasks, not a single demo.',
+      'A reusable laboratory manipulation platform connecting UR10 and UR5e workcells, NVIDIA Isaac simulation and demonstration-driven robot learning — built for many lab tasks, not a single demo.',
     description:
       'SIMPLR is a simulation-first platform for laboratory manipulation. Instead of scripting one task, it shares one robot, perception, simulation and learning pipeline across many laboratory workflows. The pick → pour → return workflow is the first task used to develop that pipeline.',
     problem:
@@ -79,7 +79,10 @@ export const projects = [
           detail: 'NVIDIA Isaac Sim · ROS 2 Jazzy · MoveIt 2',
           status: 'implemented',
         },
-        { name: 'Robot platform', detail: 'UR5e · Robotiq 2F-85 · wrist-mounted RGB-D camera' },
+        {
+          name: 'Robot platform',
+          detail: 'UR10 · UR5e · Robotiq 2F-85 · wrist-mounted RGB-D camera',
+        },
       ],
     },
     scope: {
@@ -96,7 +99,7 @@ export const projects = [
         { name: 'Tool interaction', status: 'future' },
       ],
     },
-    hardware: ['UR5e', 'Robotiq 2F-85', 'Wrist-mounted RGB-D camera'],
+    hardware: ['UR10', 'UR5e', 'Robotiq 2F-85', 'Wrist-mounted RGB-D camera'],
     software: [
       'ROS 2 Jazzy',
       'MoveIt 2',
@@ -106,7 +109,7 @@ export const projects = [
       'LeRobot',
       'ACT',
     ],
-    technologies: ['UR5e', 'ROS 2', 'MoveIt 2', 'Isaac Sim', 'LeRobot', 'ACT'],
+    technologies: ['UR10', 'UR5e', 'ROS 2', 'Isaac Sim', 'LeRobot', 'ACT', 'MoveIt 2'],
     direction:
       'Grow the platform from its first workflow into a family of laboratory tasks, and use the collected demonstrations to study vision-language-action (VLA) policies. VLA work is a research direction, not a deployed capability.',
     media: [
