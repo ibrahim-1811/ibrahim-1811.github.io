@@ -21,6 +21,17 @@ export default function ExperiencePreview() {
             <li key={item.company}>
               <p className="experience-period">{item.period.replace(' - ', ' — ')}</p>
               <div className="experience-role">
+                {/* Decorative: the company name is right beside it. */}
+                <span
+                  className={`experience-logo${item.logo ? '' : ' experience-logo--initial'}`}
+                  aria-hidden="true"
+                >
+                  {item.logo ? (
+                    <img src={item.logo} alt="" loading="lazy" decoding="async" />
+                  ) : (
+                    item.company.charAt(0)
+                  )}
+                </span>
                 <h3>{item.company}</h3>
                 <p>{item.role}</p>
                 <span>{item.location}</span>

@@ -286,6 +286,24 @@ approved hierarchy.
 | `src/content/capabilities.js`| Technical capability groups.                                           |
 | `docs/portfolio/CONTENT_SOURCES.md` | Where every factual claim comes from. Update it when you add facts. |
 
+## HOW TO ADD A COMPANY LOGO (Experience section)
+
+1. Keep the original file in `images/logos/` if you like, but the site only serves files from
+   `public/`. Put a small web copy in `public/images/logos/` (PNG, WebP or JPG; about 240 px on
+   the longest side is plenty — it shows at 56 px). Trim empty margins so the mark fills the tile.
+2. In `src/content/experience.js`, add a `logo` line to that company:
+
+   ```js
+   {
+     company: 'INVITE GmbH',
+     logo: '/images/logos/invite-gmbh.webp',
+     ...
+   },
+   ```
+
+3. Match the file name's upper/lower case exactly. Logos sit on a white tile in both themes, so
+   transparent or dark logos stay visible. Without a `logo`, the company's first letter is shown.
+
 ## Rules of thumb
 
 - Do not publish results, metrics, hardware or dates you cannot back up. Leave the field out.

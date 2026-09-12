@@ -1,6 +1,12 @@
+/**
+ * Experience timeline. `logo` (optional) is a path inside public/, e.g.
+ * '/images/logos/invite-gmbh.webp'. Logos sit on a white tile in both themes;
+ * without one, the company's initial is shown instead.
+ */
 export const experience = [
   {
     company: 'INVITE GmbH',
+    logo: '/images/logos/invite-gmbh.webp',
     role: 'Robotics Intern',
     location: 'Leverkusen, Germany',
     period: '05/2026 - Present',
@@ -9,6 +15,7 @@ export const experience = [
   },
   {
     company: 'Garrulus',
+    logo: '/images/logos/garrulus.webp',
     role: 'Research Assistant',
     location: 'Bonn, Germany',
     period: '05/2025 - 12/2025',
@@ -17,6 +24,7 @@ export const experience = [
   },
   {
     company: 'Kelo Robotics',
+    logo: '/images/logos/kelo-robotics.webp',
     role: 'Research Assistant',
     location: 'Stuttgart, Germany',
     period: '05/2024 - 08/2024',
@@ -25,6 +33,7 @@ export const experience = [
   },
   {
     company: 'Unbox Robotics Pvt. Ltd',
+    logo: '/images/logos/unbox-robotics.webp',
     role: 'Robotics System Engineer',
     location: 'Pune, India',
     period: '06/2022 - 07/2023',
@@ -33,6 +42,7 @@ export const experience = [
   },
   {
     company: 'DashDot Robotics Pvt. Ltd',
+    logo: '/images/logos/dashdot-robotics.webp',
     role: 'Embedded System Engineer',
     location: 'Ahmedabad, India',
     period: '03/2021 - 02/2022',
