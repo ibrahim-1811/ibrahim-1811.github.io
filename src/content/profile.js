@@ -23,7 +23,7 @@ export const profile = {
   about:
     'I work across robotics software, simulation, manipulation, robot learning and embedded systems. My current focus is connecting digital twins, perception, planning, demonstration data and learned policies into deployable workflows.',
   credibility: [
-    { label: 'Hochschule Bonn-Rhein-Sieg', value: 'M.Sc. candidate · Autonomous Systems' },
+    { label: 'Hochschule Bonn-Rhein-Sieg', value: 'M.Sc. Autonomous Systems' },
     { label: 'Current', value: 'Robotics Intern · INVITE GmbH' },
     { label: 'Research', value: 'PlanRob, ICAPS 2026' },
     { label: 'Engineering stack', value: 'ROS 2 · Isaac Sim · Isaac Lab · LeRobot' },
